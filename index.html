@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pixel Portrait — Free AI Portrait Generator</title>
+<meta name="description" content="Upload one photo, get 8 stunning portrait styles. Free, no sign-up, AI-powered.">
+<link rel="stylesheet" href="css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎨</text></svg>">
+</head>
+<body>
+
+<header class="header">
+  <div class="container">
+    <a href="/" class="logo">🎨 Pixel Portrait</a>
+  </div>
+</header>
+
+<main class="main">
+  <div class="container">
+
+    <!-- Upload Area -->
+    <section class="upload-section" id="uploadSection">
+      <h1 class="hero-title">One Photo,<br>Infinite Styles</h1>
+      <p class="hero-sub">Upload a portrait and pick a style. We'll do the rest — free, no sign-up.</p>
+
+      <div class="upload-zone" id="uploadZone">
+        <input type="file" id="fileInput" accept="image/*" hidden>
+        <div class="upload-placeholder" id="uploadPlaceholder">
+          <span class="upload-icon">📷</span>
+          <p>Click or drag a photo here</p>
+          <p class="upload-hint">JPEG or PNG. Clear face works best.</p>
+        </div>
+        <img id="preview" class="preview-hidden" alt="Preview">
+      </div>
+
+      <button class="btn-remove" id="btnRemove" style="display:none">Remove photo</button>
+
+      <!-- Style Grid -->
+      <h2 class="section-title">Choose a Style</h2>
+      <div class="style-grid" id="styleGrid">
+        <button class="style-card" data-style="professional">
+          <span class="style-icon">💼</span>
+          <span class="style-name">Professional<br>Headshot</span>
+        </button>
+        <button class="style-card" data-style="anime">
+          <span class="style-icon">🌸</span>
+          <span class="style-name">Anime /<br>Ghibli</span>
+        </button>
+        <button class="style-card" data-style="pixar">
+          <span class="style-icon">🧸</span>
+          <span class="style-name">Pixar 3D<br>Cartoon</span>
+        </button>
+        <button class="style-card" data-style="oil">
+          <span class="style-icon">🖼️</span>
+          <span class="style-name">Classic Oil<br>Painting</span>
+        </button>
+        <button class="style-card" data-style="felt">
+          <span class="style-icon">🧶</span>
+          <span class="style-name">Felt /<br>Plushie</span>
+        </button>
+        <button class="style-card" data-style="sketch">
+          <span class="style-icon">✏️</span>
+          <span class="style-name">Pencil<br>Sketch</span>
+        </button>
+        <button class="style-card" data-style="watercolor">
+          <span class="style-icon">🎨</span>
+          <span class="style-name">Watercolor<br>Painting</span>
+        </button>
+        <button class="style-card" data-style="pixel">
+          <span class="style-icon">👾</span>
+          <span class="style-name">Pixel Art<br>Retro</span>
+        </button>
+      </div>
+
+      <button class="btn-generate" id="btnGenerate" disabled>Choose a photo and style first</button>
+    </section>
+
+    <!-- Loading -->
+    <section class="loading-section" id="loadingSection" style="display:none">
+      <div class="spinner"></div>
+      <p class="loading-text" id="loadingText">Generating your portrait...</p>
+    </section>
+
+    <!-- Result -->
+    <section class="result-section" id="resultSection" style="display:none">
+      <h2 class="section-title">Your Portrait</h2>
+      <div class="result-card">
+        <img id="resultImage" alt="Generated portrait">
+        <div class="result-actions">
+          <button class="btn-download" id="btnDownload">⬇ Download</button>
+          <button class="btn-try-again" id="btnTryAgain">🔄 Try Another Style</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Error -->
+    <section class="error-section" id="errorSection" style="display:none">
+      <p class="error-text" id="errorText"></p>
+      <button class="btn-try-again" id="btnErrorRetry">Try Again</button>
+    </section>
+
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <p>Pixel Portrait — Free AI portrait generator. No sign-up required.</p>
+    <p class="footer-links">
+      <a href="/privacy.html">Privacy</a> · <a href="mailto:hello@pixelportrait.fun">Contact</a>
+    </p>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
