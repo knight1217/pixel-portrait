@@ -599,6 +599,7 @@ btnGenerate.addEventListener('click', generate);
 
 // Initialize
 updateGenBtn();
+customPromptEl.value = '';
 
 // Load prompt from prompts.html
 const storedPrompt = localStorage.getItem('snapshift-prompt');
