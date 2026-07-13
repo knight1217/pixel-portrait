@@ -403,42 +403,29 @@ const modalBody = $('#modalBody');
 const modalSearch = $('#modalSearch');
 
 const promptExamples = [
-  { title: 'Corporate Portrait', src: 'prompts-previews/prompt-01-corporate.png', tags: ['portrait', 'business'], prompt: 'Professional headshot of confident businesswoman in her 30s, navy blazer, genuine smile, white background, studio lighting, shot on Canon 85mm f/1.4, sharp focus, 8k' },
-  { title: 'Cyberpunk Night', src: 'prompts-previews/prompt-02-cyberpunk.png', tags: ['cyberpunk', 'city'], prompt: 'Futuristic cyberpunk city at night, neon signs in Japanese, rain-soaked streets reflecting lights, flying cars, people with umbrellas, Blade Runner style, cinematic, 8k' },
-  { title: 'Luxury Product', src: 'prompts-previews/prompt-03-luxury.png', tags: ['product', 'luxury'], prompt: 'Swiss luxury watch close-up, polished steel, blue dial, black leather strap, dramatic studio lighting with reflections, product photography, commercial quality, premium, 8k' },
-  { title: 'Ghibli Countryside', src: 'prompts-previews/prompt-04-ghibli.png', tags: ['ghibli', 'anime'], prompt: 'Pastoral countryside in Studio Ghibli animation style, rolling green hills dotted with wildflowers, a small stone cottage with smoke rising, a massive ancient oak tree, clear summer sky with fluffy clouds, hand-painted quality, warm afternoon light' },
-  { title: 'Epic Landscape', src: 'prompts-previews/prompt-05-landscape.png', tags: ['landscape', 'nature'], prompt: 'Snow-capped mountain range at sunrise, orange and pink clouds, alpine meadow with wildflowers, lake reflection, wide-angle landscape, National Geographic quality, 8k' },
-  { title: 'Food Photography', src: 'prompts-previews/prompt-06-food.png', tags: ['food', 'photography'], prompt: 'Gourmet burger with stacked ingredients, sesame bun, lettuce, tomato, melted cheddar, juicy beef, professional food photography, appetizing, dramatic lighting, menu quality, 8k' },
-  { title: 'Epic Fantasy Dragon', src: 'prompts-previews/prompt-07-dragon.png', tags: ['fantasy', 'dragon'], prompt: 'Majestic dragon on mountain peak, iridescent scales, wings spread wide, medieval castle in valley, storm clouds, epic fantasy art, highly detailed, concept art, dramatic lighting, 8k' },
-  { title: 'Magical Forest', src: 'prompts-previews/prompt-08-forest.png', tags: ['nature', 'magical'], prompt: 'Ancient forest with morning mist, sun rays through trees creating god rays, moss-covered ground, ferns, magical atmosphere, fantasy landscape, cinematic, detailed, 8k' },
-  { title: 'Cyberpunk Anime', src: 'prompts-previews/prompt-09-cyberanime.png', tags: ['anime', 'cyberpunk'], prompt: 'Anime portrait of a young woman with neon pink twin-tail hair, visor reflecting neon cityscape, cyberpunk jacket with LED strip accents, dramatic neon lighting, manga-style portrait composition, MAPPA studio production quality' },
-  { title: '1970s Film Portrait', src: 'prompts-previews/prompt-10-1970s.png', tags: ['retro', 'film'], prompt: '1970s film photography portrait of a woman in her late 20s, feathered layered Farrah Fawcett-era hair, patterned wrap dress, soft warm backlight, very heavy film grain, faded analog color palette, Kodak Ektar film simulation' },
+  { title: 'Corporate Portrait', src: 'prompts-previews/Portrait/001-corporate.png', tags: ['portrait', 'business'], prompt: 'Professional headshot of confident businesswoman in her 30s, navy blazer, genuine smile, white background, studio lighting, shot on Canon 85mm f/1.4, sharp focus, 8k' },
+  { title: 'Cyberpunk Night', src: 'prompts-previews/Urban/001-cyberpunk.png', tags: ['cyberpunk', 'city'], prompt: 'Futuristic cyberpunk city at night, neon signs in Japanese, rain-soaked streets reflecting lights, flying cars, people with umbrellas, Blade Runner style, cinematic, 8k' },
+  { title: 'Luxury Product', src: 'prompts-previews/Still Life/001-luxury.png', tags: ['product', 'luxury'], prompt: 'Swiss luxury watch close-up, polished steel, blue dial, black leather strap, dramatic studio lighting with reflections, product photography, commercial quality, premium, 8k' },
+  { title: 'Ghibli Countryside', src: 'prompts-previews/Fantasy/001-ghibli.png', tags: ['ghibli', 'anime'], prompt: 'Pastoral countryside in Studio Ghibli animation style, rolling green hills dotted with wildflowers, a small stone cottage with smoke rising, a massive ancient oak tree, clear summer sky with fluffy clouds, hand-painted quality, warm afternoon light' },
+  { title: 'Epic Landscape', src: 'prompts-previews/Nature/001-landscape.png', tags: ['landscape', 'nature'], prompt: 'Snow-capped mountain range at sunrise, orange and pink clouds, alpine meadow with wildflowers, lake reflection, wide-angle landscape, National Geographic quality, 8k' },
+  { title: 'Food Photography', src: 'prompts-previews/Food/001-pancake-stack-syrup-waterfall-kayakers.png', tags: ['food', 'photography'], prompt: 'Gourmet burger with stacked ingredients, sesame bun, lettuce, tomato, melted cheddar, juicy beef, professional food photography, appetizing, dramatic lighting, menu quality, 8k' },
+  { title: 'Epic Fantasy Dragon', src: 'prompts-previews/Fantasy/002-dragon.png', tags: ['fantasy', 'dragon'], prompt: 'Majestic dragon on mountain peak, iridescent scales, wings spread wide, medieval castle in valley, storm clouds, epic fantasy art, highly detailed, concept art, dramatic lighting, 8k' },
+  { title: 'Magical Forest', src: 'prompts-previews/Nature/002-forest.png', tags: ['nature', 'magical'], prompt: 'Ancient forest with morning mist, sun rays through trees creating god rays, moss-covered ground, ferns, magical atmosphere, fantasy landscape, cinematic, detailed, 8k' },
+  { title: 'Cyberpunk Anime', src: 'prompts-previews/Fantasy/009-cyberanime.png', tags: ['anime', 'cyberpunk'], prompt: 'Anime portrait of a young woman with neon pink twin-tail hair, visor reflecting neon cityscape, cyberpunk jacket with LED strip accents, dramatic neon lighting, manga-style portrait composition, MAPPA studio production quality' },
+  { title: '1970s Film Portrait', src: 'prompts-previews/Portrait/002-1970s.png', tags: ['retro', 'film'], prompt: '1970s film photography portrait of a woman in her late 20s, feathered layered Farrah Fawcett-era hair, patterned wrap dress, soft warm backlight, very heavy film grain, faded analog color palette, Kodak Ektar film simulation' },
   { title: 'Floating Castle', src: 'prompts-previews/prompt-11-castle.png', tags: ['fantasy', 'concept'], prompt: 'Cinematic concept art of a massive floating castle above a sea of clouds, waterfalls cascading off the edges into the void below, gothic spires with warm glowing windows, storm clouds with lightning, wide-angle establishing shot, epic fantasy' },
-  { title: 'VHS Glitch Art', src: 'prompts-previews/prompt-12-vhs.png', tags: ['retro', 'glitch'], prompt: 'VHS glitch aesthetic portrait, subject with voluminous 80s hair and bold makeup, horizontal scan line distortion across image, color channel bleeding on right edge, white timestamp overlay in bottom-left, heavy digital noise and static texture, retro aesthetic' },
+  { title: 'VHS Glitch Art', src: 'prompts-previews/Abstract/001-vhs.png', tags: ['retro', 'glitch'], prompt: 'VHS glitch aesthetic portrait, subject with voluminous 80s hair and bold makeup, horizontal scan line distortion across image, color channel bleeding on right edge, white timestamp overlay in bottom-left, heavy digital noise and static texture, retro aesthetic' },
   { title: 'Lost Atlantis', src: 'prompts-previews/prompt-13-atlantis.png', tags: ['fantasy', 'underwater'], prompt: 'Ancient city ruins underwater, coral-covered architecture, tropical fish swimming through columns, sun rays penetrating blue water, lost Atlantis aesthetic, fantasy scene, atmospheric, highly detailed, 8k' },
-  { title: 'Abstract Fluid Art', src: 'prompts-previews/prompt-14-abstract.png', tags: ['abstract', 'art'], prompt: 'Abstract fluid art, swirling marble texture, navy blue, gold and white, organic flowing patterns, luxury aesthetic, digital art, high resolution, mesmerizing, elegant, 8k' },
-  { title: 'Documentary Portrait', src: 'prompts-previews/prompt-15-documentary.png', tags: ['portrait', 'documentary'], prompt: 'Close-up portrait of weathered fisherman in his 60s, grey beard, deep blue eyes, yellow rain jacket, ocean in background, overcast lighting, documentary style, photorealistic, highly detailed, 8k' },
+  { title: 'Abstract Fluid Art', src: 'prompts-previews/Abstract/002-abstract.png', tags: ['abstract', 'art'], prompt: 'Abstract fluid art, swirling marble texture, navy blue, gold and white, organic flowing patterns, luxury aesthetic, digital art, high resolution, mesmerizing, elegant, 8k' },
+  { title: 'Documentary Portrait', src: 'prompts-previews/Portrait/003-documentary.png', tags: ['portrait', 'documentary'], prompt: 'Close-up portrait of weathered fisherman in his 60s, grey beard, deep blue eyes, yellow rain jacket, ocean in background, overcast lighting, documentary style, photorealistic, highly detailed, 8k' },
   { title: 'Alien Moon', src: 'prompts-previews/prompt-16-alien.png', tags: ['scifi', 'space'], prompt: 'Sci-fi concept art of an alien moon surface with two suns setting on horizon casting double shadows, bioluminescent purple plant life in foreground, silhouette of astronaut in EVA suit at center frame, cinematic ultra-wide, James Cameron-quality VFX concept art' }
 ];
 
-function renderPromptCards(filterText = '') {
-  const term = filterText.trim().toLowerCase();
+function renderPromptCards() {
   modalBody.innerHTML = '';
-
-  const filtered = term
-    ? promptExamples.filter(ex =>
-        ex.title.toLowerCase().includes(term) ||
-        ex.tags.some(t => t.toLowerCase().includes(term)) ||
-        ex.prompt.toLowerCase().includes(term)
-      )
-    : promptExamples;
-
-  if (!filtered.length) {
-    modalBody.innerHTML = '<p style="grid-column:1/-1;text-align:center;color:var(--text-muted);padding:24px">No matching prompts found.</p>';
-    return;
-  }
-
-  filtered.forEach(ex => {
+  // Shuffle and take first 12 each time the modal opens
+  const shuffled = [...promptExamples].sort(() => Math.random() - 0.5).slice(0, 12);
+  shuffled.forEach(ex => {
     const card = document.createElement('div');
     card.className = 'prompt-card';
     card.dataset.title = ex.title.toLowerCase();
@@ -465,7 +452,6 @@ function renderPromptCards(filterText = '') {
 function openModal() {
   inspirationModal.style.display = 'flex';
   renderPromptCards();
-  if (modalSearch) modalSearch.value = '';
 }
 
 if (promptInspiration) promptInspiration.addEventListener('click', openModal);
@@ -475,12 +461,10 @@ if (inspirationModal) {
     if (e.target === inspirationModal) inspirationModal.style.display = 'none';
   });
 }
-if (modalSearch) {
-  modalSearch.addEventListener('input', e => renderPromptCards(e.target.value));
-}
 
 // ===== Generate =====
 const stylePrompts = {
+  // ===== 3D / Toys =====
   'cyberpunk': 'cyberpunk style, neon city night background, glowing lights, tech noir aesthetic, same person, dramatic cinematic lighting, futuristic vibe',
   'anime': 'anime style, vibrant colors, clean line art, cel shading, expressive eyes, beautiful lighting, hand drawn look',
   'oil-painting': 'classical oil painting, renaissance fine art, visible brushstrokes, rich colors, dramatic chiaroscuro lighting, museum quality',
@@ -492,7 +476,57 @@ const stylePrompts = {
   'vintage': 'vintage retro style, warm sepia tones, film grain, 1970s aesthetic, nostalgic feel, soft contrast',
   'magazine': 'fashion magazine cover, Vogue editorial style, bold layout, high fashion, clean studio lighting, elegant',
   'figurine': '3D figurine collectible toy, plastic texture, glossy finish, standing on a small base, toy photography',
-  'pixel': 'retro pixel art, 8-bit style, limited color palette, crisp square pixels, dithered shading, game sprite aesthetic'
+  'pixel': 'retro pixel art, 8-bit style, limited color palette, crisp square pixels, dithered shading, game sprite aesthetic',
+  'anime-figure': 'anime character figurine, Japanese style figure, colorful hair, sparkling eyes, cute pose, toy display box, glossy PVC texture',
+  'lego-minifig': 'LEGO minifigure style, blocky square body and head, cylindrical hands, printed face, plastic toy texture, classic yellow skin tone',
+  'lego-style': 'built from LEGO bricks, blocky geometric shapes, visible studs and connections, plastic brick texture, realistic brick-built construction',
+  'action-figure': 'action figure in blister packaging, posable joints, realistic sculpt, cardboard backing with graphics, collectible toy photography',
+  'chibi-3d': 'chibi style 3D character, oversized head tiny body, cute proportions, glossy smooth shading, vibrant colors, adorable pose',
+  '3d-polaroid': '3D pop-out Polaroid photo effect, subject breaking out of photo frame, floating 3D element, instant film border, creative dimensional shot',
+  'plush-toy': 'cute plush stuffed toy, soft fuzzy fabric texture, stitched details, button eyes, adorable huggable design, plush toy photography',
+  'crochet-doll': 'handmade crochet doll, yarn texture, knitted stitches visible, soft wool appearance, cozy handmade craft feel',
+  'acrylic-keychain': 'acrylic keychain design, transparent plastic with printed image, metal keyring attached, cute flat charm style, glossy finish',
+  'enamel-pin': 'enamel pin badge, metal edges with colored enamel fill, shiny pin back, collectible pin design, flat lay photography',
+  'cosplay': 'realistic cosplay transformation, same person in detailed costume, convention photography, accurate character recreation, professional cosplay shoot',
+  // ===== Anime / Cartoon =====
+  '2d-anime': '2D anime art style, bold outlines, flat cel shading, expressive anime eyes, vibrant hair colors, manga illustration quality',
+  'pixar': 'Pixar animation style, 3D cartoon rendering, smooth subsurface scattering, expressive characters, warm cinematic lighting, Disney quality',
+  'disney': 'Disney animation style, classic hand-drawn quality, soft shading, expressive features, magical atmosphere, Disney character design',
+  'snoopy': 'Peanuts comic style, Charles Schulz art, simple line drawing, black and white with spot color, nostalgic newspaper comic feel',
+  'chibi': 'chibi art style, super deformed proportions, tiny body big head, cute simplified features, kawaii aesthetic, colorful and playful',
+  'powerpuff': 'Powerpuff Girls cartoon style, flat bold colors, thick outlines, simple geometric shapes, retro Cartoon Network aesthetic',
+  'japanese-illust': 'Japanese minimal illustration, simple clean lines, flat colors, cute character design, modern kawaii vector art style',
+  'animal-crossing': 'Animal Crossing game style, rounded soft 3D, cute animal villagers, pastel colors, cozy island vibe, Nintendo aesthetic',
+  // ===== Paintings =====
+  'gouache': 'gouache painting, opaque matte finish, rich flat colors, visible brush strokes, thick pigment texture, illustration art quality',
+  'van-gogh': 'Van Gogh painting style, thick impasto oil strokes, swirling brushwork, vibrant complementary colors, post-impressionist masterpiece',
+  'marker-sketch': 'marker pen sketch, bold colorful strokes, sketchy line work, artistic rendering, fashion illustration feel, creative hand drawn style',
+  'palette-swap': 'color palette transformation, same composition different color scheme, artistic color grading, mood shift through color, creative recolor',
+  'painting-process': 'four-panel painting process showcase, sketch to line art to flat color to final render, art progression steps, creative workflow display',
+  // ===== Comic / Line Art =====
+  'comic-outfit': 'manga comic style, cute girl fashion outfit showcase, Japanese comic panel layout, screentone dots, shojo manga aesthetic',
+  'comic-white': 'manga line art on white background, clean black outlines, screentone shading, manga panel composition, Japanese comic style',
+  'yonkoma': 'four-panel comic strip, yonkoma manga format, sequential storytelling, simple expressions, humorous manga style with dialogue bubbles',
+  'line-art': 'clean line art drawing, black outlines on white, detailed ink work, professional illustration, crisp vector-like precision',
+  'vector-illustration': 'flat vector illustration style, clean geometric shapes, smooth gradients, minimalist modern design, digital art aesthetic',
+  // ===== Realistic =====
+  'realistic': 'hyper-realistic style, photorealistic detail, natural skin texture, true-to-life rendering, professional portrait quality, 8K sharp',
+  'hd-enhance': 'super resolution enhancement, ultra sharp detail, refined texture clarity, professional retouch quality, 4K upscale, pristine finish',
+  'fashion-mag': 'fashion magazine editorial, Vogue cover style, high-end studio lighting, professional fashion photography, elegant composition',
+  'pose-reference': 'dynamic pose reference sheet, multiple angle views, figure drawing reference, clean neutral background, anatomical study quality',
+  'subject-extract': 'clean subject isolation, perfect cutout on transparent background, sharp edges, professional product photography, studio quality extraction',
+  'makeup-analysis': 'makeup breakdown visualization, before and after comparison, cosmetic product mapping, beauty editorial style, professional MUA reference',
+  // ===== Sci-Fi / Stylized =====
+  'ice-queen': 'ice queen aesthetic, frost and crystal details, cool blue tones, elegant cold beauty, sharp refined features, ethereal frozen atmosphere',
+  // ===== Design / Product =====
+  'architecture-model': 'architectural scale model, miniature building with realistic materials, foam board and balsa wood texture, professional presentation quality',
+  'product-render': 'product photography, commercial studio lighting, clean white background, professional e-commerce quality, sharp focus 8K',
+  'can-design': 'aluminum can packaging design, metallic finish with printed label, beverage product mockup, realistic condensation droplets, commercial quality',
+  'industrial-design': 'industrial design rendering, clean studio backdrop, professional product visualization, matte and glossy material finish, concept design quality',
+  '3d-screen': '3D screen effect, subject popping out of digital display, holographic glass overlay, futuristic UI elements, augmented reality style',
+  // ===== Utilities =====
+  'bg-replace': 'background replacement, cleanly separated subject placed in new environment, seamless blending, matching lighting and shadows, professional compositing',
+  'overlay': 'artistic element overlay, decorative illustrations added around subject, creative mixed media, hand drawn accents over photo, editorial art style'
 };
 
 async function callAPI(formData, retries = 15) {
