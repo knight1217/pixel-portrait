@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SnapShift — Prompt Library</title>
+<link rel="icon" href="favicon.png" type="image/png">
+<link rel="stylesheet" href="css/style.css">
+<style>
+.prompt-library { max-width: 1200px; margin: 0 auto; padding: 40px 24px; }
+.lib-header { text-align: center; margin-bottom: 40px; }
+.lib-header h1 { font-size: 2rem; margin-bottom: 8px; }
+.lib-header p { color: var(--text-dim); font-size: 1.1rem; }
+.cat-section { margin-bottom: 48px; }
+.cat-title { font-size: 1.3rem; font-weight: 700; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+.cat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+.cat-card { background: var(--card-bg, #1c1c21); border-radius: 10px; padding: 16px; border: 1px solid var(--border); cursor: pointer; transition: border-color 0.2s; }
+.cat-card:hover { border-color: var(--accent); }
+.cat-card h4 { font-size: 1rem; margin-bottom: 6px; }
+.cat-card p { font-size: 0.85rem; color: var(--text-dim); line-height: 1.4; }
+.cat-card .cat-tag { display: inline-block; font-size: 0.72rem; padding: 2px 8px; border-radius: 10px; background: rgba(79,70,229,0.15); color: var(--accent); margin-top: 8px; }
+.back-link { margin-bottom: 24px; }
+.back-link a { color: var(--text-dim); text-decoration: none; font-size: 0.9rem; }
+.back-link a:hover { color: var(--accent); }
+</style>
+</head>
+<body>
+<header class="header">
+  <div class="container">
+    <a href="/" class="logo"><img src="brand-logo.png" alt="AiSS" class="logo-img"> SnapShift</a>
+  </div>
+</header>
+
+<div class="prompt-library">
+  <div class="back-link"><a href="/">← Back to Generator</a></div>
+  <div class="lib-header">
+    <h1>Prompt Library</h1>
+    <p>47 AI styles across 8 categories. Click any card to learn more.</p>
+  </div>
+
+  <div class="cat-section"><h2 class="cat-title">3D / Figures / Toys</h2><div class="cat-grid">
+    <div class="cat-card"><h4>3D Figurine</h4><p>Realistic collectible 3D figure with display box. Proportioned like an action figure on a small stand.</p><span class="cat-tag">toy</span></div>
+    <div class="cat-card"><h4>Anime Figure</h4><p>Japanese-style anime character figurine. Colorful hair, sparkly eyes, glossy PVC texture, in a display box.</p><span class="cat-tag">toy</span></div>
+    <div class="cat-card"><h4>Funko Pop</h4><p>Vinyl figure with oversized square head, small body, glossy finish. The iconic collectible toy style.</p><span class="cat-tag">toy</span></div>
+    <div class="cat-card"><h4>LEGO Minifig</h4><p>LEGO minifigure version — brick-shaped body, cylindrical hands, printed face, classic yellow skin.</p><span class="cat-tag">toy</span></div>
+    <div class="cat-card"><h4>LEGO Style</h4><p>Built entirely from LEGO bricks. Blocky geometric construction, visible studs, authentic brick texture.</p><span class="cat-tag">toy</span></div>
+    <div class="cat-card"><h4>Action Figure</h4><p>Poseable action figure in blister packaging, realistic sculpt, cardboard backing with graphics.</p><span class="cat-tag">toy</span></div>
+    <div class="cat-card"><h4>Chibi 3D</h4><p>Chibi-style 3D character — oversized head, tiny body, cute proportions, glossy smooth shading.</p><span class="cat-tag">3d</span></div>
+    <div class="cat-card"><h4>3D Polaroid</h4><p>Subject popping out of a Polaroid photo frame. Floating 3D effect with instant film borders.</p><span class="cat-tag">3d</span></div>
+    <div class="cat-card"><h4>Plush Toy</h4><p>Adorable stuffed plush toy. Soft fuzzy fabric, stitched details, button eyes. Sweet and huggable.</p><span class="cat-tag">toy</span></div>
+    <div class="cat-card"><h4>Crochet Doll</h4><p>Hand-crafted crochet doll. Yarn texture, visible knitted loops, cozy handmade character.</p><span class="cat-tag">toy</span></div>
+    <div class="cat-card"><h4>Acrylic Keychain</h4><p>Transparent acrylic charm with printed design, metal keyring. Cute flat collectible style.</p><span class="cat-tag">toy</span></div>
+    <div class="cat-card"><h4>Enamel Pin</h4><p>Metal badge with colored enamel fill. Shiny surface, pin back, flat-lay collectible photography.</p><span class="cat-tag">toy</span></div>
+    <div class="cat-card"><h4>Cosplay</h4><p>Realistic cosplay transformation. Same person in detailed character costume, convention-style shoot.</p><span class="cat-tag">photo</span></div>
+  </div></div>
+
+  <div class="cat-section"><h2 class="cat-title">Anime / Cartoon</h2><div class="cat-grid">
+    <div class="cat-card"><h4>2D Anime</h4><p>Classic anime art style. Bold outlines, flat cel shading, big expressive eyes, vibrant hair colors.</p><span class="cat-tag">anime</span></div>
+    <div class="cat-card"><h4>Studio Ghibli</h4><p>Miyazaki-inspired anime. Soft colors, magical atmosphere, gentle lighting, hand-drawn warmth.</p><span class="cat-tag">anime</span></div>
+    <div class="cat-card"><h4>Pixar</h4><p>3D cartoon rendering in Pixar quality. Smooth shading, expressive faces, warm cinematic lighting.</p><span class="cat-tag">3d</span></div>
+    <div class="cat-card"><h4>Disney</h4><p>Classic Disney animation style. Soft shading, expressive features, magical character design.</p><span class="cat-tag">animation</span></div>
+    <div class="cat-card"><h4>Peanuts / Snoopy</h4><p>Charles Schulz art. Simple black line drawings, spot color accents, nostalgic comic strip feel.</p><span class="cat-tag">cartoon</span></div>
+    <div class="cat-card"><h4>Chibi</h4><p>Super-deformed chibi art. Big head tiny body, simplified cute features, kawaii colorful palette.</p><span class="cat-tag">cute</span></div>
+    <div class="cat-card"><h4>Powerpuff Girls</h4><p>Retro Cartoon Network aesthetic. Flat bold colors, thick outlines, simple geometric shapes.</p><span class="cat-tag">cartoon</span></div>
+    <div class="cat-card"><h4>Japanese Illustration</h4><p>Clean minimal Japanese vector art. Simple lines, flat colors, modern kawaii character design.</p><span class="cat-tag">illustration</span></div>
+    <div class="cat-card"><h4>Animal Crossing</h4><p>Nintendo Animal Crossing style. Rounded soft 3D, pastel colors, cozy island character vibes.</p><span class="cat-tag">game</span></div>
+  </div></div>
+
+  <div class="cat-section"><h2 class="cat-title">Paintings / Art</h2><div class="cat-grid">
+    <div class="cat-card"><h4>Watercolor</h4><p>Soft flowing watercolor pigments, delicate washes, dreamy paper texture, artistic hand-painted look.</p><span class="cat-tag">art</span></div>
+    <div class="cat-card"><h4>Gouache</h4><p>Opaque matte gouache painting. Rich flat colors, visible brush strokes, thick pigment texture.</p><span class="cat-tag">art</span></div>
+    <div class="cat-card"><h4>Oil Painting</h4><p>Classical oil painting. Visible brushstrokes, rich layered colors, dramatic chiaroscuro, museum quality.</p><span class="cat-tag">art</span></div>
+    <div class="cat-card"><h4>Van Gogh</h4><p>Post-impressionist style. Thick impasto strokes, swirling brushwork, vibrant complementary colors.</p><span class="cat-tag">art</span></div>
+    <div class="cat-card"><h4>Marker Sketch</h4><p>Bold marker pen strokes, sketchy line work, fashion illustration feel, colorful creative rendering.</p><span class="cat-tag">art</span></div>
+    <div class="cat-card"><h4>Palette Swap</h4><p>Same composition, completely different color scheme. Artistic color grading for a fresh mood.</p><span class="cat-tag">art</span></div>
+    <div class="cat-card"><h4>Painting Process</h4><p>Four-panel progression: sketch → line art → flat colors → final render. Creative workflow display.</p><span class="cat-tag">art</span></div>
+  </div></div>
+
+  <div class="cat-section"><h2 class="cat-title">Comic / Line Art</h2><div class="cat-grid">
+    <div class="cat-card"><h4>Manga Fashion</h4><p>Shojo manga outfit showcase. Japanese comic panels, screentone dots, cute girl fashion.</p><span class="cat-tag">comic</span></div>
+    <div class="cat-card"><h4>Manga Line Art</h4><p>Clean manga line art on white. Black outlines, screentone shading, classic comic panel layout.</p><span class="cat-tag">comic</span></div>
+    <div class="cat-card"><h4>4-Panel Comic</h4><p>Yonkoma four-panel manga strip. Sequential storytelling, simple expressions, humorous dialogue bubbles.</p><span class="cat-tag">comic</span></div>
+    <div class="cat-card"><h4>Line Art</h4><p>Professional line art. Crisp black outlines on white, detailed ink work, clean vector precision.</p><span class="cat-tag">art</span></div>
+    <div class="cat-card"><h4>Vector Illustration</h4><p>Flat vector style. Clean geometric shapes, smooth gradients, minimalist modern digital design.</p><span class="cat-tag">art</span></div>
+  </div></div>
+
+  <div class="cat-section"><h2 class="cat-title">Realistic / Photography</h2><div class="cat-grid">
+    <div class="cat-card"><h4>Hyper-Realistic</h4><p>Full photorealistic rendering. Natural skin texture, true-to-life detail, 8K professional quality.</p><span class="cat-tag">photo</span></div>
+    <div class="cat-card"><h4>HD Enhance</h4><p>Super-resolution upscale. Ultra-sharp detail, refined texture clarity, professional retouch quality.</p><span class="cat-tag">photo</span></div>
+    <div class="cat-card"><h4>Fashion Magazine</h4><p>Vogue-style editorial. High-end studio lighting, professional fashion photography, elegant layout.</p><span class="cat-tag">photo</span></div>
+    <div class="cat-card"><h4>Pose Reference</h4><p>Multi-angle pose sheet. Clean background, figure drawing reference quality, anatomical study.</p><span class="cat-tag">photo</span></div>
+    <div class="cat-card"><h4>Subject Extraction</h4><p>Clean cutout on transparent background. Sharp edges, studio quality isolation, professional product look.</p><span class="cat-tag">utility</span></div>
+    <div class="cat-card"><h4>Makeup Analysis</h4><p>Beauty breakdown visualization. Before/after comparison, product mapping, editorial MUA reference.</p><span class="cat-tag">utility</span></div>
+  </div></div>
+
+  <div class="cat-section"><h2 class="cat-title">Sci-Fi / Stylized</h2><div class="cat-grid">
+    <div class="cat-card"><h4>Cyberpunk</h4><p>Neon-drenched cyberpunk. Glowing city lights, tech noir vibe, dramatic futuristic atmosphere.</p><span class="cat-tag">scifi</span></div>
+    <div class="cat-card"><h4>Pixel Art</h4><p>Retro 8-bit pixel art. Limited palette, crisp square pixels, dithering, game sprite aesthetic.</p><span class="cat-tag">art</span></div>
+    <div class="cat-card"><h4>Ice Queen</h4><p>Frozen ethereal beauty. Frost crystal details, cool blue tones, sharp refined elegant features.</p><span class="cat-tag">fantasy</span></div>
+  </div></div>
+
+  <div class="cat-section"><h2 class="cat-title">Design / Product / Architecture</h2><div class="cat-grid">
+    <div class="cat-card"><h4>Architecture Model</h4><p>Miniature scale building. Realistic materials, foam board and balsa texture, professional presentation.</p><span class="cat-tag">design</span></div>
+    <div class="cat-card"><h4>Product Render</h4><p>Commercial product photography. Studio lighting, clean white background, e-commerce quality.</p><span class="cat-tag">design</span></div>
+    <div class="cat-card"><h4>Can Design</h4><p>Aluminum can mockup. Metallic label, realistic condensation droplets, commercial packaging quality.</p><span class="cat-tag">design</span></div>
+    <div class="cat-card"><h4>Industrial Design</h4><p>Concept design rendering. Clean studio backdrop, matte/glossy materials, professional visualization.</p><span class="cat-tag">design</span></div>
+    <div class="cat-card"><h4>3D Screen Effect</h4><p>Subject popping out of a screen. Holographic glass overlay, futuristic UI, augmented reality feel.</p><span class="cat-tag">design</span></div>
+  </div></div>
+
+  <div class="cat-section"><h2 class="cat-title">Utilities</h2><div class="cat-grid">
+    <div class="cat-card"><h4>Background Replace</h4><p>Seamlessly change the background. Clean subject isolation with matching lighting and shadows.</p><span class="cat-tag">utility</span></div>
+    <div class="cat-card"><h4>Art Overlay</h4><p>Decorative illustrations overlaid on photo. Hand-drawn accents, editorial mixed-media style.</p><span class="cat-tag">utility</span></div>
+    <div class="cat-card"><h4>Movie Poster</h4><p>Cinematic poster design. Dramatic lighting, epic composition, Hollywood film grain aesthetic.</p><span class="cat-tag">design</span></div>
+    <div class="cat-card"><h4>Magazine Cover</h4><p>Fashion magazine cover design. Bold layout, editorial quality, clean studio lighting.</p><span class="cat-tag">design</span></div>
+    <div class="cat-card"><h4>Vintage / 1970s</h4><p>Retro film aesthetic. Warm sepia tones, heavy grain, nostalgic analog photography feel.</p><span class="cat-tag">photo</span></div>
+  </div></div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <p><img src="brand-logo.png" alt="AiSS" class="footer-logo"> <strong>SnapShift</strong> — Free AI Photo Transformer</p>
+    <p class="footer-links">
+      <a href="privacy.html">Privacy Policy</a> ·
+      <a href="terms.html">Terms of Use</a>
+    </p>
+  </div>
+</footer>
+</body>
+</html>
