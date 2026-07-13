@@ -488,8 +488,6 @@ const stylePrompts = {
   'acrylic-keychain': 'acrylic keychain design, transparent plastic with printed image, metal keyring attached, cute flat charm style, glossy finish',
   'enamel-pin': 'enamel pin badge, metal edges with colored enamel fill, shiny pin back, collectible pin design, flat lay photography',
   'cosplay': 'realistic cosplay transformation, same person in detailed costume, convention photography, accurate character recreation, professional cosplay shoot',
-  // ===== Anime / Cartoon =====
-  '2d-anime': '2D anime art style, bold outlines, flat cel shading, expressive anime eyes, vibrant hair colors, manga illustration quality',
   'pixar': 'Pixar animation style, 3D cartoon rendering, smooth subsurface scattering, expressive characters, warm cinematic lighting, Disney quality',
   'disney': 'Disney animation style, classic hand-drawn quality, soft shading, expressive features, magical atmosphere, Disney character design',
   'snoopy': 'Peanuts comic style, Charles Schulz art, simple line drawing, black and white with spot color, nostalgic newspaper comic feel',
@@ -512,7 +510,6 @@ const stylePrompts = {
   // ===== Realistic =====
   'realistic': 'hyper-realistic style, photorealistic detail, natural skin texture, true-to-life rendering, professional portrait quality, 8K sharp',
   'hd-enhance': 'super resolution enhancement, ultra sharp detail, refined texture clarity, professional retouch quality, 4K upscale, pristine finish',
-  'fashion-mag': 'fashion magazine editorial, Vogue cover style, high-end studio lighting, professional fashion photography, elegant composition',
   'pose-reference': 'dynamic pose reference sheet, multiple angle views, figure drawing reference, clean neutral background, anatomical study quality',
   'subject-extract': 'clean subject isolation, perfect cutout on transparent background, sharp edges, professional product photography, studio quality extraction',
   'makeup-analysis': 'makeup breakdown visualization, before and after comparison, cosmetic product mapping, beauty editorial style, professional MUA reference',
