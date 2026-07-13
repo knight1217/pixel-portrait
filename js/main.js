@@ -364,7 +364,8 @@ if (customPromptEl) {
 }
 
 // ===== Showcase before generation =====
-const showcaseItems = [
+// 46 unique items, tag auto-derived from filename
+const showcasePool = [
   { src: 'samples-v4/transformed/street-cyberpunk.png', tag: 'Cyberpunk' },
   { src: 'samples-v4/transformed/cat-anime.png', tag: 'Anime' },
   { src: 'samples-v4/transformed/runner-tradingcard.png', tag: 'Sports Card' },
@@ -372,9 +373,46 @@ const showcaseItems = [
   { src: 'samples-v4/transformed/city-anime.png', tag: 'Anime City' },
   { src: 'samples-v4/transformed/flowers-ghibli.png', tag: 'Ghibli' },
   { src: 'samples-v4/transformed/beach-album.png', tag: 'Album Cover' },
-  { src: 'samples-v4/transformed/mountain-oil.png', tag: 'Oil Landscape' },
-  { src: 'samples-v4/transformed/watch-luxury.png', tag: 'Product Ad' }
+  { src: 'samples-v4/transformed/mountain-oil.png', tag: 'Oil Painting' },
+  { src: 'samples-v4/transformed/watch-luxury.png', tag: 'Luxury Watch' },
+  { src: 'samples-v4/transformed/cat-cute-chibisticker.png', tag: 'Chibi' },
+  { src: 'samples-v4/transformed/cat-felt.png', tag: 'Felt' },
+  { src: 'samples-v4/transformed/cat-oil.png', tag: 'Oil Painting' },
+  { src: 'samples-v4/transformed/chibi-character-animalcrossing.png', tag: 'Animal Crossing' },
+  { src: 'samples-v4/transformed/city-street-anime.png', tag: 'Anime Street' },
+  { src: 'samples-v4/transformed/city-street-vintage.png', tag: 'Vintage' },
+  { src: 'samples-v4/transformed/city-vintage.png', tag: 'Vintage' },
+  { src: 'samples-v4/transformed/coffee-watercolor.png', tag: 'Watercolor' },
+  { src: 'samples-v4/transformed/comic-scene-yonkoma.png', tag: '4-Panel Comic' },
+  { src: 'samples-v4/transformed/corgi-enamelpin.png', tag: 'Enamel Pin' },
+  { src: 'samples-v4/transformed/dog-cartoon.png', tag: 'Cartoon' },
+  { src: 'samples-v4/transformed/dog-pixel.png', tag: 'Pixel' },
+  { src: 'samples-v4/transformed/fantasy-landscape-pixelrpg.png', tag: 'Pixel RPG' },
+  { src: 'samples-v4/transformed/flowers-oil.png', tag: 'Oil' },
+  { src: 'samples-v4/transformed/fruit-bowl-gouache.png', tag: 'Gouache' },
+  { src: 'samples-v4/transformed/girl-asian-1-powerpuff.png', tag: 'Powerpuff' },
+  { src: 'samples-v4/transformed/girl-asian-2-peko.png', tag: 'Peko' },
+  { src: 'samples-v4/transformed/landscape-lake-vangogh.png', tag: 'Van Gogh' },
+  { src: 'samples-v4/transformed/mountain-ghibli.png', tag: 'Ghibli' },
+  { src: 'samples-v4/transformed/parrot-anime.png', tag: 'Anime' },
+  { src: 'samples-v4/transformed/parrot-watercolor.png', tag: 'Watercolor' },
+  { src: 'samples-v4/transformed/portrait-drama-bnwphoto.png', tag: 'B&W Portrait' },
+  { src: 'samples-v4/transformed/portrait-male-blindbox.png', tag: 'Blind Box' },
+  { src: 'samples-v4/transformed/potted-plant-mangaline.png', tag: 'Manga' },
+  { src: 'samples-v4/transformed/retro-car-retroposter.png', tag: 'Retro Poster' },
+  { src: 'samples-v4/transformed/runner-comic.png', tag: 'Comic' },
+  { src: 'samples-v4/transformed/runner-figurine.png', tag: 'Figurine' },
+  { src: 'samples-v4/transformed/sneakers-cyberpunk.png', tag: 'Cyberpunk' },
+  { src: 'samples-v4/transformed/sneakers-product.png', tag: 'Product' },
+  { src: 'samples-v4/transformed/street-magazine.png', tag: 'Magazine' },
+  { src: 'samples-v4/transformed/street-movieposter.png', tag: 'Movie Poster' },
+  { src: 'samples-v4/transformed/street-portrait-magazine.png', tag: 'Magazine' },
+  { src: 'samples-v4/transformed/street-portrait-movieposter.png', tag: 'Movie Poster' },
+  { src: 'samples-v4/transformed/action-hero-gamecard.png', tag: 'Trading Card' },
+  { src: 'samples-v4/transformed/beach-fantasy.png', tag: 'Fantasy' }
 ];
+// Shuffle and take 9 random each page load
+const showcaseItems = [...showcasePool].sort(() => Math.random() - 0.5).slice(0, 9);
 
 const showcaseGrid = $('#showcaseGrid');
 if (showcaseGrid) {
