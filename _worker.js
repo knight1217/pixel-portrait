@@ -53,7 +53,8 @@ async function handleGenerate(request, env) {
     const nonEnLang = /[\u2E80-\u2FFF\u3040-\u309F\u30A0-\u30FF\u3400-\u4DBF\u4E00-\u9FFF\uF900-\uFAFF\uAC00-\uD7AF\u0600-\u06FF\u0E00-\u0E7F\u0900-\u097F\u0B80-\u0BFF\u0400-\u04FF]/;
 
     if (personKeys.test(prompt) && !ethnicityKeys.test(prompt) && !regionKeys.test(prompt) && !nonEnLang.test(prompt)) {
-      prompt = 'Caucasian facial features, Western appearance, ' + prompt;
+      // Put Caucasian descriptor in BOTH ends to override Agnes's Asian default
+      prompt = 'Caucasian person with European features, white skin, ' + prompt + ', Caucasian European features, white skin, Western appearance';
     }
 
     const hasImage = imageFile && imageFile.size > 0;
