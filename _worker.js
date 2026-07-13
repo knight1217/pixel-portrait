@@ -95,22 +95,31 @@ async function handleGenerate(request, env) {
     const hasImage = imageFile && imageFile.size > 0;
     const ratio = formData.get('ratio') || '1:1';
     const resolution = formData.get('res') || '1K';
-    const sizeMap = {
-      '1:1': [1024,1024],
-      '9:16': [768,1024],
-      '16:9': [1024,768],
-      '4:5': [512,768],
-      '3:2': [1024,768],
-      '2:3': [768,1024],
-      '3:4': [768,1024],
-      '4:3': [1024,768]
+    const sizeMap1K = {
+      '1:1': '1024x1024',
+      '9:16': '768x1024',
+      '16:9': '1024x768',
+      '4:5': '512x768',
+      '3:2': '1024x768',
+      '2:3': '768x1024',
+      '3:4': '768x1024',
+      '4:3': '1024x768'
     };
-    const [w, h] = sizeMap[ratio] || [1024,1024];
-    const scale = resolution === '2K' ? 2 : 1;
+    const sizeMap2K = {
+      '1:1': '2048x2048',
+      '9:16': '1152x2048',
+      '16:9': '2048x1152',
+      '4:5': '1536x1920',
+      '3:2': '2048x1365',
+      '2:3': '1365x2048',
+      '3:4': '1536x2048',
+      '4:3': '2048x1536'
+    };
+    const size = resolution === '2K' ? (sizeMap2K[ratio] || '2048x2048') : (sizeMap1K[ratio] || '1024x1024');
     const agnesBody = {
       model: 'agnes-image-2.0-flash',
       prompt: prompt,
-      size: (w * scale) + 'x' + (h * scale),
+      size: size,
       extra_body: {
         response_format: 'url'
       }
