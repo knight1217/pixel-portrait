@@ -55,10 +55,8 @@ async function handleDebug(request, env) {
   if (hasDirection && hasPerson) {
     finalPrompt = finalPrompt + ', cinematic back view, shot from behind subject, subject seen from rear';
   }
-  if (isNonWestern) {
-    finalPrompt = finalPrompt + ', high quality, sharp focus, correct anatomy';
-  } else {
-    finalPrompt = finalPrompt + ', high quality, highly detailed, professional lighting, sharp focus, correct anatomy, no extra limbs, no missing limbs, proper fingers, no mutations, no fused body parts, no clipping, well-composed, no blur';
+  if (!isNonWestern) {
+    finalPrompt = finalPrompt + ', high quality, highly detailed, sharp focus';
   }
 
   return Response.json({
@@ -102,10 +100,8 @@ async function handleGenerate(request, env) {
       prompt = prompt + ', cinematic back view, shot from behind subject, subject seen from rear';
     }
 
-    // ─── Global quality optimization ───
-    if (isNonWestern) {
-      prompt = prompt + ', high quality';
-    } else {
+    // ─── Global quality (skip entirely when prompt specifies non-Western context) ───
+    if (!isNonWestern) {
       prompt = prompt + ', high quality, highly detailed, sharp focus';
     }
 
