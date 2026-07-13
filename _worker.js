@@ -41,12 +41,17 @@ async function handleDebug(request, env) {
   const regionKeys = /\b(tokyo|osaka|kyoto|beijing|shanghai|shenzhen|guangzhou|hong\s*kong|seoul|busan|mumbai|delhi|bangalore|chennai|dubai|abu\s*dhabi|doha|riyadh|bangkok|phuket|hanoi|ho\s*chi\s*minh|jakarta|bali|kuala\s*lumpur|singapore|manila|cebu|taipei|taiwan|nepal|tibet|cairo|marrakech|casablanca|lagos|nairobi|addis\s*ababa|islamabad|karachi|dhaka|colombo|ulan\s*bator)\b/i;
   const nonEnLang = /[\u2E80-\u2FFF\u3040-\u309F\u30A0-\u30FF\u3400-\u4DBF\u4E00-\u9FFF\uF900-\uFAFF\uAC00-\uD7AF\u0600-\u06FF\u0E00-\u0E7F\u0900-\u097F\u0B80-\u0BFF\u0400-\u04FF]/;
   const personKeys = /\b(portrait|woman|man|girl|boy|person|people|lady|couple|model|face|selfie|child|kid|baby|teenager|adult|guy|dude|gentleman|beauty|female|male|girlfriend|boyfriend|bride|groom|nun|monk|soldier|knight|king|queen|prince|princess|farmer|doctor|nurse|teacher|student|chef|pilot|officer|detective|warrior|hunter|archer|mage|witch|wizard|vampire|zombie|ghost|angel|demon|mermaid|fairy|elf|dwarf|hobbit|samurai|geisha|crowd|commuter|worker|pedestrian|tourist|traveler|passenger|dancer|singer|actor|actress|musician|artist|athlete|boxer|fighter|swimmer|runner|biker|skater|climber|surfer|gardener|baker|barista|waiter|waitress|barber|tailor|carpenter|plumber|electrician|mechanic|driver|rider|passerby|bystander|protester|audience|spectator|fan|follower|believer|worshiper|monk|priest|nun|pastor|rabbi|imam|shaman|oracle|prophet|sage|elder|youth|teen|toddler|infant|newborn|grandfather|grandmother|grandpa|grandma|dad|mom|father|mother|son|daughter|brother|sister|uncle|aunt|cousin|nephew|niece|husband|wife|boyfriend|girlfriend|fiance|bride|groom|widow|widower|orphan)\b/i;
+  const directionKeys = /\b(facing|faced|looking at|looking towards|standing before|standing toward|towards|toward|at|before)\b/i;
   const isNonWestern = ethnicityKeys.test(rawPrompt) || regionKeys.test(rawPrompt) || nonEnLang.test(rawPrompt);
   const hasPerson = personKeys.test(rawPrompt);
+  const hasDirection = directionKeys.test(rawPrompt);
 
   let finalPrompt = rawPrompt;
   if (hasPerson && !isNonWestern) {
     finalPrompt = 'Caucasian person with European features, white skin, ' + finalPrompt + ', Caucasian European features, white skin, Western appearance';
+  }
+  if (hasDirection && hasPerson) {
+    finalPrompt = finalPrompt + ', cinematic back view, shot from behind subject, subject seen from rear';
   }
   if (isNonWestern) {
     finalPrompt = finalPrompt + ', high quality, sharp focus, correct anatomy';
@@ -78,12 +83,19 @@ async function handleGenerate(request, env) {
     const regionKeys = /\b(tokyo|osaka|kyoto|beijing|shanghai|shenzhen|guangzhou|hong\s*kong|seoul|busan|mumbai|delhi|bangalore|chennai|dubai|abu\s*dhabi|doha|riyadh|bangkok|phuket|hanoi|ho\s*chi\s*minh|jakarta|bali|kuala\s*lumpur|singapore|manila|cebu|taipei|taiwan|nepal|tibet|cairo|marrakech|casablanca|lagos|nairobi|addis\s*ababa|islamabad|karachi|dhaka|colombo|ulan\s*bator)\b/i;
     const nonEnLang = /[\u2E80-\u2FFF\u3040-\u309F\u30A0-\u30FF\u3400-\u4DBF\u4E00-\u9FFF\uF900-\uFAFF\uAC00-\uD7AF\u0600-\u06FF\u0E00-\u0E7F\u0900-\u097F\u0B80-\u0BFF\u0400-\u04FF]/;
     const personKeys = /\b(portrait|woman|man|girl|boy|person|people|lady|couple|model|face|selfie|child|kid|baby|teenager|adult|guy|dude|gentleman|beauty|female|male|girlfriend|boyfriend|bride|groom|nun|monk|soldier|knight|king|queen|prince|princess|farmer|doctor|nurse|teacher|student|chef|pilot|officer|detective|warrior|hunter|archer|mage|witch|wizard|vampire|zombie|ghost|angel|demon|mermaid|fairy|elf|dwarf|hobbit|samurai|geisha|crowd|commuter|worker|pedestrian|tourist|traveler|passenger|dancer|singer|actor|actress|musician|artist|athlete|boxer|fighter|swimmer|runner|biker|skater|climber|surfer|gardener|baker|barista|waiter|waitress|barber|tailor|carpenter|plumber|electrician|mechanic|driver|rider|passerby|bystander|protester|audience|spectator|fan|follower|believer|worshiper|monk|priest|nun|pastor|rabbi|imam|shaman|oracle|prophet|sage|elder|youth|teen|toddler|infant|newborn|grandfather|grandmother|grandpa|grandma|dad|mom|father|mother|son|daughter|brother|sister|uncle|aunt|cousin|nephew|niece|husband|wife|boyfriend|girlfriend|fiance|bride|groom|widow|widower|orphan)\b/i;
+    const directionKeys = /\b(facing|faced|looking at|looking towards|standing before|standing toward|towards|toward|at|before)\b/i;
     const isNonWestern = ethnicityKeys.test(prompt) || regionKeys.test(prompt) || nonEnLang.test(prompt);
     const hasPerson = personKeys.test(prompt);
+    const hasDirection = directionKeys.test(prompt);
 
     // ─── Western face injection (only for human-subject prompts) ───
     if (hasPerson && !isNonWestern) {
       prompt = 'Caucasian person with European features, white skin, ' + prompt + ', Caucasian European features, white skin, Western appearance';
+    }
+
+    // ─── Direction injection: when subject "faces" something, force back-view ───
+    if (hasDirection && hasPerson) {
+      prompt = prompt + ', cinematic back view, shot from behind subject, subject seen from rear';
     }
 
     // ─── Global quality optimization ───
