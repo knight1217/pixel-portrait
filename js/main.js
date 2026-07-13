@@ -521,9 +521,9 @@ function formatUserError(err) {
     return 'Network error. Please check your connection and try again.';
   }
   if (raw.includes('No image URL') || raw.includes('Generation failed')) {
-    return 'Generation failed. Please try again later.';
+    return 'Generation failed. Please add more detail to your prompt and try again.';
   }
-  return 'Something went wrong. Please try again.';
+  return 'Something went wrong. Please try a different prompt and try again.';
 }
 
 async function generate() {
