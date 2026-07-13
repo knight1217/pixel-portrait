@@ -34,6 +34,7 @@ async function handleGenerate(request, env) {
   try {
     const formData = await request.formData();
     const imageFile = formData.get('image');
+    const hasStyle = formData.get('hasStyle') === '1';
     let prompt = formData.get('prompt');
 
     if (!prompt) {
@@ -52,7 +53,7 @@ async function handleGenerate(request, env) {
     const regionKeys = /\b(tokyo|osaka|kyoto|beijing|shanghai|shenzhen|guangzhou|hong\s*kong|seoul|busan|mumbai|delhi|bangalore|chennai|dubai|abu\s*dhabi|doha|riyadh|bangkok|phuket|hanoi|ho\s*chi\s*minh|jakarta|bali|kuala\s*lumpur|singapore|manila|cebu|taipei|taiwan|nepal|tibet|cairo|marrakech|casablanca|lagos|nairobi|addis\s*ababa|islamabad|karachi|dhaka|colombo|ulan\s*bator)\b/i;
     const nonEnLang = /[\u2E80-\u2FFF\u3040-\u309F\u30A0-\u30FF\u3400-\u4DBF\u4E00-\u9FFF\uF900-\uFAFF\uAC00-\uD7AF\u0600-\u06FF\u0E00-\u0E7F\u0900-\u097F\u0B80-\u0BFF\u0400-\u04FF]/;
 
-    if (personKeys.test(prompt) && !ethnicityKeys.test(prompt) && !regionKeys.test(prompt) && !nonEnLang.test(prompt)) {
+    if ((personKeys.test(prompt) || hasStyle) && !ethnicityKeys.test(prompt) && !regionKeys.test(prompt) && !nonEnLang.test(prompt)) {
       // Put Caucasian descriptor in BOTH ends to override Agnes's Asian default
       prompt = 'Caucasian person with European features, white skin, ' + prompt + ', Caucasian European features, white skin, Western appearance';
     }

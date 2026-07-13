@@ -555,6 +555,7 @@ async function generate() {
     formData.append('prompt', finalPrompt);
     formData.append('ratio', selectedRatio);
     formData.append('res', selectedRes);
+    if (hasStyle) formData.append('hasStyle', '1');
     if (uploadedFiles.length > 0) {
       uploadedFiles.forEach(f => formData.append('image', f));
     }
