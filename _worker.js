@@ -88,9 +88,9 @@ async function handleGenerate(request, env) {
 
     // ─── Global quality optimization ───
     if (isNonWestern) {
-      prompt = prompt + ', high quality, sharp focus, correct anatomy';
+      prompt = prompt + ', high quality';
     } else {
-      prompt = prompt + ', high quality, highly detailed, professional lighting, sharp focus, correct anatomy, no extra limbs, no missing limbs, proper fingers, no mutations, no fused body parts, no clipping, well-composed, no blur';
+      prompt = prompt + ', high quality, highly detailed, sharp focus';
     }
 
     const hasImage = imageFile && imageFile.size > 0;
