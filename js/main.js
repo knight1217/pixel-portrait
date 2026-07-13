@@ -537,6 +537,7 @@ async function generate() {
   showcaseArea.style.display = 'none';
   loadingSection.style.display = '';
   resultSection.style.display = 'none';
+  resultImage.src = '';
   errorSection.style.display = 'none';
   loadingText.textContent = hasPhoto ? 'Transforming your image...' : 'Creating from your prompt...';
   btnGenerate.disabled = true;
@@ -582,6 +583,8 @@ async function generate() {
     };
   } catch (err) {
     loadingSection.style.display = 'none';
+    resultSection.style.display = 'none';
+    resultImage.src = '';
     errorSection.style.display = '';
     errorText.textContent = formatUserError(err);
     $('#btnErrorRetry').onclick = () => {
