@@ -495,14 +495,14 @@ const stylePrompts = {
   'pixel': 'retro pixel art, 8-bit style, limited color palette, crisp square pixels, dithered shading, game sprite aesthetic'
 };
 
-async function callAPI(formData, retries = 3) {
+async function callAPI(formData, retries = 5) {
   for (let i = 0; i < retries; i++) {
     const resp = await fetch('/api/generate', { method: 'POST', body: formData });
     const data = await resp.json();
     if (resp.ok) return data;
     const msg = data.error || '';
-    if ((msg.includes('queue') || msg.includes('retry') || resp.status === 503) && i < retries - 1) {
-      const delay = 3000 * (i + 1);
+    if ((msg.includes('queue') || msg.includes('retry') || msg.includes('overload') || msg.includes('memory') || resp.status === 503 || resp.status === 502) && i < retries - 1) {
+      const delay = 5000 * (i + 1);
       loadingText.textContent = `Server busy, retrying in ${delay/1000}s...`;
       await new Promise(r => setTimeout(r, delay));
       continue;

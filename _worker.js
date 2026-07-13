@@ -41,17 +41,17 @@ async function handleGenerate(request, env) {
     }
 
     // ─── Global quality optimization ───
-    // Append universal quality boosters to every generation
-    prompt = prompt + ', high quality, highly detailed, professional lighting, sharp focus, no watermark, no text, no blur, no bad anatomy, well-composed';
+    // Append universal quality & anti-deformity boosters to every generation
+    prompt = prompt + ', high quality, highly detailed, professional lighting, sharp focus, correct anatomy, no extra limbs, no missing limbs, proper fingers, no mutations, no fused body parts, no clipping, well-composed, no watermark, no text, no blur';
 
     const personKeys = /\b(portrait|woman|man|girl|boy|person|people|lady|couple|model|face|selfie|child|kid|baby|teenager|adult|guy|dude|gentleman|beauty|female|male|girlfriend|boyfriend|bride|groom|nun|monk|soldier|knight|king|queen|prince|princess|farmer|doctor|nurse|teacher|student|chef|pilot|officer|detective|warrior|hunter|archer|mage|witch|wizard|vampire|zombie|ghost|angel|demon|mermaid|fairy|elf|dwarf|hobbit|samurai|geisha|crowd|commuter|worker|pedestrian|tourist|traveler|passenger|dancer|singer|actor|actress|musician|artist|athlete|boxer|fighter|swimmer|runner|biker|skater|climber|surfer|gardener|baker|barista|waiter|waitress|barber|tailor|carpenter|plumber|electrician|mechanic|driver|rider|passerby|bystander|protester|audience|spectator|fan|follower|believer|worshiper|monk|priest|nun|pastor|rabbi|imam|shaman|oracle|prophet|sage|elder|youth|teen|toddler|infant|newborn|grandfather|grandmother|grandpa|grandma|dad|mom|father|mother|son|daughter|brother|sister|uncle|aunt|cousin|nephew|niece|husband|wife|boyfriend|girlfriend|fiance|bride|groom|widow|widower|orphan)\b/i;
     const ethnicityKeys = /\b(asian|chinese|japanese|korean|indian|african|black|latino|hispanic|arab|middle\s*eastern|native\s*american|indigenous|polynesian|maori|aboriginal|pakistani|bangladeshi|filipino|thai|vietnamese|indonesian|malay|turkish|iranian|persian|nigerian|ethiopian|moroccan|egyptian|kenyan|mexican|brazilian|colombian|peruvian|argentinian|mongolian|tibetan|uyghur|saudi|emirati|malaysian|singaporean)\b/i;
     const regionKeys = /\b(tokyo|osaka|kyoto|beijing|shanghai|shenzhen|guangzhou|hong\s*kong|seoul|busan|mumbai|delhi|bangalore|chennai|dubai|abu\s*dhabi|doha|riyadh|bangkok|phuket|hanoi|ho\s*chi\s*minh|jakarta|bali|kuala\s*lumpur|singapore|manila|cebu|taipei|taiwan|nepal|tibet|cairo|marrakech|casablanca|lagos|nairobi|addis\s*ababa|islamabad|karachi|dhaka|colombo|ulan\s*bator)\b/i;
     const nonEnLang = /[\u2E80-\u2FFF\u3040-\u309F\u30A0-\u30FF\u3400-\u4DBF\u4E00-\u9FFF\uF900-\uFAFF\uAC00-\uD7AF\u0600-\u06FF\u0E00-\u0E7F\u0900-\u097F\u0B80-\u0BFF\u0400-\u04FF]/;
 
-    // Avoid quality degradation in non-Western contexts by keeping prompt cleaner
+    // Non-Western contexts: use lighter injection to avoid conflicts
     if (ethnicityKeys.test(prompt) || regionKeys.test(prompt) || nonEnLang.test(prompt)) {
-      prompt = prompt.replace(/, high quality.*$/, ', high quality, sharp focus');
+      prompt = prompt.replace(/, high quality.*$/, ', high quality, sharp focus, correct anatomy');
     }
 
     const hasImage = imageFile && imageFile.size > 0;
