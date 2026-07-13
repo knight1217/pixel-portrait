@@ -19,6 +19,10 @@ export default {
       return handleGenerate(request, env);
     }
 
+    if (url.pathname === '/api/download' && request.method === 'GET') {
+      return handleDownload(request, env);
+    }
+
     // Cloudflare Pages automatically serves static files
     return env.ASSETS.fetch(request);
   }
@@ -30,16 +34,47 @@ async function handleGenerate(request, env) {
   try {
     const formData = await request.formData();
     const imageFile = formData.get('image');
-    const prompt = formData.get('prompt');
+    let prompt = formData.get('prompt');
 
-    if (!imageFile || !prompt) {
+    if (!prompt) {
       return Response.json({ error: 'Missing image or prompt' }, { status: 400, headers: corsHeaders });
     }
 
-    const buffer = await imageFile.arrayBuffer();
-    const base64 = btoa(String.fromCharCode(...new Uint8Array(buffer)));
-    const mime = imageFile.type || 'image/png';
-    const dataUrl = `data:${mime};base64,${base64}`;
+    // ─── Default Western appearance ───
+    // Agnes defaults to Asian faces. Inject "Caucasian facial features"
+    // ONLY when all conditions are met:
+    //   a) prompt mentions human subjects (personKeys)
+    //   b) user hasn't specified a non-Western ethnicity
+    //   c) no non-Western location/region
+    //   d) no non-English script
+    const personKeys = /\b(portrait|woman|man|girl|boy|person|people|lady|couple|model|face|selfie|child|kid|baby|teenager|adult|guy|dude|gentleman|beauty|female|male|girlfriend|boyfriend|bride|groom|nun|monk|soldier|knight|king|queen|prince|princess|farmer|doctor|nurse|teacher|student|chef|pilot|officer|detective|warrior|hunter|archer|mage|witch|wizard|vampire|zombie|ghost|angel|demon|mermaid|fairy|elf|dwarf|hobbit|samurai|geisha|crowd|commuter|worker|pedestrian|tourist|traveler|passenger|dancer|singer|actor|actress|musician|artist|athlete|boxer|fighter|swimmer|runner|biker|skater|climber|surfer|gardener|baker|barista|waiter|waitress|barber|tailor|carpenter|plumber|electrician|mechanic|driver|rider|passerby|bystander|protester|audience|spectator|fan|follower|believer|worshiper|monk|priest|nun|pastor|rabbi|imam|shaman|oracle|prophet|sage|elder|youth|teen|toddler|infant|newborn|grandfather|grandmother|grandpa|grandma|dad|mom|father|mother|son|daughter|brother|sister|uncle|aunt|cousin|nephew|niece|husband|wife|boyfriend|girlfriend|fiance|bride|groom|widow|widower|orphan)\b/i;
+    const ethnicityKeys = /\b(asian|chinese|japanese|korean|indian|african|black|latino|hispanic|arab|middle\s*eastern|native\s*american|indigenous|polynesian|maori|aboriginal|pakistani|bangladeshi|filipino|thai|vietnamese|indonesian|malay|turkish|iranian|persian|nigerian|ethiopian|moroccan|egyptian|kenyan|mexican|brazilian|colombian|peruvian|argentinian|mongolian|tibetan|uyghur|saudi|emirati|malaysian|singaporean)\b/i;
+    const regionKeys = /\b(tokyo|osaka|kyoto|beijing|shanghai|shenzhen|guangzhou|hong\s*kong|seoul|busan|mumbai|delhi|bangalore|chennai|dubai|abu\s*dhabi|doha|riyadh|bangkok|phuket|hanoi|ho\s*chi\s*minh|jakarta|bali|kuala\s*lumpur|singapore|manila|cebu|taipei|taiwan|nepal|tibet|cairo|marrakech|casablanca|lagos|nairobi|addis\s*ababa|islamabad|karachi|dhaka|colombo|ulan\s*bator)\b/i;
+    const nonEnLang = /[\u2E80-\u2FFF\u3040-\u309F\u30A0-\u30FF\u3400-\u4DBF\u4E00-\u9FFF\uF900-\uFAFF\uAC00-\uD7AF\u0600-\u06FF\u0E00-\u0E7F\u0900-\u097F\u0B80-\u0BFF\u0400-\u04FF]/;
+
+    if (personKeys.test(prompt) && !ethnicityKeys.test(prompt) && !regionKeys.test(prompt) && !nonEnLang.test(prompt)) {
+      prompt = 'Caucasian facial features, Western appearance, ' + prompt;
+    }
+
+    const hasImage = imageFile && imageFile.size > 0;
+    const agnesBody = {
+      model: 'agnes-image-2.0-flash',
+      prompt: prompt,
+      size: '1024x1024',
+      extra_body: {
+        response_format: 'url'
+      }
+    };
+
+    if (hasImage) {
+      const buffer = await imageFile.arrayBuffer();
+      const base64 = btoa(String.fromCharCode(...new Uint8Array(buffer)));
+      const mime = imageFile.type || 'image/png';
+      const dataUrl = `data:${mime};base64,${base64}`;
+      agnesBody.extra_body.tags = ['img2img'];
+      agnesBody.extra_body.image = [dataUrl];
+      agnesBody.extra_body.strength = 0.5;
+    }
 
     const agnesResp = await fetch('https://apihub.agnes-ai.com/v1/images/generations', {
       method: 'POST',
@@ -47,17 +82,7 @@ async function handleGenerate(request, env) {
         'Authorization': `Bearer ${env.AGNES_API_KEY}`,
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({
-        model: 'agnes-image-2.0-flash',
-        prompt: prompt,
-        size: '1024x1024',
-        extra_body: {
-          tags: ['img2img'],
-          image: [dataUrl],
-          response_format: 'url',
-          strength: 0.5
-        }
-      })
+      body: JSON.stringify(agnesBody)
     });
 
     if (!agnesResp.ok) {
@@ -74,6 +99,34 @@ async function handleGenerate(request, env) {
 
     return Response.json({ url: imageUrl }, { headers: corsHeaders });
 
+  } catch (err) {
+    return Response.json({ error: err.message }, { status: 500, headers: corsHeaders });
+  }
+}
+
+async function handleDownload(req, env) {
+  const corsHeaders = { 'Access-Control-Allow-Origin': '*' };
+  try {
+    const reqUrl = new URL(req.url);
+    const imageUrl = reqUrl.searchParams.get('url');
+    if (!imageUrl) {
+      return Response.json({ error: 'Missing url param' }, { status: 400, headers: corsHeaders });
+    }
+
+    const imageResp = await fetch(imageUrl);
+    if (!imageResp.ok) {
+      return Response.json({ error: 'Failed to fetch image' }, { status: 502, headers: corsHeaders });
+    }
+
+    const buffer = await imageResp.arrayBuffer();
+    const contentType = imageResp.headers.get('content-type') || 'image/png';
+    return new Response(buffer, {
+      headers: {
+        ...corsHeaders,
+        'Content-Type': contentType,
+        'Content-Disposition': 'attachment; filename="snapshift.png"',
+      }
+    });
   } catch (err) {
     return Response.json({ error: err.message }, { status: 500, headers: corsHeaders });
   }
