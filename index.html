@@ -3,115 +3,498 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pixel Portrait — Free AI Portrait Generator</title>
-<meta name="description" content="Upload one photo, get 8 stunning portrait styles. Free, no sign-up, AI-powered.">
+<title>SnapShift — Free AI Photo Transformer</title>
+<meta name="description" content="Transform any photo with AI templates. Cyberpunk, anime, oil painting, movie posters, 3D figurines, and more. Free beta, no signup.">
+<meta property="og:title" content="SnapShift — Free AI Photo Transformer">
+<meta property="og:description" content="Transform any photo with AI templates. Cyberpunk, anime, oil painting, movie posters, 3D figurines, and more.">
+<meta property="og:image" content="https://snapshift.fun/samples-v4/transformed/street-cyberpunk.png">
+<meta property="og:url" content="https://snapshift.fun">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="SnapShift — Free AI Photo Transformer">
+<meta name="twitter:description" content="Transform any photo with AI templates. Free beta, no signup.">
+<meta name="twitter:image" content="https://snapshift.fun/samples-v4/transformed/street-cyberpunk.png">
 <link rel="stylesheet" href="css/style.css">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎨</text></svg>">
+<link rel="icon" href="favicon.png" type="image/png">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXXXXX');
+</script>
 </head>
 <body>
 
 <header class="header">
   <div class="container">
-    <a href="/" class="logo">🎨 Pixel Portrait</a>
+    <a href="/" class="logo">⚡ SnapShift</a>
+    <button class="hamburger" id="hamburger" aria-label="Menu">☰</button>
+    <nav class="nav-links" id="navLinks">
+      <a href="#templates">Templates</a>
+      <a href="#generator">Generator</a>
+      <a href="#how">How It Works</a>
+      <a href="#faq">FAQ</a>
+    </nav>
   </div>
 </header>
 
-<main class="main">
-  <div class="container">
+<main>
 
-    <!-- Upload Area -->
-    <section class="upload-section" id="uploadSection">
-      <h1 class="hero-title">One Photo,<br>Infinite Styles</h1>
-      <p class="hero-sub">Upload a portrait and pick a style. We'll do the rest — free, no sign-up.</p>
-
-      <div class="upload-zone" id="uploadZone">
-        <input type="file" id="fileInput" accept="image/*" hidden>
-        <div class="upload-placeholder" id="uploadPlaceholder">
-          <span class="upload-icon">📷</span>
-          <p>Click or drag a photo here</p>
-          <p class="upload-hint">JPEG or PNG. Clear face works best.</p>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-content">
+          <div class="hero-badge">🎁 Free Beta</div>
+          <h1>Transform any photo.<br>AI templates.</h1>
+          <p class="hero-sub">Not just another filter. Turn portraits into movie posters, pets into oil paintings, city shots into anime — all in seconds.</p>
+          <div class="hero-actions">
+            <a href="#generator" class="btn-primary">Try SnapShift Free</a>
+            <a href="#templates" class="btn-secondary">Browse Templates</a>
+          </div>
+          <div class="hero-stats">
+            <span>🎭 Templates</span>
+            <span>🖼️ 1K & 2K Quality</span>
+            <span>⚡ Instant Generation</span>
+          </div>
         </div>
-        <img id="preview" class="preview-hidden" alt="Preview">
-      </div>
-
-      <button class="btn-remove" id="btnRemove" style="display:none">Remove photo</button>
-
-      <!-- Style Grid -->
-      <h2 class="section-title">Choose a Style</h2>
-      <div class="style-grid" id="styleGrid">
-        <button class="style-card" data-style="professional">
-          <span class="style-icon">💼</span>
-          <span class="style-name">Professional<br>Headshot</span>
-        </button>
-        <button class="style-card" data-style="anime">
-          <span class="style-icon">🌸</span>
-          <span class="style-name">Anime /<br>Ghibli</span>
-        </button>
-        <button class="style-card" data-style="pixar">
-          <span class="style-icon">🧸</span>
-          <span class="style-name">Pixar 3D<br>Cartoon</span>
-        </button>
-        <button class="style-card" data-style="oil">
-          <span class="style-icon">🖼️</span>
-          <span class="style-name">Classic Oil<br>Painting</span>
-        </button>
-        <button class="style-card" data-style="felt">
-          <span class="style-icon">🧶</span>
-          <span class="style-name">Felt /<br>Plushie</span>
-        </button>
-        <button class="style-card" data-style="sketch">
-          <span class="style-icon">✏️</span>
-          <span class="style-name">Pencil<br>Sketch</span>
-        </button>
-        <button class="style-card" data-style="watercolor">
-          <span class="style-icon">🎨</span>
-          <span class="style-name">Watercolor<br>Painting</span>
-        </button>
-        <button class="style-card" data-style="pixel">
-          <span class="style-icon">👾</span>
-          <span class="style-name">Pixel Art<br>Retro</span>
-        </button>
-      </div>
-
-      <button class="btn-generate" id="btnGenerate" disabled>Choose a photo and style first</button>
-    </section>
-
-    <!-- Loading -->
-    <section class="loading-section" id="loadingSection" style="display:none">
-      <div class="spinner"></div>
-      <p class="loading-text" id="loadingText">Generating your portrait...</p>
-    </section>
-
-    <!-- Result -->
-    <section class="result-section" id="resultSection" style="display:none">
-      <h2 class="section-title">Your Portrait</h2>
-      <div class="result-card">
-        <img id="resultImage" alt="Generated portrait">
-        <div class="result-actions">
-          <button class="btn-download" id="btnDownload">⬇ Download</button>
-          <button class="btn-try-again" id="btnTryAgain">🔄 Try Another Style</button>
+        <div class="hero-showcase">
+          <div class="showcase-card active" id="sc1">
+            <div class="showcase-before"><span>Before</span><img loading="lazy" src="samples-v4/base/street-portrait.png" alt="Original"></div>
+            <div class="showcase-after"><span>After</span><img loading="lazy" src="samples-v4/transformed/street-cyberpunk.png" alt="Cyberpunk"></div>
+          </div>
+          <div class="showcase-card" id="sc2">
+            <div class="showcase-before"><span>Before</span><img loading="lazy" src="samples-v4/base/cat.png" alt="Original"></div>
+            <div class="showcase-after"><span>After</span><img loading="lazy" src="samples-v4/transformed/cat-oil.png" alt="Oil Painting"></div>
+          </div>
+          <div class="showcase-card" id="sc3">
+            <div class="showcase-before"><span>Before</span><img loading="lazy" src="samples-v4/base/runner.png" alt="Original"></div>
+            <div class="showcase-after"><span>After</span><img loading="lazy" src="samples-v4/transformed/runner-tradingcard.png" alt="Trading Card"></div>
+          </div>
+          <div class="showcase-dots">
+            <span class="dot active" data-showcase="sc1"></span>
+            <span class="dot" data-showcase="sc2"></span>
+            <span class="dot" data-showcase="sc3"></span>
+          </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Error -->
-    <section class="error-section" id="errorSection" style="display:none">
-      <p class="error-text" id="errorText"></p>
-      <button class="btn-try-again" id="btnErrorRetry">Try Again</button>
-    </section>
+  <!-- Featured Prompt Strip -->
+  <section class="featured-strip">
+    <div class="container-wide">
+      <div class="strip-header-row">
+        <h2 class="strip-title">Prompt inspiration</h2>
+        <a href="prompts.html" class="more-link">More prompts →</a>
+      </div>
+      <div class="strip-scroll" id="stripScroll">
+        <div class="strip-track" id="stripTrack">
+          <div class="pi-item" data-title="Cyberpunk Night" data-tags="cyberpunk, city" data-prompt="Futuristic cyberpunk city at night, neon signs in Japanese, rain-soaked streets reflecting lights, flying cars, people with umbrellas, Blade Runner style, cinematic, 8k">
+            <img loading="lazy" src="prompts-previews/prompt-02-cyberpunk.png" alt="Cyberpunk Night">
+            <span class="pi-label">Cyberpunk Night</span>
+          </div>
+          <div class="pi-item" data-title="Ghibli Countryside" data-tags="ghibli, anime" data-prompt="Pastoral countryside in Studio Ghibli animation style, rolling green hills dotted with wildflowers, a small stone cottage with smoke rising, a massive ancient oak tree, clear summer sky with fluffy clouds, hand-painted quality, warm afternoon light">
+            <img loading="lazy" src="prompts-previews/prompt-04-ghibli.png" alt="Ghibli Countryside">
+            <span class="pi-label">Ghibli Countryside</span>
+          </div>
+          <div class="pi-item" data-title="Epic Fantasy Dragon" data-tags="fantasy, dragon" data-prompt="Majestic dragon on mountain peak, iridescent scales, wings spread wide, medieval castle in valley, storm clouds, epic fantasy art, highly detailed, concept art, dramatic lighting, 8k">
+            <img loading="lazy" src="prompts-previews/prompt-07-dragon.png" alt="Epic Fantasy Dragon">
+            <span class="pi-label">Epic Fantasy Dragon</span>
+          </div>
+          <div class="pi-item" data-title="Luxury Product" data-tags="product, luxury" data-prompt="Swiss luxury watch close-up, polished steel, blue dial, black leather strap, dramatic studio lighting with reflections, product photography, commercial quality, premium, 8k">
+            <img loading="lazy" src="prompts-previews/prompt-03-luxury.png" alt="Luxury Product">
+            <span class="pi-label">Luxury Product</span>
+          </div>
+          <div class="pi-item" data-title="1970s Film Portrait" data-tags="retro, film" data-prompt="1970s film photography portrait of a woman in her late 20s, feathered layered Farrah Fawcett-era hair, patterned wrap dress, soft warm backlight, very heavy film grain, faded analog color palette, Kodak Ektar film simulation">
+            <img loading="lazy" src="prompts-previews/prompt-10-1970s.png" alt="1970s Film Portrait">
+            <span class="pi-label">1970s Film Portrait</span>
+          </div>
+          <div class="pi-item" data-title="VHS Glitch Art" data-tags="retro, glitch" data-prompt="VHS glitch aesthetic portrait, subject with voluminous 80s hair and bold makeup, horizontal scan line distortion across image, color channel bleeding on right edge, white timestamp overlay in bottom-left, heavy digital noise and static texture, retro aesthetic">
+            <img loading="lazy" src="prompts-previews/prompt-12-vhs.png" alt="VHS Glitch Art">
+            <span class="pi-label">VHS Glitch Art</span>
+          </div>
+          <!-- Duplicate for seamless loop -->
+          <div class="pi-item" data-title="Cyberpunk Night" data-tags="cyberpunk, city" data-prompt="Futuristic cyberpunk city at night, neon signs in Japanese, rain-soaked streets reflecting lights, flying cars, people with umbrellas, Blade Runner style, cinematic, 8k">
+            <img loading="lazy" src="prompts-previews/prompt-02-cyberpunk.png" alt="Cyberpunk Night">
+            <span class="pi-label">Cyberpunk Night</span>
+          </div>
+          <div class="pi-item" data-title="Ghibli Countryside" data-tags="ghibli, anime" data-prompt="Pastoral countryside in Studio Ghibli animation style, rolling green hills dotted with wildflowers, a small stone cottage with smoke rising, a massive ancient oak tree, clear summer sky with fluffy clouds, hand-painted quality, warm afternoon light">
+            <img loading="lazy" src="prompts-previews/prompt-04-ghibli.png" alt="Ghibli Countryside">
+            <span class="pi-label">Ghibli Countryside</span>
+          </div>
+          <div class="pi-item" data-title="Epic Fantasy Dragon" data-tags="fantasy, dragon" data-prompt="Majestic dragon on mountain peak, iridescent scales, wings spread wide, medieval castle in valley, storm clouds, epic fantasy art, highly detailed, concept art, dramatic lighting, 8k">
+            <img loading="lazy" src="prompts-previews/prompt-07-dragon.png" alt="Epic Fantasy Dragon">
+            <span class="pi-label">Epic Fantasy Dragon</span>
+          </div>
+          <div class="pi-item" data-title="Luxury Product" data-tags="product, luxury" data-prompt="Swiss luxury watch close-up, polished steel, blue dial, black leather strap, dramatic studio lighting with reflections, product photography, commercial quality, premium, 8k">
+            <img loading="lazy" src="prompts-previews/prompt-03-luxury.png" alt="Luxury Product">
+            <span class="pi-label">Luxury Product</span>
+          </div>
+          <div class="pi-item" data-title="1970s Film Portrait" data-tags="retro, film" data-prompt="1970s film photography portrait of a woman in her late 20s, feathered layered Farrah Fawcett-era hair, patterned wrap dress, soft warm backlight, very heavy film grain, faded analog color palette, Kodak Ektar film simulation">
+            <img loading="lazy" src="prompts-previews/prompt-10-1970s.png" alt="1970s Film Portrait">
+            <span class="pi-label">1970s Film Portrait</span>
+          </div>
+          <div class="pi-item" data-title="VHS Glitch Art" data-tags="retro, glitch" data-prompt="VHS glitch aesthetic portrait, subject with voluminous 80s hair and bold makeup, horizontal scan line distortion across image, color channel bleeding on right edge, white timestamp overlay in bottom-left, heavy digital noise and static texture, retro aesthetic">
+            <img loading="lazy" src="prompts-previews/prompt-12-vhs.png" alt="VHS Glitch Art">
+            <span class="pi-label">VHS Glitch Art</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
+  <!-- Templates with Sidebar -->
+  <section class="templates-section" id="templates">
+    <div class="container">
+      <div class="section-header section-header-row">
+        <div>
+          <h2 class="section-title">AI Templates</h2>
+          <p class="section-sub">Pick a template, upload your photo, and transform it instantly.</p>
+        </div>
+        <a href="templates.html" class="more-link">More Templates →</a>
+      </div>
+    </div>
+    <div class="templates-fullbleed">
+      <div class="templates-grid" id="templatesGrid">
+
+        <div class="template-card" data-cat="portrait">
+          <div class="tc-image"><img loading="lazy" src="samples-v4/transformed/street-cyberpunk.png" alt="Cyberpunk"></div>
+          <div class="tc-info"><h3>Cyberpunk</h3><p class="tc-desc">Neon city lights, cybernetic future</p><span class="free-badge">Free</span></div>
+        </div>
+        <div class="template-card" data-cat="portrait creative">
+          <div class="tc-image"><img loading="lazy" src="samples-v4/transformed/street-movieposter.png" alt="Movie Poster"></div>
+          <div class="tc-info"><h3>Movie Poster</h3><p class="tc-desc">Cinematic Hollywood blockbuster</p><span class="free-badge">Free</span></div>
+        </div>
+        <div class="template-card" data-cat="portrait creative">
+          <div class="tc-image"><img loading="lazy" src="samples-v4/transformed/runner-figurine.png" alt="3D Figurine"></div>
+          <div class="tc-info"><h3>3D Figurine</h3><p class="tc-desc">Glossy collectible toy figure</p><span class="free-badge">Free</span></div>
+        </div>
+
+        <div class="template-card" data-cat="animal">
+          <div class="tc-image"><img loading="lazy" src="samples-v4/transformed/cat-anime.png" alt="Anime"></div>
+          <div class="tc-info"><h3>Anime Pet</h3><p class="tc-desc">Vibrant Japanese anime style</p><span class="free-badge">Free</span></div>
+        </div>
+        <div class="template-card" data-cat="animal">
+          <div class="tc-image"><img loading="lazy" src="samples-v4/transformed/cat-oil.png" alt="Oil"></div>
+          <div class="tc-info"><h3>Oil Pet Portrait</h3><p class="tc-desc">Classical oil painting elegance</p><span class="free-badge">Free</span></div>
+        </div>
+        <div class="template-card" data-cat="animal creative">
+          <div class="tc-image"><img loading="lazy" src="samples-v4/transformed/dog-funko.png" alt="Funko"></div>
+          <div class="tc-info"><h3>Funko Pop Pet</h3><p class="tc-desc">Vinyl Pop! collectible figure</p><span class="free-badge">Free</span></div>
+        </div>
+
+        <div class="template-card" data-cat="object">
+          <div class="tc-image"><img loading="lazy" src="samples-v4/transformed/watch-luxury.png" alt="Luxury"></div>
+          <div class="tc-info"><h3>Luxury Product</h3><p class="tc-desc">Premium brand ad showcase</p><span class="free-badge">Free</span></div>
+        </div>
+        <div class="template-card" data-cat="object">
+          <div class="tc-image"><img loading="lazy" src="samples-v4/transformed/flowers-ghibli.png" alt="Ghibli"></div>
+          <div class="tc-info"><h3>Ghibli Nature</h3><p class="tc-desc">Studio Ghibli magical nature</p><span class="free-badge">Free</span></div>
+        </div>
+
+        <div class="template-card" data-cat="scene">
+          <div class="tc-image"><img loading="lazy" src="samples-v4/transformed/city-anime.png" alt="Anime"></div>
+          <div class="tc-info"><h3>Anime City</h3><p class="tc-desc">Vibrant anime cityscape scene</p><span class="free-badge">Free</span></div>
+        </div>
+        <div class="template-card" data-cat="scene creative">
+          <div class="tc-image"><img loading="lazy" src="samples-v4/transformed/beach-album.png" alt="Album"></div>
+          <div class="tc-info"><h3>Album Cover</h3><p class="tc-desc">Music album cover art style</p><span class="free-badge">Free</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Before/After Comparison Slider -->
+  <section class="compare-section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">See the difference</h2>
+        <p class="section-sub">Drag the slider to compare before and after</p>
+      </div>
+      <div class="compare-slider" id="compareSlider">
+        <div class="compare-after-wrap">
+          <img loading="lazy" src="samples-v4/transformed/street-cyberpunk.png" alt="After - Cyberpunk" id="compareAfterImg">
+        </div>
+        <div class="compare-before-wrap" id="compareBeforeWrap" style="width:50%">
+          <img loading="lazy" src="samples-v4/base/street-portrait.png" alt="Before - Original" id="compareBeforeImg">
+        </div>
+        <div class="compare-handle" id="compareHandle" style="left:50%">
+          <div class="handle-grip">◄ ►</div>
+        </div>
+      </div>
+      <div class="compare-thumbs" id="compareThumbs">
+        <button class="ct-item active" data-before="samples-v4/base/street-portrait.png" data-after="samples-v4/transformed/street-cyberpunk.png" data-label="Cyberpunk">
+          <img loading="lazy" src="samples-v4/transformed/street-cyberpunk.png" alt="Cyberpunk"><span>Cyberpunk</span>
+        </button>
+        <button class="ct-item" data-before="samples-v4/base/cat.png" data-after="samples-v4/transformed/cat-anime.png" data-label="Anime Pet">
+          <img loading="lazy" src="samples-v4/transformed/cat-anime.png" alt="Anime Pet"><span>Anime Pet</span>
+        </button>
+        <button class="ct-item" data-before="samples-v4/base/dog.png" data-after="samples-v4/transformed/dog-funko.png" data-label="Funko Pop">
+          <img loading="lazy" src="samples-v4/transformed/dog-funko.png" alt="Funko Pop"><span>Funko Pop</span>
+        </button>
+        <button class="ct-item" data-before="samples-v4/base/flowers.png" data-after="samples-v4/transformed/flowers-ghibli.png" data-label="Ghibli">
+          <img loading="lazy" src="samples-v4/transformed/flowers-ghibli.png" alt="Ghibli"><span>Ghibli</span>
+        </button>
+        <button class="ct-item" data-before="samples-v4/base/city-street.png" data-after="samples-v4/transformed/city-anime.png" data-label="Anime City">
+          <img loading="lazy" src="samples-v4/transformed/city-anime.png" alt="Anime City"><span>Anime City</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Generator Console -->
+  <section class="generator-section" id="generator">
+    <div class="container">
+      <div class="generator-layout">
+        <div class="gen-sidebar">
+          <div class="upload-zone" id="uploadZone">
+            <input type="file" id="fileInput" accept="image/*" multiple hidden>
+            <div class="preview-stack" id="previewStack"></div>
+            <div class="upload-add" id="uploadAdd">
+              <h3>Drop or click to upload</h3>
+              <p>JPG / PNG, up to 5 photos</p>
+              <div class="upload-icon-wrap small">+</div>
+            </div>
+          </div>
+          <div class="upload-skip">
+            <button id="skipUploadBtn" class="skip-btn">Generate without photo</button>
+          </div>
+          <div class="gen-options">
+            <label class="gen-label">Aspect Ratio</label>
+            <div class="ratio-select">
+              <button class="ratio-btn active" data-ratio="1:1">1:1</button>
+              <button class="ratio-btn" data-ratio="9:16">9:16</button>
+              <button class="ratio-btn" data-ratio="16:9">16:9</button>
+              <button class="ratio-btn" data-ratio="4:5">4:5</button>
+              <button class="ratio-btn" data-ratio="3:2">3:2</button>
+              <button class="ratio-btn" data-ratio="2:3">2:3</button>
+              <button class="ratio-btn" data-ratio="3:4">3:4</button>
+              <button class="ratio-btn" data-ratio="4:3">4:3</button>
+            </div>
+            <label class="gen-label">Resolution</label>
+            <div class="res-select">
+              <button class="res-btn active" data-res="1K">1K</button>
+              <button class="res-btn" data-res="2K">2K Pro</button>
+            </div>
+            <label class="gen-label">Template</label>
+            <div class="gen-template-list" id="genThumbGrid">
+              <button class="gen-thumb active" data-gen-style="free-mode"><span>Free Mode</span></button>
+              <button class="gen-thumb" data-gen-style="cyberpunk"><span>Cyberpunk</span></button>
+              <button class="gen-thumb" data-gen-style="anime"><span>Anime</span></button>
+              <button class="gen-thumb" data-gen-style="oil-painting"><span>Oil</span></button>
+              <button class="gen-thumb" data-gen-style="movie-poster"><span>Movie</span></button>
+              <button class="gen-thumb" data-gen-style="cartoon"><span>3D</span></button>
+              <button class="gen-thumb" data-gen-style="watercolor"><span>Water</span></button>
+              <button class="gen-thumb" data-gen-style="funko-pop"><span>Pop</span></button>
+              <button class="gen-thumb" data-gen-style="ghibli"><span>Ghibli</span></button>
+              <button class="gen-thumb" data-gen-style="vintage"><span>Vintage</span></button>
+              <button class="gen-thumb" data-gen-style="magazine"><span>Mag</span></button>
+              <button class="gen-thumb" data-gen-style="figurine"><span>Toy</span></button>
+              <button class="gen-thumb" data-gen-style="pixel"><span>Pixel</span></button>
+            </div>
+            <div class="advanced-toggle" id="advancedToggle">
+              <span>Advanced Options</span>
+              <span class="toggle-arrow">▼</span>
+            </div>
+            <div class="advanced-panel" id="advancedPanel" style="display:none">
+              <div class="prompt-header">
+                <label class="gen-label">Custom Prompt</label>
+                <a class="prompt-inspiration" id="promptInspiration">缺少灵感？试试示例提示词</a>
+              </div>
+              <textarea id="customPrompt" class="prompt-input" placeholder="Add details to refine the template..."></textarea>
+            </div>
+          </div>
+          <button class="btn-generate" id="btnGenerate" disabled>Enter a prompt or select a template</button>
+        </div>
+        <div class="gen-result-area" id="genResultArea">
+          <div class="showcase-area" id="showcaseArea">
+            <p class="gen-section-label">Featured transformations</p>
+            <div class="showcase-grid" id="showcaseGrid"></div>
+          </div>
+          <div class="loading-section" id="loadingSection" style="display:none">
+            <div class="spinner"></div>
+            <p id="loadingText">Transforming your image...</p>
+          </div>
+          <div class="result-section" id="resultSection" style="display:none">
+            <div class="result-card">
+              <img loading="lazy" id="resultImage" alt="Your transformed image">
+              <div class="result-actions">
+                <button class="btn-primary" id="btnDownload">Download</button>
+                <button class="btn-secondary" id="btnShare">Share</button>
+                <button class="btn-secondary" id="btnTryAgain">Try Another</button>
+              </div>
+            </div>
+          </div>
+          <div class="error-section" id="errorSection" style="display:none">
+            <p id="errorText"></p>
+            <button class="btn-secondary" id="btnErrorRetry">Try Again</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Prompt Inspiration Modal -->
+  <div class="modal-overlay" id="inspirationModal" style="display:none">
+    <div class="modal">
+      <div class="modal-header">
+        <h3>灵感提示词</h3>
+        <div class="modal-search">
+          <input type="text" id="modalSearch" placeholder="Search prompts..." autocomplete="off">
+        </div>
+        <button class="modal-close" id="modalClose">x</button>
+      </div>
+      <div class="modal-body" id="modalBody">
+      </div>
+    </div>
   </div>
+
+  <!-- Share Modal -->
+  <div class="share-overlay" id="shareOverlay" style="display:none">
+    <div class="share-panel">
+      <button class="share-close" id="shareClose">✕</button>
+      <h3>Share your creation</h3>
+      <div class="share-modal-bar">
+        <button class="share-modal-btn x" data-platform="twitter" aria-label="Share on X">X</button>
+        <button class="share-modal-btn fb" data-platform="facebook" aria-label="Share on Facebook">f</button>
+        <button class="share-modal-btn li" data-platform="linkedin" aria-label="Share on LinkedIn">in</button>
+        <button class="share-modal-btn pin" data-platform="pinterest" aria-label="Share on Pinterest">P</button>
+        <button class="share-modal-btn reddit" data-platform="reddit" aria-label="Share on Reddit">R</button>
+        <button class="share-modal-btn copy" data-platform="copy" aria-label="Copy link">🔗</button>
+      </div>
+      <p class="share-tip" id="shareTip"></p>
+    </div>
+  </div>
+
+  <!-- Result Image Lightbox -->
+  <div class="rlb-overlay" id="resultLightbox" style="display:none">
+    <button class="rlb-close" id="rlbClose">✕</button>
+    <img id="rlbImg" src="" alt="Full size result">
+  </div>
+
+  <!-- Prompt Lightbox -->
+  <div class="plb-overlay" id="promptLightbox" style="display:none">
+    <button class="plb-close" id="plbClose">✕</button>
+    <div class="plb-layout">
+      <div class="plb-image"><img loading="lazy" id="plbImg" src="" alt=""></div>
+      <div class="plb-sidebar">
+        <h3 id="plbTitle"></h3>
+        <div class="plb-tags" id="plbTags"></div>
+        <p class="plb-prompt" id="plbPrompt"></p>
+        <div class="plb-actions">
+          <button class="btn-primary" id="plbUse">Use this prompt</button>
+          <button class="btn-secondary" id="plbCopy">Copy prompt</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- How It Works -->
+  <section class="how-section" id="how">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">How it works</h2>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <h3>Upload</h3>
+          <p>Any photo — portrait, pet, landscape, or product.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">2</div>
+          <h3>Pick a template</h3>
+          <p>dozens of creative, scene, and style templates to choose from.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">3</div>
+          <h3>Generate & download</h3>
+          <p>Get your transformed image in seconds. 1K or 2K quality.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Share -->
+  <section class="share-section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Share SnapShift</h2>
+        <p class="section-sub">Help us spread the word.</p>
+      </div>
+      <div class="share-bar" id="shareBar">
+        <a href="#" class="share-btn x" target="_blank" rel="noopener" aria-label="Share on X">X</a>
+        <a href="#" class="share-btn fb" target="_blank" rel="noopener" aria-label="Share on Facebook">f</a>
+        <a href="#" class="share-btn li" target="_blank" rel="noopener" aria-label="Share on LinkedIn">in</a>
+        <a href="#" class="share-btn pin" target="_blank" rel="noopener" aria-label="Share on Pinterest">P</a>
+        <a href="#" class="share-btn reddit" target="_blank" rel="noopener" aria-label="Share on Reddit">R</a>
+        <button class="share-btn copy" id="shareCopyLink" aria-label="Copy link">🔗</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq-section" id="faq">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">FAQ</h2>
+      </div>
+      <div class="faq-grid">
+        <div class="faq-item">
+          <h3>Is SnapShift free?</h3>
+          <p>Yes — during our Free Beta, all templates are completely free.</p>
+        </div>
+        <div class="faq-item">
+          <h3>What photos can I use?</h3>
+          <p>Portraits, pets, landscapes, objects, products — almost anything. Clear images work best.</p>
+        </div>
+        <div class="faq-item">
+          <h3>What is 2K quality?</h3>
+          <p>2K doubles the output resolution for sharper, print-ready images. 1K is fine for social media.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Are my photos uploaded to a server?</h3>
+          <p>Photos are only used for generation and are not stored or shared.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Can I use the images commercially?</h3>
+          <p>Yes — for personal and commercial use, as long as you own the original photo.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Will pricing change?</h3>
+          <p>SnapShift is free during Beta. In the future, some premium features may have a small cost.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="container">
+      <h2>Ready to transform your photos?</h2>
+      <p>All templates, 1K & 2K quality, completely free in Beta.</p>
+      <a href="#generator" class="btn-primary">Try SnapShift Free</a>
+    </div>
+  </section>
+
 </main>
 
 <footer class="footer">
   <div class="container">
-    <p>Pixel Portrait — Free AI portrait generator. No sign-up required.</p>
+    <p><strong>⚡ SnapShift</strong> — Free AI Photo Transformer</p>
     <p class="footer-links">
-      <a href="/privacy.html">Privacy</a> · <a href="mailto:hello@pixelportrait.fun">Contact</a>
+      <a href="privacy.html">Privacy Policy</a> ·
+      <a href="terms.html">Terms of Use</a> ·
+      <a href="mailto:hello@snapshift.fun">Contact</a>
     </p>
+    <p class="copyright">© 2026 SnapShift. All rights reserved.</p>
   </div>
 </footer>
 
 <script src="js/main.js"></script>
+<button class="back-top" id="backTop" aria-label="Back to top">↑</button>
 </body>
 </html>

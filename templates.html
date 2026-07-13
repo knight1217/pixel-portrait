@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>All Templates — SnapShift</title>
+<meta name="description" content="Browse AI photo transformation templates. Cyberpunk, anime, oil painting, movie posters, and more.">
+<meta property="og:title" content="All Templates — SnapShift">
+<meta property="og:description" content="Browse AI photo transformation templates. Cyberpunk, anime, oil painting, movie posters, and more.">
+<meta property="og:image" content="https://snapshift.fun/samples-v4/transformed/street-cyberpunk.png">
+<meta property="og:url" content="https://snapshift.fun/templates.html">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="All Templates — SnapShift">
+<meta name="twitter:description" content="Browse AI photo transformation templates.">
+<meta name="twitter:image" content="https://snapshift.fun/samples-v4/transformed/street-cyberpunk.png">
+<link rel="stylesheet" href="css/style.css">
+<link rel="icon" href="favicon.png" type="image/png">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXXXXX');
+</script>
+<style>
+.templates-page{padding:60px 0 80px;background:var(--bg-soft)}
+.templates-page .back-link{display:inline-flex;align-items:center;gap:6px;color:var(--text-dim);text-decoration:none;font-weight:600;font-size:0.9rem;margin-bottom:24px;transition:color 0.2s}
+.templates-page .back-link:hover{color:var(--accent)}
+.templates-page .section-header{margin-bottom:36px}
+.templates-page .section-title{text-align:left}
+.templates-page .section-sub{text-align:left;margin:0}
+.templates-page .templates-grid{margin:0}
+
+/* Filter bar */
+.filter-bar{display:flex;gap:12px;align-items:center;margin-bottom:28px;flex-wrap:wrap}
+.filter-search{flex:1;max-width:320px}
+.filter-search input{width:100%;padding:10px 16px;border:1.5px solid rgba(0,0,0,0.1);border-radius:50px;font-size:0.85rem;font-family:inherit;color:var(--text);background:var(--white);outline:none}
+.filter-search input:focus{border-color:var(--accent)}
+.filter-cats{display:flex;gap:4px;flex-wrap:wrap}
+.fcat-btn{background:var(--white);border:2px solid transparent;border-radius:50px;padding:8px 16px;font-size:0.82rem;font-weight:600;cursor:pointer;color:var(--text-dim);transition:all 0.2s;font-family:inherit;white-space:nowrap}
+.fcat-btn:hover{border-color:var(--accent);color:var(--accent)}
+.fcat-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.template-card.filtered{display:none}
+@media(max-width:700px){.filter-bar{flex-direction:column}.filter-search{max-width:100%}}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="container">
+    <a href="/" class="logo">⚡ SnapShift</a>
+    <button class="hamburger" id="hamburger" aria-label="Menu">☰</button>
+    <nav class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="index.html#templates">Templates</a>
+      <a href="index.html#generator">Generator</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="templates-page">
+    <div class="container">
+      <a href="index.html" class="back-link">← Back to SnapShift</a>
+      <div class="section-header">
+        <h1 class="section-title">All Templates</h1>
+        <p class="section-sub">Every AI template we have. Click any to try it in the generator.</p>
+      </div>
+      <div class="filter-bar">
+        <div class="filter-search">
+          <input type="text" id="filterSearch" placeholder="Search templates..." autocomplete="off">
+        </div>
+        <div class="filter-cats">
+          <button class="fcat-btn active" data-fcat="all">All</button>
+          <button class="fcat-btn" data-fcat="3d">3D</button>
+          <button class="fcat-btn" data-fcat="anime">Anime</button>
+          <button class="fcat-btn" data-fcat="art">Art</button>
+          <button class="fcat-btn" data-fcat="cartoon">Cartoon</button>
+          <button class="fcat-btn" data-fcat="cute">Cute</button>
+          <button class="fcat-btn" data-fcat="design">Design</button>
+          <button class="fcat-btn" data-fcat="futuristic">Futuristic</button>
+          <button class="fcat-btn" data-fcat="game">Game</button>
+          <button class="fcat-btn" data-fcat="manga">Manga</button>
+          <button class="fcat-btn" data-fcat="photo">Photo</button>
+          <button class="fcat-btn" data-fcat="sticker">Sticker</button>
+        </div>
+      </div>
+      <div class="templates-grid" id="templatesGrid">
+
+        <div class="template-card" data-cat="futuristic">
+          <div class="tc-image"><img loading="lazy" src="samples-v4/transformed/street-cyberpunk.png" alt="Cyberpunk"></div>
+          <div class="tc-info"><h3>Cyberpunk</h3><p class="tc-desc">Neon city lights, cybernetic future</p><span class="free-badge">Free</span></div>
+        </div>
+        <div class="template-card" data-cat="design">
+          <div class="tc-image"><img loading="lazy" src="samples-v4/transformed/street-movieposter.png" alt="Movie Poster"></div>
+          <div class="tc-info"><h3>Movie Poster</h3><p class="tc-desc">Cinematic Hollywood blockbuster</p><span class="free-badge">Free</span></div>
+        </div>
+        <div class="template-card" data-cat="design">
+          <div class="tc-image"><img loading="lazy" src="samples-v4/transformed/street-magazine.png" alt="Magazine"></div>
+          <div class="tc-info"><h3>Magazine Cover</h3><p class="tc-desc">Vogue-style editorial masterpiece</p><span class="free-badge">Free</span></div>
+        </div>
+        <div class="template-card" data-cat="game">
+          <div class="tc-image"><img loading="lazy" src="samples-v4/transformed/runner-tradingcard.png" alt="Trading Card"></div>
+          <div class="tc-info"><h3>Sports Card</h3><p class="tc-desc">NBA-style collectible trading card</p><span class="free-badge">Free</span></div>
+        </div>
+        <div class="template-card" data-cat="3d">
+          <div class="tc-image"><img loading="lazy" src="samples-v4/transformed/runner-figurine.png" alt="3D Figurine"></div>
+          <div class="tc-info"><h3>3D Figurine</h3><p class="tc-desc">Glossy collectible toy figure</p><span class="free-badge">Free</span></div>
+        </div>
+        <div class="template-card" data-cat="manga">
+          <div class="tc-image"><img loading="lazy" src="samples-v4/transformed/runner-comic.png" alt="Comic"></div>
+          <div class="tc-info"><h3>Comic Hero</h3><p class="tc-desc">Marvel-style comic book hero</p><span class="free-badge">Free</span></div>
+        </div>
+
+        <div class="template-card" data-cat="anime">
+          <div class="tc-image"><img loading="lazy" src="samples-v4/transformed/cat-anime.png" alt="Anime"></div>
+          <div class="tc-info"><h3>Anime Pet</h3><p class="tc-desc">Vibrant Japanese anime style</p><span class="free-badge">Free</span></div>
+        </div>
+        <div class="template-card" data-cat="cute">
+          <div class="tc-image"><img loading="lazy" src="samples-v4/transformed/cat-felt.png" alt="Felt"></div>
+          <div class="tc-info"><h3>Felt Pet</h3><p class="tc-desc">Soft handmade needle-felted look</p><span class="free-badge">Free</span></div>
+        </div>
+        <div class="template-card" data-cat="art">
+          <div class="tc-image"><img loading="lazy" src="samples-v4/transformed/cat-oil.png" alt="Oil"></div>
+          <div class="tc-info"><h3>Oil Pet Portrait</h3><p class="tc-desc">Classical oil painting elegance</p><span class="free-badge">Free</span></div>
+        </div>
+        <div class="template-card" data-cat="cartoon">
+          <div class="tc-image"><img loading="lazy" src="samples-v4/transformed/dog-cartoon.png" alt="Cartoon"></div>
+          <div class="tc-info"><h3>Cartoon Pet</h3><p class="tc-desc">Pixar-style 3D cartoon cuteness</p><span class="free-badge">Free</span></div>
+        </div>
+        <div class="template-card" data-cat="3d">
+          <div class="tc-image"><img loading="lazy" src="samples-v4/transformed/dog-funko.png" alt="Funko"></div>
+          <div class="tc-info"><h3>Funko Pop Pet</h3><p class="tc-desc">Vinyl Pop! collectible figure</p><span class="free-badge">Free</span></div>
+        </div>
+        <div class="template-card" data-cat="game">
+          <div class="tc-image"><img loading="lazy" src="samples-v4/transformed/dog-pixel.png" alt="Pixel"></div>
+          <div class="tc-info"><h3>Pixel Pet</h3><p class="tc-desc">8-bit retro game sprite art</p><span class="free-badge">Free</span></div>
+        </div>
+        <div class="template-card" data-cat="art">
+          <div class="tc-image"><img loading="lazy" src="samples-v4/transformed/parrot-watercolor.png" alt="Watercolor"></div>
+          <div class="tc-info"><h3>Watercolor Bird</h3><p class="tc-desc">Soft flowing watercolor pigments</p><span class="free-badge">Free</span></div>
+        </div>
+        <div class="template-card" data-cat="anime">
+          <div class="tc-image"><img loading="lazy" src="samples-v4/transformed/parrot-anime.png" alt="Anime"></div>
+          <div class="tc-info"><h3>Anime Bird</h3><p class="tc-desc">Vibrant anime character art</p><span class="free-badge">Free</span></div>
+        </div>
+
+        <div class="template-card" data-cat="photo">
+          <div class="tc-image"><img loading="lazy" src="samples-v4/transformed/watch-luxury.png" alt="Luxury"></div>
+          <div class="tc-info"><h3>Luxury Product</h3><p class="tc-desc">Premium brand ad showcase</p><span class="free-badge">Free</span></div>
+        </div>
+        <div class="template-card" data-cat="art">
+          <div class="tc-image"><img loading="lazy" src="samples-v4/transformed/coffee-watercolor.png" alt="Watercolor"></div>
+          <div class="tc-info"><h3>Food Art</h3><p class="tc-desc">Artistic food & drink illustration</p><span class="free-badge">Free</span></div>
+        </div>
+        <div class="template-card" data-cat="art">
+          <div class="tc-image"><img loading="lazy" src="samples-v4/transformed/flowers-oil.png" alt="Oil"></div>
+          <div class="tc-info"><h3>Still Life Oil</h3><p class="tc-desc">Classical still life masterpiece</p><span class="free-badge">Free</span></div>
+        </div>
+        <div class="template-card" data-cat="anime">
+          <div class="tc-image"><img loading="lazy" src="samples-v4/transformed/flowers-ghibli.png" alt="Ghibli"></div>
+          <div class="tc-info"><h3>Ghibli Nature</h3><p class="tc-desc">Studio Ghibli magical nature</p><span class="free-badge">Free</span></div>
+        </div>
+        <div class="template-card" data-cat="photo">
+          <div class="tc-image"><img loading="lazy" src="samples-v4/transformed/sneakers-product.png" alt="Product"></div>
+          <div class="tc-info"><h3>Product Studio</h3><p class="tc-desc">Clean studio product photography</p><span class="free-badge">Free</span></div>
+        </div>
+        <div class="template-card" data-cat="futuristic">
+          <div class="tc-image"><img loading="lazy" src="samples-v4/transformed/sneakers-cyberpunk.png" alt="Cyberpunk"></div>
+          <div class="tc-info"><h3>Cyber Style</h3><p class="tc-desc">Neon cyberpunk product vibe</p><span class="free-badge">Free</span></div>
+        </div>
+
+        <div class="template-card" data-cat="anime">
+          <div class="tc-image"><img loading="lazy" src="samples-v4/transformed/city-anime.png" alt="Anime"></div>
+          <div class="tc-info"><h3>Anime City</h3><p class="tc-desc">Vibrant anime cityscape scene</p><span class="free-badge">Free</span></div>
+        </div>
+        <div class="template-card" data-cat="photo">
+          <div class="tc-image"><img loading="lazy" src="samples-v4/transformed/city-vintage.png" alt="Vintage"></div>
+          <div class="tc-info"><h3>Vintage Film</h3><p class="tc-desc">Retro film grain nostalgic look</p><span class="free-badge">Free</span></div>
+        </div>
+        <div class="template-card" data-cat="anime">
+          <div class="tc-image"><img loading="lazy" src="samples-v4/transformed/mountain-ghibli.png" alt="Ghibli"></div>
+          <div class="tc-info"><h3>Ghibli Landscape</h3><p class="tc-desc">Studio Ghibli dreamy scenery</p><span class="free-badge">Free</span></div>
+        </div>
+        <div class="template-card" data-cat="art">
+          <div class="tc-image"><img loading="lazy" src="samples-v4/transformed/mountain-oil.png" alt="Oil"></div>
+          <div class="tc-info"><h3>Oil Landscape</h3><p class="tc-desc">Classical oil painting scenery</p><span class="free-badge">Free</span></div>
+        </div>
+        <div class="template-card" data-cat="design">
+          <div class="tc-image"><img loading="lazy" src="samples-v4/transformed/beach-album.png" alt="Album"></div>
+          <div class="tc-info"><h3>Album Cover</h3><p class="tc-desc">Music album cover art style</p><span class="free-badge">Free</span></div>
+        </div>
+        <div class="template-card" data-cat="art">
+          <div class="tc-image"><img loading="lazy" src="samples-v4/transformed/beach-fantasy.png" alt="Fantasy"></div>
+          <div class="tc-info"><h3>Fantasy World</h3><p class="tc-desc">Dreamy fantasy realm scene</p><span class="free-badge">Free</span></div>
+        </div>
+
+        <!-- New style templates -->
+        <div class="template-card" data-cat="cartoon">
+          <div class="tc-image"><img loading="lazy" src="samples-v4/transformed/girl-asian-1-powerpuff.png" alt="Powerpuff Girls"></div>
+          <div class="tc-info"><h3>Powerpuff Girls</h3><p class="tc-desc">Big-eyed cartoon hero style</p><span class="free-badge">Free</span></div>
+        </div>
+        <div class="template-card" data-cat="cute">
+          <div class="tc-image"><img loading="lazy" src="samples-v4/transformed/girl-asian-2-peko.png" alt="Peko-chan"></div>
+          <div class="tc-info"><h3>Peko-chan</h3><p class="tc-desc">Retro Japanese candy mascot</p><span class="free-badge">Free</span></div>
+        </div>
+        <div class="template-card" data-cat="game">
+          <div class="tc-image"><img loading="lazy" src="samples-v4/transformed/chibi-character-animalcrossing.png" alt="Animal Crossing"></div>
+          <div class="tc-info"><h3>Animal Crossing</h3><p class="tc-desc">Cozy Nintendo village life style</p><span class="free-badge">Free</span></div>
+        </div>
+        <div class="template-card" data-cat="sticker">
+          <div class="tc-image"><img loading="lazy" src="samples-v4/transformed/cat-cute-chibisticker.png" alt="Chibi Sticker"></div>
+          <div class="tc-info"><h3>Chibi Sticker</h3><p class="tc-desc">Kawaii die-cut sticker style</p><span class="free-badge">Free</span></div>
+        </div>
+        <div class="template-card" data-cat="art">
+          <div class="tc-image"><img loading="lazy" src="samples-v4/transformed/landscape-lake-vangogh.png" alt="Van Gogh Oil"></div>
+          <div class="tc-info"><h3>Van Gogh Oil</h3><p class="tc-desc">Swirling post-impressionist oil</p><span class="free-badge">Free</span></div>
+        </div>
+        <div class="template-card" data-cat="art">
+          <div class="tc-image"><img loading="lazy" src="samples-v4/transformed/fruit-bowl-gouache.png" alt="Gouache"></div>
+          <div class="tc-info"><h3>Gouache</h3><p class="tc-desc">Soft matte gouache painting</p><span class="free-badge">Free</span></div>
+        </div>
+        <div class="template-card" data-cat="art">
+          <div class="tc-image"><img loading="lazy" src="samples-v4/transformed/vintage-camera-sketch.png" alt="Sketch"></div>
+          <div class="tc-info"><h3>Sketch</h3><p class="tc-desc">Graphite pencil illustration</p><span class="free-badge">Free</span></div>
+        </div>
+        <div class="template-card" data-cat="manga">
+          <div class="tc-image"><img loading="lazy" src="samples-v4/transformed/potted-plant-mangaline.png" alt="Manga Line Art"></div>
+          <div class="tc-info"><h3>Manga Line Art</h3><p class="tc-desc">Black & white ink manga style</p><span class="free-badge">Free</span></div>
+        </div>
+        <div class="template-card" data-cat="manga">
+          <div class="tc-image"><img loading="lazy" src="samples-v4/transformed/comic-scene-yonkoma.png" alt="4-Panel Manga"></div>
+          <div class="tc-info"><h3>4-Panel Manga</h3><p class="tc-desc">Japanese yonkoma comic strip</p><span class="free-badge">Free</span></div>
+        </div>
+        <div class="template-card" data-cat="design">
+          <div class="tc-image"><img loading="lazy" src="samples-v4/transformed/corgi-enamelpin.png" alt="Enamel Pin"></div>
+          <div class="tc-info"><h3>Enamel Pin</h3><p class="tc-desc">Collectible metal pin badge style</p><span class="free-badge">Free</span></div>
+        </div>
+        <div class="template-card" data-cat="design">
+          <div class="tc-image"><img loading="lazy" src="samples-v4/transformed/retro-car-retroposter.png" alt="Retro Poster"></div>
+          <div class="tc-info"><h3>Retro Poster</h3><p class="tc-desc">Vintage travel poster art</p><span class="free-badge">Free</span></div>
+        </div>
+        <div class="template-card" data-cat="game">
+          <div class="tc-image"><img loading="lazy" src="samples-v4/transformed/fantasy-landscape-pixelrpg.png" alt="Pixel RPG"></div>
+          <div class="tc-info"><h3>Pixel RPG</h3><p class="tc-desc">16-bit retro game pixel art</p><span class="free-badge">Free</span></div>
+        </div>
+        <div class="template-card" data-cat="game">
+          <div class="tc-image"><img loading="lazy" src="samples-v4/transformed/action-hero-gamecard.png" alt="Game Card"></div>
+          <div class="tc-info"><h3>Game Card</h3><p class="tc-desc">Collectible trading card frame</p><span class="free-badge">Free</span></div>
+        </div>
+        <div class="template-card" data-cat="3d">
+          <div class="tc-image"><img loading="lazy" src="samples-v4/transformed/portrait-male-blindbox.png" alt="Blind Box"></div>
+          <div class="tc-info"><h3>Blind Box Figure</h3><p class="tc-desc">Designer vinyl toy collectible</p><span class="free-badge">Free</span></div>
+        </div>
+        <div class="template-card" data-cat="photo">
+          <div class="tc-image"><img loading="lazy" src="samples-v4/transformed/portrait-drama-bnwphoto.png" alt="B&W Portrait"></div>
+          <div class="tc-info"><h3>B&W Portrait</h3><p class="tc-desc">Classic black & white photography</p><span class="free-badge">Free</span></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <p><strong>⚡ SnapShift</strong> — Free AI Photo Transformer</p>
+    <p class="footer-links">
+      <a href="privacy.html">Privacy Policy</a> ·
+      <a href="terms.html">Terms of Use</a> ·
+      <a href="mailto:hello@snapshift.fun">Contact</a>
+    </p>
+    <p class="copyright">© 2026 SnapShift. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+// Hamburger menu
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('navLinks');
+if (hamburger && navLinks) {
+  hamburger.addEventListener('click', () => {
+    navLinks.classList.toggle('open');
+    hamburger.textContent = navLinks.classList.contains('open') ? '✕' : '☰';
+  });
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      hamburger.textContent = '☰';
+    });
+  });
+}
+
+const cards = document.querySelectorAll('.template-card');
+const catBtns = document.querySelectorAll('.fcat-btn');
+const searchInput = document.getElementById('filterSearch');
+let activeCat = 'all';
+let searchTerm = '';
+
+function filterCards() {
+  cards.forEach(card => {
+    const cat = card.dataset.cat || '';
+    const title = (card.querySelector('h3')?.textContent || '').toLowerCase();
+    const desc = (card.querySelector('.tc-desc')?.textContent || '').toLowerCase();
+    const matchCat = activeCat === 'all' || cat.split(' ').includes(activeCat);
+    const matchSearch = !searchTerm || title.includes(searchTerm) || desc.includes(searchTerm);
+    card.classList.toggle('filtered', !(matchCat && matchSearch));
+  });
+}
+
+catBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    catBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    activeCat = btn.dataset.fcat;
+    filterCards();
+  });
+});
+
+searchInput.addEventListener('input', () => {
+  searchTerm = searchInput.value.trim().toLowerCase();
+  filterCards();
+});
+
+// Click → go to generator
+cards.forEach(card => {
+  card.addEventListener('click', () => {
+    const name = card.querySelector('h3')?.textContent;
+    window.location.href = 'index.html#generator';
+    localStorage.setItem('snapshift-template', name);
+  });
+});
+</script>
+</body>
+</html>
