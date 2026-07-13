@@ -514,6 +514,9 @@ async function callAPI(formData, retries = 5) {
 
 function formatUserError(err) {
   const raw = String(err?.message || err || '');
+  if (raw.includes('overload') || raw.includes('memory') || raw.includes('busy')) {
+    return 'AI service is busy right now. Please wait a few seconds and try again.';
+  }
   if (raw.includes('content_policy_violation') || raw.includes('Unable to generate this content')) {
     return 'Content blocked by safety filter. Please modify your prompt and try again.';
   }
