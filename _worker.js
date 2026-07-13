@@ -49,12 +49,6 @@ async function handleDebug(request, env) {
   const hasDirection = directionKeys.test(rawPrompt) || cnDirectionKeys.test(rawPrompt);
 
   let finalPrompt = rawPrompt;
-  if (hasPerson && !isNonWestern) {
-    finalPrompt = 'Caucasian person with European features, white skin, ' + finalPrompt + ', Caucasian European features, white skin, Western appearance';
-  }
-  if (hasDirection && hasPerson) {
-    finalPrompt = finalPrompt + ', cinematic back view, shot from behind subject, subject seen from rear';
-  }
   if (!isNonWestern) {
     finalPrompt = finalPrompt + ', high quality, highly detailed, sharp focus';
   }
@@ -90,15 +84,8 @@ async function handleGenerate(request, env) {
     const hasPerson = personKeys.test(prompt) || cnPersonKeys.test(prompt);
     const hasDirection = directionKeys.test(prompt) || cnDirectionKeys.test(prompt);
 
-    // ─── Western face injection (only for human-subject prompts) ───
-    if (hasPerson && !isNonWestern) {
-      prompt = 'Caucasian person with European features, white skin, ' + prompt + ', Caucasian European features, white skin, Western appearance';
-    }
-
-    // ─── Direction injection: when subject "faces" something, force back-view ───
-    if (hasDirection && hasPerson) {
-      prompt = prompt + ', cinematic back view, shot from behind subject, subject seen from rear';
-    }
+    // ─── No face injection — removed per user decision ───
+    // ─── No direction injection — removed ───
 
     // ─── Global quality (skip entirely when prompt specifies non-Western context) ───
     if (!isNonWestern) {
