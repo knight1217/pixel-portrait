@@ -44,7 +44,7 @@ async function handleDebug(request, env) {
   const cnPersonKeys = /(消防员|警察|医生|护士|战士|英雄|女性|男性|女孩|男孩|人物|妇人|男子|女子|夫妇|夫妻|情侣|小姐|女士|先生|老板)/;
   const directionKeys = /\b(facing|faced|looking at|looking towards|standing before|standing toward|towards|toward|at|before|面对|面向|朝向|朝着)\b/i;
   const cnDirectionKeys = /(面对|面向|朝向|朝着)/;
-  const isNonWestern = ethnicityKeys.test(rawPrompt) || regionKeys.test(rawPrompt) || nonEnLang.test(rawPrompt);
+  const isNonWestern = ethnicityKeys.test(rawPrompt) || regionKeys.test(rawPrompt);
   const hasPerson = personKeys.test(rawPrompt) || cnPersonKeys.test(rawPrompt);
   const hasDirection = directionKeys.test(rawPrompt) || cnDirectionKeys.test(rawPrompt);
 
@@ -86,7 +86,7 @@ async function handleGenerate(request, env) {
     const cnPersonKeys = /(消防员|警察|医生|护士|战士|英雄|女性|男性|女孩|男孩|人物|妇人|男子|女子|夫妇|夫妻|情侣|小姐|女士|先生|老板)/;
     const directionKeys = /\b(facing|faced|looking at|looking towards|standing before|standing toward|towards|toward|at|before|面对|面向|朝向|朝着)\b/i;
     const cnDirectionKeys = /(面对|面向|朝向|朝着)/;
-    const isNonWestern = ethnicityKeys.test(prompt) || regionKeys.test(prompt) || nonEnLang.test(prompt);
+    const isNonWestern = ethnicityKeys.test(prompt) || regionKeys.test(prompt);
     const hasPerson = personKeys.test(prompt) || cnPersonKeys.test(prompt);
     const hasDirection = directionKeys.test(prompt) || cnDirectionKeys.test(prompt);
 
