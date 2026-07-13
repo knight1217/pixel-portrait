@@ -47,8 +47,6 @@ async function handleDebug(request, env) {
   const isNonWestern = ethnicityKeys.test(rawPrompt) || regionKeys.test(rawPrompt);
   const hasPerson = personKeys.test(rawPrompt) || cnPersonKeys.test(rawPrompt);
   const hasDirection = directionKeys.test(rawPrompt) || cnDirectionKeys.test(rawPrompt);
-  const hasPerson = personKeys.test(rawPrompt);
-  const hasDirection = directionKeys.test(rawPrompt);
 
   let finalPrompt = rawPrompt;
   if (hasPerson && !isNonWestern) {
