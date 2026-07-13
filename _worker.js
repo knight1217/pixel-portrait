@@ -93,10 +93,21 @@ async function handleGenerate(request, env) {
     }
 
     const hasImage = imageFile && imageFile.size > 0;
+    const ratio = formData.get('ratio') || '1:1';
+    const sizeMap = {
+      '1:1': '1024x1024',
+      '9:16': '768x1024',
+      '16:9': '1024x768',
+      '4:5': '512x768',
+      '3:2': '1024x768',
+      '2:3': '768x1024',
+      '3:4': '768x1024',
+      '4:3': '1024x768'
+    };
     const agnesBody = {
       model: 'agnes-image-2.0-flash',
       prompt: prompt,
-      size: '1024x1024',
+      size: sizeMap[ratio] || '1024x1024',
       extra_body: {
         response_format: 'url'
       }
