@@ -495,7 +495,7 @@ const stylePrompts = {
   'pixel': 'retro pixel art, 8-bit style, limited color palette, crisp square pixels, dithered shading, game sprite aesthetic'
 };
 
-async function callAPI(formData, retries = 10) {
+async function callAPI(formData, retries = 15) {
   for (let i = 0; i < retries; i++) {
     const resp = await fetch('/api/generate', { method: 'POST', body: formData });
     const data = await resp.json();
