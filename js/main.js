@@ -172,16 +172,19 @@ function renderPreviews() {
   if (uploadedFiles.length > 0) {
     previewStack.classList.add('has-images', `count-${uploadedFiles.length}`);
   }
+  // Insert all thumbnails in order first (before async reads) to keep sequence
+  uploadedFiles.forEach((file, idx) => {
+    const wrap = document.createElement('div');
+    wrap.className = 'preview-thumb';
+    wrap.innerHTML = `<img src="" alt="${file.name}"><button class="preview-remove" data-idx="${idx}" title="Remove">x</button>`;
+    previewStack.appendChild(wrap);
+  });
+  // Then load images asynchronously
   uploadedFiles.forEach((file, idx) => {
     const reader = new FileReader();
     reader.onload = () => {
-      const wrap = document.createElement('div');
-      wrap.className = 'preview-thumb';
-      wrap.innerHTML = `
-        <img src="${reader.result}" alt="${file.name}">
-        <button class="preview-remove" data-idx="${idx}" title="Remove">x</button>
-      `;
-      previewStack.appendChild(wrap);
+      const img = previewStack.querySelectorAll('.preview-thumb')[idx]?.querySelector('img');
+      if (img) img.src = reader.result;
     };
     reader.readAsDataURL(file);
   });
@@ -192,7 +195,7 @@ function addFiles(files) {
   const remaining = 5 - uploadedFiles.length;
   if (remaining <= 0) return;
   const toAdd = Array.from(files).slice(0, remaining);
-  uploadedFiles = [...toAdd, ...uploadedFiles];
+  uploadedFiles = [...uploadedFiles, ...toAdd];
   renderPreviews();
   refreshUploadAdd();
   updateGenBtn();
