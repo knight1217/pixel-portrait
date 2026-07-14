@@ -539,7 +539,7 @@ const stylePrompts = {
   'japanese-illust': 'Convert this photo into a modern Japanese kawaii illustration, simple clean line art, flat pastel color palette, cute minimalist character design, trendy vector art style',
   'animal-crossing': 'Transform this photo into Animal Crossing game art style, rounded soft 3D character design, cozy pastel colors, charming Nintendo village aesthetic, heartwarming Nintendo quality',
   // ===== Art / Painting =====
-  'gouache': 'Recreate this photo as a gouache painting, opaque matte finish with rich flat colors, visible brush strokes, thick pigment texture, professional illustration art quality',
+  'gouache': 'Turn this photo into a gouache painting, opaque matte finish with rich flat colors, visible brush strokes, thick pigment texture. The face, features, and pose follow the original subject.',
   'van-gogh': 'Transform this photo into a Van Gogh masterpiece, thick swirling impasto oil strokes, vibrant complementary color palette, post-impressionist artistic style, museum-quality painting',
   'marker-sketch': 'Convert this photo into a bold marker pen sketch, colorful expressive strokes, sketchy artistic line work, fashion illustration feel, creative hand-drawn rendering',
   'palette-swap': 'Recolor this photo using a completely different color palette, same composition with dramatically shifted color mood, artistic color grading transformation, creative visual reinterpretation',
