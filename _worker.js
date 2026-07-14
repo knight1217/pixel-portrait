@@ -66,7 +66,7 @@ async function handleGenerate(request, env) {
 
   try {
     const formData = await request.formData();
-    const imageFile = formData.get('image');
+    const imageFiles = formData.getAll('image').filter(f => f && f.size > 0);
     let prompt = formData.get('prompt');
 
     if (!prompt) {
@@ -92,7 +92,7 @@ async function handleGenerate(request, env) {
       prompt = prompt + ', high quality, highly detailed, sharp focus';
     }
 
-    const hasImage = imageFile && imageFile.size > 0;
+    const hasImage = imageFiles.length > 0;
     const ratio = formData.get('ratio') || '1:1';
     const resolution = formData.get('res') || '1K';
     const sizeMap1K = {
@@ -126,18 +126,21 @@ async function handleGenerate(request, env) {
     };
 
     if (hasImage) {
-      const buffer = await imageFile.arrayBuffer();
-      const bytes = new Uint8Array(buffer);
-      let binary = '';
-      const chunkSize = 8192;
-      for (let i = 0; i < bytes.byteLength; i += chunkSize) {
-        binary += String.fromCharCode.apply(null, bytes.subarray(i, Math.min(i + chunkSize, bytes.byteLength)));
+      const dataUrls = [];
+      for (const imgFile of imageFiles) {
+        const buffer = await imgFile.arrayBuffer();
+        const bytes = new Uint8Array(buffer);
+        let binary = '';
+        const chunkSize = 8192;
+        for (let i = 0; i < bytes.byteLength; i += chunkSize) {
+          binary += String.fromCharCode.apply(null, bytes.subarray(i, Math.min(i + chunkSize, bytes.byteLength)));
+        }
+        const base64 = btoa(binary);
+        const mime = imgFile.type || 'image/png';
+        dataUrls.push(`data:${mime};base64,${base64}`);
       }
-      const base64 = btoa(binary);
-      const mime = imageFile.type || 'image/png';
-      const dataUrl = `data:${mime};base64,${base64}`;
       agnesBody.extra_body.tags = ['img2img'];
-      agnesBody.extra_body.image = [dataUrl];
+      agnesBody.extra_body.image = dataUrls;
       agnesBody.extra_body.strength = parseFloat(formData.get('strength') || '0.85');
     }
 

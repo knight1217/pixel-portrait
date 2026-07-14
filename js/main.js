@@ -143,7 +143,19 @@ const previewStack = $('#previewStack');
 let uploadedFiles = [];
 
 function refreshUploadAdd() {
-  if (uploadedFiles.length > 0) {
+  const isBGRplace = selectedStyle === 'bg-replace';
+  if (isBGRplace) {
+    if (uploadedFiles.length === 0) {
+      uploadAdd.querySelector('h3').textContent = 'Upload subject (1st) + background (2nd)';
+      uploadAdd.querySelector('p').textContent = 'JPG / PNG, need exact 2 photos';
+    } else if (uploadedFiles.length === 1) {
+      uploadAdd.querySelector('h3').textContent = 'Need background photo (2nd)';
+      uploadAdd.querySelector('p').textContent = '1/2 uploaded';
+    } else {
+      uploadAdd.querySelector('h3').textContent = `${uploadedFiles.length}/2 uploaded`;
+      uploadAdd.querySelector('p').textContent = '';
+    }
+  } else if (uploadedFiles.length > 0) {
     uploadAdd.querySelector('h3').textContent = 'Click to add more photos';
     uploadAdd.querySelector('p').textContent = `${uploadedFiles.length}/5 uploaded`;
   } else {
@@ -310,8 +322,13 @@ function updateGenBtn() {
   const customPrompt = customPromptEl?.value?.trim();
   const hasPrompt = !!customPrompt;
   const hasStyle = selectedStyle && selectedStyle !== 'free-mode';
+  const isBGRplace = selectedStyle === 'bg-replace';
+  const need2Photos = isBGRplace && uploadedFiles.length < 2;
 
-  if (hasPhoto || hasPrompt) {
+  if (need2Photos) {
+    btnGenerate.disabled = true;
+    btnGenerate.textContent = 'Upload subject + background photos';
+  } else if (hasPhoto || hasPrompt) {
     btnGenerate.disabled = false;
     if (hasStyle) {
       btnGenerate.textContent = `Generate ${selectedStyle.replace(/-/g, ' ')}`;
