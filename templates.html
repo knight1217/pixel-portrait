@@ -50,6 +50,19 @@
 .fcat-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
 .template-card.filtered{display:none}
 @media(max-width:700px){.filter-bar{flex-direction:column}.filter-search{max-width:100%}}
+
+/* Featured Gallery */
+.featured-gallery{margin:32px 0 48px;padding:28px 24px;background:linear-gradient(135deg,#f8f5ff 0%,#fff5f8 100%);border-radius:var(--radius-lg);box-shadow:var(--shadow)}
+.fg-title{font-size:1.5rem;font-weight:800;margin:0 0 6px;color:var(--text)}
+.fg-sub{margin:0 0 20px;color:var(--text-dim);font-size:0.9rem}
+.fg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media(max-width:900px){.fg-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.fg-grid{grid-template-columns:1fr}}
+.featured-gallery .sc-item{position:relative;border-radius:var(--radius-sm);overflow:hidden;background:var(--white);box-shadow:var(--shadow);cursor:pointer;transition:transform 0.2s,box-shadow 0.2s}
+.featured-gallery .sc-item:hover{transform:translateY(-4px);box-shadow:0 12px 30px rgba(123,77,255,0.18)}
+.featured-gallery .sc-item:active{transform:scale(0.98)}
+.featured-gallery .sc-item img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block}
+.featured-gallery .sc-item .sc-tag{position:absolute;bottom:8px;left:8px;background:rgba(0,0,0,0.75);color:#fff;padding:4px 12px;border-radius:14px;font-size:0.78rem;font-weight:700}
 </style>
 </head>
 <body>
@@ -74,6 +87,51 @@
         <h1 class="section-title">All Templates</h1>
         <p class="section-sub">Every AI template we have. Click any to try it in the generator.</p>
       </div>
+
+      <!-- Featured Transformations Gallery (moved from index.html) -->
+      <div class="featured-gallery">
+        <h2 class="fg-title">Featured transformations</h2>
+        <p class="fg-sub">Real examples. Click any to load that template in the generator.</p>
+        <div class="showcase-grid fg-grid" id="featuredGrid">
+          <div class="sc-item" data-style-key="cyberpunk">
+            <img loading="lazy" src="samples-v4/transformed/street-cyberpunk.png" alt="Cyberpunk">
+            <span class="sc-tag">Cyberpunk</span>
+          </div>
+          <div class="sc-item" data-style-key="anime">
+            <img loading="lazy" src="samples-v4/transformed/cat-anime.png" alt="Anime">
+            <span class="sc-tag">Anime</span>
+          </div>
+          <div class="sc-item" data-style-key="oil-painting">
+            <img loading="lazy" src="samples-v4/transformed/cat-oil.png" alt="Oil Painting">
+            <span class="sc-tag">Oil</span>
+          </div>
+          <div class="sc-item" data-style-key="ghibli">
+            <img loading="lazy" src="samples-v4/transformed/flowers-ghibli.png" alt="Ghibli">
+            <span class="sc-tag">Ghibli</span>
+          </div>
+          <div class="sc-item" data-style-key="watercolor">
+            <img loading="lazy" src="samples-v4/transformed/coffee-watercolor.png" alt="Watercolor">
+            <span class="sc-tag">Water</span>
+          </div>
+          <div class="sc-item" data-style-key="pixel">
+            <img loading="lazy" src="samples-v4/transformed/dog-pixel.png" alt="Pixel">
+            <span class="sc-tag">Pixel</span>
+          </div>
+          <div class="sc-item" data-style-key="cyberpunk">
+            <img loading="lazy" src="samples-v4/transformed/sneakers-cyberpunk.png" alt="Cyberpunk">
+            <span class="sc-tag">Cyberpunk</span>
+          </div>
+          <div class="sc-item" data-style-key="anime">
+            <img loading="lazy" src="samples-v4/transformed/parrot-anime.png" alt="Anime">
+            <span class="sc-tag">Anime</span>
+          </div>
+          <div class="sc-item" data-style-key="oil-painting">
+            <img loading="lazy" src="samples-v4/transformed/flowers-oil.png" alt="Oil Painting">
+            <span class="sc-tag">Oil</span>
+          </div>
+        </div>
+      </div>
+
       <div class="filter-bar">
         <div class="filter-search">
           <input type="text" id="filterSearch" placeholder="Search templates..." autocomplete="off">
@@ -375,6 +433,20 @@ cards.forEach(card => {
     const name = card.querySelector('h3')?.textContent;
     window.location.href = 'index.html#generator';
     localStorage.setItem('snapshift-template', name);
+  });
+});
+
+// Featured Gallery: click → jump to generator with template pre-selected
+const featuredCards = document.querySelectorAll('#featuredGrid .sc-item');
+featuredCards.forEach(card => {
+  card.addEventListener('click', () => {
+    const key = card.dataset.styleKey;
+    const tag = card.querySelector('.sc-tag')?.textContent || '';
+    if (key) {
+      localStorage.setItem('snapshift-template-style', key);
+      localStorage.setItem('snapshift-template', tag);
+    }
+    window.location.href = 'index.html#generator';
   });
 });
 </script>

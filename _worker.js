@@ -127,7 +127,13 @@ async function handleGenerate(request, env) {
 
     if (hasImage) {
       const buffer = await imageFile.arrayBuffer();
-      const base64 = btoa(String.fromCharCode(...new Uint8Array(buffer)));
+      const bytes = new Uint8Array(buffer);
+      let binary = '';
+      const chunkSize = 8192;
+      for (let i = 0; i < bytes.byteLength; i += chunkSize) {
+        binary += String.fromCharCode.apply(null, bytes.subarray(i, Math.min(i + chunkSize, bytes.byteLength)));
+      }
+      const base64 = btoa(binary);
       const mime = imageFile.type || 'image/png';
       const dataUrl = `data:${mime};base64,${base64}`;
       agnesBody.extra_body.tags = ['img2img'];
