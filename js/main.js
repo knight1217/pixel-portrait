@@ -144,12 +144,14 @@ let uploadedFiles = [];
 
 function refreshUploadAdd() {
   const isBGRplace = selectedStyle === 'bg-replace';
-  if (isBGRplace) {
+  const isCosplay = selectedStyle === 'cosplay';
+  if (isBGRplace || isCosplay) {
+    const label = isBGRplace ? 'background' : 'outfit';
     if (uploadedFiles.length === 0) {
-      uploadAdd.querySelector('h3').textContent = 'Upload subject (1st) + background (2nd)';
+      uploadAdd.querySelector('h3').textContent = `Upload subject + ${label} reference`;
       uploadAdd.querySelector('p').textContent = 'JPG / PNG, need exact 2 photos';
     } else if (uploadedFiles.length === 1) {
-      uploadAdd.querySelector('h3').textContent = 'Need background photo (2nd)';
+      uploadAdd.querySelector('h3').textContent = `Need ${label} photo (2nd)`;
       uploadAdd.querySelector('p').textContent = '1/2 uploaded';
     } else {
       uploadAdd.querySelector('h3').textContent = `${uploadedFiles.length}/2 uploaded`;
@@ -323,7 +325,8 @@ function updateGenBtn() {
   const hasPrompt = !!customPrompt;
   const hasStyle = selectedStyle && selectedStyle !== 'free-mode';
   const isBGRplace = selectedStyle === 'bg-replace';
-  const need2Photos = isBGRplace && uploadedFiles.length < 2;
+  const isCosplay = selectedStyle === 'cosplay';
+  const need2Photos = (isBGRplace || isCosplay) && uploadedFiles.length < 2;
 
   if (need2Photos) {
     btnGenerate.disabled = true;
@@ -547,6 +550,7 @@ const stylePrompts = {
   'crochet-doll': 'Turn this photo into a handmade crochet yarn doll. Visible knitted stitch texture, soft wool appearance. The face and features follow the original subject. Cozy handmade quality.',
   'acrylic-keychain': 'Turn this photo into a cute acrylic keychain charm. Transparent printed plastic with metal keyring attached. The face and features follow the original subject. Glossy flat surface, trendy accessory mockup style.',
   'enamel-pin': 'Transform this subject into a collectible enamel pin badge, polished metal edges with vibrant colored enamel fill, shiny metallic finish, flat-lay product photography',
+  'cosplay': 'Transform the person in the first photo by replacing their costume with the outfit from the second reference photo. Preserve the original face, body, pose, and background from the first photo. Match the new outfit\'s color palette, fabric texture, and fit to the reference. Professional cosplay photography quality with natural blending.',
   // ===== Anime / Cartoon =====
   'pixar': 'Transform this photo into Pixar-inspired 3D animation style. Smooth cartoon rendering with soft subsurface scattering on skin, warm cinematic lighting, and expressive character design. Preserve the original subject\'s facial features, hair color, and proportions. Ambient occlusion grounding shadows, shallow depth of field with film-quality bokeh.',
   'disney': 'Transform this photo into classic Disney hand-drawn animation style from the mid-20th century golden age. Soft watercolor-painted backgrounds, gentle color gradients with subtle cel shading, and large expressive eyes with glossy highlights. Preserve the original subject\'s key features and pose. Magical fairy-tale atmosphere with nostalgic storybook warmth and hand-inked clean outlines.',
@@ -590,11 +594,11 @@ const styleStrengths = {
 };
 
 // ===== Style display names =====
-const STYLE_NAMES = {'free-mode':'Free Mode','cyberpunk':'Cyberpunk','anime':'Anime','oil-painting':'Oil Painting','movie-poster':'Movie Poster','cartoon':'3D Cartoon','watercolor':'Watercolor','funko-pop':'Funko Pop','ghibli':'Ghibli','vintage':'Vintage','magazine':'Magazine Cover','figurine':'Figurine','pixel':'Pixel Art','anime-figure':'Anime Figure','lego-minifig':'LEGO Minifig','lego-style':'LEGO Style','action-figure':'Action Figure','chibi-3d':'Chibi 3D','3d-polaroid':'3D Polaroid','plush-toy':'Plush Toy','crochet-doll':'Crochet Doll','acrylic-keychain':'Acrylic Keychain','enamel-pin':'Enamel Pin','pixar':'Pixar','disney':'Disney','snoopy':'Peanuts / Snoopy','chibi':'Chibi','powerpuff':'Powerpuff Girls','japanese-illust':'Japanese Illustration','animal-crossing':'Animal Crossing','gouache':'Gouache','van-gogh':'Van Gogh','marker-sketch':'Marker Sketch','palette-swap':'Palette Swap','painting-process':'Painting Process','comic-outfit':'Manga Fashion','comic-white':'Manga Line Art','yonkoma':'4-Panel Comic','line-art':'Line Art','vector-illustration':'Vector Illustration','realistic':'Hyper-Realistic','hd-enhance':'HD Enhance','pose-reference':'Pose Reference','subject-extract':'Subject Extraction','ice-queen':'Ice Queen','architecture-model':'Architecture Model','product-render':'Product Render','can-design':'Can Design','industrial-design':'Industrial Design','3d-screen':'3D Screen Effect','bg-replace':'Background Replace','overlay':'Art Overlay'};
+const STYLE_NAMES = {'free-mode':'Free Mode','cyberpunk':'Cyberpunk','anime':'Anime','oil-painting':'Oil Painting','movie-poster':'Movie Poster','cartoon':'3D Cartoon','watercolor':'Watercolor','funko-pop':'Funko Pop','ghibli':'Ghibli','vintage':'Vintage','magazine':'Magazine Cover','figurine':'Figurine','pixel':'Pixel Art','anime-figure':'Anime Figure','lego-minifig':'LEGO Minifig','lego-style':'LEGO Style','action-figure':'Action Figure','chibi-3d':'Chibi 3D','3d-polaroid':'3D Polaroid','plush-toy':'Plush Toy','crochet-doll':'Crochet Doll','acrylic-keychain':'Acrylic Keychain','enamel-pin':'Enamel Pin','cosplay':'Cosplay','pixar':'Pixar','disney':'Disney','snoopy':'Peanuts / Snoopy','chibi':'Chibi','powerpuff':'Powerpuff Girls','japanese-illust':'Japanese Illustration','animal-crossing':'Animal Crossing','gouache':'Gouache','van-gogh':'Van Gogh','marker-sketch':'Marker Sketch','palette-swap':'Palette Swap','painting-process':'Painting Process','comic-outfit':'Manga Fashion','comic-white':'Manga Line Art','yonkoma':'4-Panel Comic','line-art':'Line Art','vector-illustration':'Vector Illustration','realistic':'Hyper-Realistic','hd-enhance':'HD Enhance','pose-reference':'Pose Reference','subject-extract':'Subject Extraction','ice-queen':'Ice Queen','architecture-model':'Architecture Model','product-render':'Product Render','can-design':'Can Design','industrial-design':'Industrial Design','3d-screen':'3D Screen Effect','bg-replace':'Background Replace','overlay':'Art Overlay'};
 
 // ===== Template Selection Modal =====
 const TEMPLATE_CATS = [
-  {name:'3D & Toys', styles:['anime-figure','lego-minifig','lego-style','action-figure','chibi-3d','3d-polaroid','plush-toy','crochet-doll','acrylic-keychain','enamel-pin']},
+  {name:'3D & Toys', styles:['anime-figure','lego-minifig','lego-style','action-figure','chibi-3d','3d-polaroid','plush-toy','crochet-doll','acrylic-keychain','enamel-pin','cosplay']},
   {name:'Anime & Cartoon', styles:['pixar','disney','snoopy','chibi','powerpuff','japanese-illust','animal-crossing']},
   {name:'Art & Painting', styles:['gouache','van-gogh','marker-sketch','palette-swap','painting-process']},
   {name:'Comic & Line Art', styles:['comic-outfit','comic-white','yonkoma','line-art','vector-illustration']},
