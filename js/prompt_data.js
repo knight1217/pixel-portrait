@@ -1,4 +1,4 @@
-const promptExamples = [
+window.promptExamples = [
   { title: 'Professional headshot of confident businesswoman in her 30s', src: 'prompts-final/prompts-previews/Portrait/001-corporate.png' },
   { title: 'Futuristic cyberpunk city at night', src: 'prompts-final/prompts-previews/Urban/001-cyberpunk.png' },
   { title: 'Swiss luxury watch close-up', src: 'prompts-final/prompts-previews/Still Life/001-luxury.png' },

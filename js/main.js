@@ -437,8 +437,9 @@ const modalSearch = $('#modalSearch');
 // ===== Prompt Inspiration Strip (400 random → 10 + infinite scroll) =====
 function initStrip() {
   const track = $('#stripTrack');
-  if (!track) { console.warn('initStrip: #stripTrack not found'); return; }
-  if (typeof promptExamples === 'undefined' || !promptExamples.length) { console.warn('initStrip: promptExamples empty'); return; }
+  if (!track) return;
+  console.log('initStrip: loading', typeof promptExamples, window.promptExamples?.length);
+  if (!window.promptExamples || !window.promptExamples.length) return;
   const selected = [...promptExamples].sort(() => Math.random() - 0.5).slice(0, 10);
   const build = (ex) => {
     return '<div class="pi-item"><img loading="lazy" src="'+ex.src+'" alt="'+ex.title+'"><span class="pi-label">'+ex.title+'</span></div>';
