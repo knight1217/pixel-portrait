@@ -506,65 +506,66 @@ if (inspirationModal) {
 // ===== Generate =====
 const stylePrompts = {
   // ===== 3D / Toys =====
-  'cyberpunk': 'cyberpunk style, neon city night background, glowing lights, tech noir aesthetic, same person, dramatic cinematic lighting, futuristic vibe',
-  'anime': 'anime style, vibrant colors, clean line art, cel shading, expressive eyes, beautiful lighting, hand drawn look',
-  'oil-painting': 'classical oil painting, renaissance fine art, visible brushstrokes, rich colors, dramatic chiaroscuro lighting, museum quality',
-  'movie-poster': 'cinematic movie poster, dramatic hollywood style, warm lighting, epic composition, film grain, no text',
-  'cartoon': '3D cartoon character, stylized animation, smooth shading, big expressive eyes, glossy look, playful design',
-  'watercolor': 'watercolor painting, soft flowing pigments, delicate washes, artistic illustration, paper texture, dreamy background',
-  'funko-pop': 'Funko Pop style collectible figure, vinyl toy texture, big head small body, glossy finish, toy packaging background',
-  'ghibli': 'Studio Ghibli anime style, soft whimsical colors, magical scene, gentle lighting, hand drawn animated beauty',
-  'vintage': 'vintage retro style, warm sepia tones, film grain, 1970s aesthetic, nostalgic feel, soft contrast',
-  'magazine': 'fashion magazine cover, Vogue editorial style, bold layout, high fashion, clean studio lighting, elegant',
-  'figurine': '3D figurine collectible toy, plastic texture, glossy finish, standing on a small base, toy photography',
-  'pixel': 'retro pixel art, 8-bit style, limited color palette, crisp square pixels, dithered shading, game sprite aesthetic',
-  'anime-figure': 'anime character figurine, Japanese style figure, colorful hair, sparkling eyes, cute pose, toy display box, glossy PVC texture',
-  'lego-minifig': 'LEGO minifigure style, blocky square body and head, cylindrical hands, printed face, plastic toy texture, classic yellow skin tone',
-  'lego-style': 'built from LEGO bricks, blocky geometric shapes, visible studs and connections, plastic brick texture, realistic brick-built construction',
-  'action-figure': 'action figure in blister packaging, posable joints, realistic sculpt, cardboard backing with graphics, collectible toy photography',
-  'chibi-3d': 'chibi style 3D character, oversized head tiny body, cute proportions, glossy smooth shading, vibrant colors, adorable pose',
-  '3d-polaroid': '3D pop-out Polaroid photo effect, subject breaking out of photo frame, floating 3D element, instant film border, creative dimensional shot',
-  'plush-toy': 'cute plush stuffed toy, soft fuzzy fabric texture, stitched details, button eyes, adorable huggable design, plush toy photography',
-  'crochet-doll': 'handmade crochet doll, yarn texture, knitted stitches visible, soft wool appearance, cozy handmade craft feel',
-  'acrylic-keychain': 'acrylic keychain design, transparent plastic with printed image, metal keyring attached, cute flat charm style, glossy finish',
-  'enamel-pin': 'enamel pin badge, metal edges with colored enamel fill, shiny pin back, collectible pin design, flat lay photography',
-  'cosplay': 'realistic cosplay transformation, same person in detailed costume, convention photography, accurate character recreation, professional cosplay shoot',
-  'pixar': 'Pixar animation style, 3D cartoon rendering, smooth subsurface scattering, expressive characters, warm cinematic lighting, Disney quality',
-  'disney': 'Disney animation style, classic hand-drawn quality, soft shading, expressive features, magical atmosphere, Disney character design',
-  'snoopy': 'Peanuts comic style, Charles Schulz art, simple line drawing, black and white with spot color, nostalgic newspaper comic feel',
-  'chibi': 'chibi art style, super deformed proportions, tiny body big head, cute simplified features, kawaii aesthetic, colorful and playful',
-  'powerpuff': 'Powerpuff Girls cartoon style, flat bold colors, thick outlines, simple geometric shapes, retro Cartoon Network aesthetic',
-  'japanese-illust': 'Japanese minimal illustration, simple clean lines, flat colors, cute character design, modern kawaii vector art style',
-  'animal-crossing': 'Animal Crossing game style, rounded soft 3D, cute animal villagers, pastel colors, cozy island vibe, Nintendo aesthetic',
-  // ===== Paintings =====
-  'gouache': 'gouache painting, opaque matte finish, rich flat colors, visible brush strokes, thick pigment texture, illustration art quality',
-  'van-gogh': 'Van Gogh painting style, thick impasto oil strokes, swirling brushwork, vibrant complementary colors, post-impressionist masterpiece',
-  'marker-sketch': 'marker pen sketch, bold colorful strokes, sketchy line work, artistic rendering, fashion illustration feel, creative hand drawn style',
-  'palette-swap': 'color palette transformation, same composition different color scheme, artistic color grading, mood shift through color, creative recolor',
-  'painting-process': 'four-panel painting process showcase, sketch to line art to flat color to final render, art progression steps, creative workflow display',
+  'cyberpunk': 'Transform this photo into a cyberpunk style character, neon city night background, glowing holographic lights, tech noir aesthetic, same person, dramatic cinematic lighting, futuristic vibe',
+  'anime': 'Convert this photo into high-quality anime art, vibrant cel shading colors, clean line work, large expressive eyes, soft beautiful lighting, hand-drawn animation look',
+  'oil-painting': 'Reimagine this photo as a classical oil painting, visible brushstrokes, rich oil colors, renaissance fine art quality, dramatic chiaroscuro lighting, museum-worthy masterpiece',
+  'movie-poster': 'Turn this photo into a cinematic movie poster, dramatic Hollywood composition, warm golden lighting, epic film atmosphere, professional film grain texture',
+  'cartoon': 'Transform this photo into a Pixar-style 3D cartoon character, smooth glossy shading, oversized expressive eyes, playful colorful design, animated movie quality',
+  'watercolor': 'Convert this photo into a flowing watercolor painting, soft pigment washes blending naturally, delicate paper texture, dreamy artistic atmosphere, hand-painted feel',
+  'funko-pop': 'Recreate this subject as a Funko Pop vinyl collectible figure, oversized square head, tiny body, glossy toy finish, black circular eyes, displayed in packaging box',
+  'ghibli': 'Transform this photo into Studio Ghibli animation style, soft watercolor backgrounds, warm magical lighting, whimsical hand-drawn quality, gentle nostalgic atmosphere',
+  'vintage': 'Convert this photo into a vintage retro photograph, warm sepia tones, heavy film grain, faded analog colors, 1970s aesthetic, nostalgic soft-focus look',
+  'magazine': 'Turn this photo into a high-fashion magazine cover, Vogue editorial style, bold elegant composition, clean studio lighting, professional model photography quality',
+  'figurine': 'Recreate this subject as a detailed 3D figurine collectible toy, glossy plastic texture, standing on a small display base, professional toy product photography',
+  'pixel': 'Transform this photo into retro pixel art, 8-bit game sprite aesthetic, limited color palette, crisp square pixels, dithered shading, nostalgic arcade game look',
+  // ===== 3D / Toys (continued) =====
+  'anime-figure': 'Turn this subject into an authentic Japanese anime character figurine, vivid colorful hair, sparkling kawaii eyes, cute dynamic pose, glossy PVC toy texture, displayed in collector box',
+  'lego-minifig': 'Recreate this subject as a classic LEGO minifigure, blocky square head and body, cylindrical claw hands, simple printed facial features, bright yellow skin, plastic toy texture',
+  'lego-style': 'Rebuild this scene entirely from LEGO bricks, blocky geometric construction, visible stud connections on every surface, realistic plastic brick texture, authentic brick-built look',
+  'action-figure': 'Transform this subject into a premium action figure, highly detailed sculpt with articulated joints, displayed in blister card packaging, professional collectible toy photography',
+  'chibi-3d': 'Convert this photo into a cute chibi-style 3D character, oversized round head, tiny adorable body proportions, glossy smooth shading, vibrant playful colors, kawaii pose',
+  '3d-polaroid': 'Create a magical 3D pop-out Polaroid effect, subject breaking out beyond the instant photo frame, floating dimensional elements, classic white Polaroid border, creative surreal composition',
+  'plush-toy': 'Transform this subject into an adorable plush stuffed toy, soft fuzzy fabric texture, stitched seam details, shiny button eyes, huggable cute design, warm toy store photography',
+  'crochet-doll': 'Recreate this subject as a handmade crochet yarn doll, visible knitted stitch texture, soft wool appearance, charming DIY craft aesthetic, cozy handmade quality',
+  'acrylic-keychain': 'Turn this subject into a cute acrylic keychain charm, transparent printed plastic with metal keyring attached, glossy flat surface, trendy accessory mockup style',
+  'enamel-pin': 'Transform this subject into a collectible enamel pin badge, polished metal edges with vibrant colored enamel fill, shiny metallic finish, flat-lay product photography',
+  'cosplay': 'Convert this photo into a realistic cosplay transformation, same person wearing an intricately detailed costume, professional convention photography quality, accurate character recreation',
+  // ===== Anime / Cartoon =====
+  'pixar': 'Transform this photo into Pixar animation style, smooth 3D cartoon rendering with subsurface scattering, expressive character design, warm cinematic lighting, Disney-quality animated film look',
+  'disney': 'Reimagine this photo as classic Disney hand-drawn animation, soft watercolor backgrounds, expressive character features, magical fairy-tale atmosphere, timeless animated movie quality',
+  'snoopy': 'Convert this photo into Charles Schulz Peanuts comic style, simple black line drawing with selective spot color, nostalgic newspaper comic strip aesthetic, charming hand-drawn characters',
+  'chibi': 'Transform this subject into super-deformed chibi art, extremely oversized head on tiny body, simplified cute features, kawaii manga aesthetic, colorful and playful illustration',
+  'powerpuff': 'Turn this photo into Powerpuff Girls cartoon style, flat bold colors with thick black outlines, simple geometric character shapes, retro Cartoon Network aesthetic, early 2000s nostalgia',
+  'japanese-illust': 'Convert this photo into a modern Japanese kawaii illustration, simple clean line art, flat pastel color palette, cute minimalist character design, trendy vector art style',
+  'animal-crossing': 'Transform this photo into Animal Crossing game art style, rounded soft 3D character design, cozy pastel colors, charming Nintendo village aesthetic, heartwarming Nintendo quality',
+  // ===== Art / Painting =====
+  'gouache': 'Recreate this photo as a gouache painting, opaque matte finish with rich flat colors, visible brush strokes, thick pigment texture, professional illustration art quality',
+  'van-gogh': 'Transform this photo into a Van Gogh masterpiece, thick swirling impasto oil strokes, vibrant complementary color palette, post-impressionist artistic style, museum-quality painting',
+  'marker-sketch': 'Convert this photo into a bold marker pen sketch, colorful expressive strokes, sketchy artistic line work, fashion illustration feel, creative hand-drawn rendering',
+  'palette-swap': 'Recolor this photo using a completely different color palette, same composition with dramatically shifted color mood, artistic color grading transformation, creative visual reinterpretation',
+  'painting-process': 'Show this subject as a four-panel painting process progression, from rough sketch to clean line art to flat color blocking to final polished render, art tutorial style showcase',
   // ===== Comic / Line Art =====
-  'comic-outfit': 'manga comic style, cute girl fashion outfit showcase, Japanese comic panel layout, screentone dots, shojo manga aesthetic',
-  'comic-white': 'manga line art on white background, clean black outlines, screentone shading, manga panel composition, Japanese comic style',
-  'yonkoma': 'four-panel comic strip, yonkoma manga format, sequential storytelling, simple expressions, humorous manga style with dialogue bubbles',
-  'line-art': 'clean line art drawing, black outlines on white, detailed ink work, professional illustration, crisp vector-like precision',
-  'vector-illustration': 'flat vector illustration style, clean geometric shapes, smooth gradients, minimalist modern design, digital art aesthetic',
-  // ===== Realistic =====
-  'realistic': 'hyper-realistic style, photorealistic detail, natural skin texture, true-to-life rendering, professional portrait quality, 8K sharp',
-  'hd-enhance': 'super resolution enhancement, ultra sharp detail, refined texture clarity, professional retouch quality, 4K upscale, pristine finish',
-  'pose-reference': 'dynamic pose reference sheet, multiple angle views, figure drawing reference, clean neutral background, anatomical study quality',
-  'subject-extract': 'clean subject isolation, perfect cutout on transparent background, sharp edges, professional product photography, studio quality extraction',
-  'makeup-analysis': 'makeup breakdown visualization, before and after comparison, cosmetic product mapping, beauty editorial style, professional MUA reference',
-  // ===== Sci-Fi / Stylized =====
-  'ice-queen': 'ice queen aesthetic, frost and crystal details, cool blue tones, elegant cold beauty, sharp refined features, ethereal frozen atmosphere',
+  'comic-outfit': 'Turn this subject into a shojo manga fashion illustration, cute outfit showcase with Japanese comic panel layout, screentone dot shading, elegant manga aesthetic, fashion magazine style',
+  'comic-white': 'Convert this photo into clean manga line art on pure white background, crisp black ink outlines, professional screentone shading, authentic Japanese comic illustration style',
+  'yonkoma': 'Transform this scene into a four-panel yonkoma manga comic strip, sequential storytelling with dialogue bubbles, simple expressive characters, humorous slice-of-life manga format',
+  'line-art': 'Convert this photo into precise professional line art, clean black ink outlines on white, detailed illustration work, crisp vector-quality precision, elegant minimal style',
+  'vector-illustration': 'Transform this photo into a flat vector illustration, clean geometric shapes with smooth color gradients, minimalist modern graphic design, professional digital art aesthetic',
+  // ===== Photo / Realistic =====
+  'realistic': 'Enhance this photo to hyper-realistic quality, photorealistic skin texture and fine detail, true-to-life natural rendering, professional portrait photography quality, 8K ultra-sharp',
+  'hd-enhance': 'Apply super-resolution enhancement to this photo, refine all texture details to 4K clarity, professional photo retouch quality, pristine polished finish, ultra-crisp sharpness',
+  'pose-reference': 'Create a professional pose reference sheet from this subject, showing multiple angle views, clean neutral studio background, anatomical figure drawing reference quality',
+  'subject-extract': 'Cleanly isolate the subject from this photo with a perfect transparent background cutout, sharp precise edges, professional studio product photography quality, ready for compositing',
+  'makeup-analysis': 'Create a professional makeup breakdown visualization from this photo, side-by-side before and after comparison, cosmetic product technique mapping, beauty editorial reference quality',
   // ===== Design / Product =====
-  'architecture-model': 'architectural scale model, miniature building with realistic materials, foam board and balsa wood texture, professional presentation quality',
-  'product-render': 'product photography, commercial studio lighting, clean white background, professional e-commerce quality, sharp focus 8K',
-  'can-design': 'aluminum can packaging design, metallic finish with printed label, beverage product mockup, realistic condensation droplets, commercial quality',
-  'industrial-design': 'industrial design rendering, clean studio backdrop, professional product visualization, matte and glossy material finish, concept design quality',
-  '3d-screen': '3D screen effect, subject popping out of digital display, holographic glass overlay, futuristic UI elements, augmented reality style',
-  // ===== Utilities =====
-  'bg-replace': 'background replacement, cleanly separated subject placed in new environment, seamless blending, matching lighting and shadows, professional compositing',
-  'overlay': 'artistic element overlay, decorative illustrations added around subject, creative mixed media, hand drawn accents over photo, editorial art style'
+  'architecture-model': 'Transform this into a detailed architectural scale model, realistic miniature building materials like foam board and balsa wood, professional presentation model quality',
+  'product-render': 'Turn this subject into premium product photography, clean white studio background, perfect commercial lighting, professional e-commerce catalog quality, 8K sharp focus',
+  'can-design': 'Render this design onto an aluminum beverage can, glossy metallic finish with vibrant printed label graphics, realistic condensation droplets, commercial product mockup quality',
+  'industrial-design': 'Recreate this as a professional industrial design concept rendering, clean studio backdrop, sophisticated matte and glossy material finishes, premium product visualization quality',
+  '3d-screen': 'Create a futuristic 3D screen effect, subject popping out beyond the digital display boundary, holographic glass overlay, augmented reality UI elements, sci-fi interface style',
+  // ===== Other =====
+  'ice-queen': 'Transform this subject into an ethereal ice queen, crystalline frost details and shimmering ice textures, elegant cool blue tones, sharp refined beauty, magical frozen atmosphere',
+  'bg-replace': 'Seamlessly replace the background of this photo, clean subject separation with a completely new environment, perfectly matched lighting and shadows, professional compositing quality',
+  'overlay': 'Add artistic decorative illustration overlays around the subject, creative mixed-media embellishments, hand-drawn artistic accents blending with the photo, editorial art style'
 };
 
 // ===== Style display names =====
@@ -667,6 +668,14 @@ async function generate() {
   const hasStyle = selectedStyle && selectedStyle !== 'free-mode';
 
   if (!hasPhoto && !hasPrompt) return;
+  // Template requires an uploaded image
+  if (hasStyle && !hasPhoto) {
+    errorText.textContent = 'Please upload an image to use a template.';
+    errorSection.style.display = '';
+    resultSection.style.display = 'none';
+    showcaseArea.style.display = 'none';
+    return;
+  }
 
   showcaseArea.style.display = 'none';
   loadingSection.style.display = '';
