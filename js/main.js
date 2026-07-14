@@ -438,7 +438,7 @@ const modalSearch = $('#modalSearch');
 function initStrip() {
   const track = $('#stripTrack');
   if (!track) { console.warn('initStrip: #stripTrack not found'); return; }
-  if (!window.promptExamples || promptExamples.length === 0) { console.warn('initStrip: promptExamples empty'); return; }
+  if (typeof promptExamples === 'undefined' || !promptExamples.length) { console.warn('initStrip: promptExamples empty'); return; }
   const selected = [...promptExamples].sort(() => Math.random() - 0.5).slice(0, 10);
   const build = (ex) => {
     return '<div class="pi-item"><img loading="lazy" src="'+ex.src+'" alt="'+ex.title+'"><span class="pi-label">'+ex.title+'</span></div>';
