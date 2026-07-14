@@ -896,7 +896,7 @@ function open(id){
 document.getElementById('plbClose').onclick=function(){lightbox.classList.remove('visible')};
 lightbox.onclick=function(e){if(e.target===lightbox)lightbox.classList.remove('visible')};
 document.querySelectorAll('.card').forEach(function(c){c.addEventListener('click',function(){open(c.dataset.seq)})});
-document.getElementById('plbUse').onclick=function(){try{localStorage.setItem('snapshift-prompt',currentEn)}catch(e){}window.location.href='/'};
+document.getElementById('plbUse').onclick=function(){window.location.href='/#generator?prompt='+encodeURIComponent(currentEn)};
 document.getElementById('plbCopy').onclick=function(){
   navigator.clipboard.writeText(currentEn).then(function(){
     var b=document.getElementById('plbCopy');b.textContent='Copied!';setTimeout(function(){b.textContent='Copy prompt'},1500);

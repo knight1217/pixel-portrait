@@ -882,3 +882,31 @@ if (backTop) {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 }
+
+// ===== Incoming prompt from prompts.html (URL parameter) =====
+(function handleIncomingPrompt() {
+  const hash = window.location.hash;
+  if (!hash.includes('?')) return;
+  const queryStart = hash.indexOf('?');
+  const params = new URLSearchParams(hash.substring(queryStart + 1));
+  const prompt = params.get('prompt');
+  if (!prompt) return;
+  // Fill custom prompt
+  const cp = $('#customPrompt');
+  if (cp) {
+    cp.value = prompt;
+    updateGenBtn();
+  }
+  // Open advanced panel
+  const adv = $('#advancedPanel');
+  const tog = $('#advancedToggle');
+  if (adv && adv.style.display === 'none' && tog) {
+    adv.style.display = 'block';
+    if (tog.classList) tog.classList.add('open');
+  }
+  // Scroll to generator
+  const gen = $('#generator');
+  if (gen) setTimeout(() => gen.scrollIntoView({ behavior: 'smooth' }), 200);
+  // Clean URL
+  history.replaceState(null, '', window.location.pathname + '#generator');
+})();
