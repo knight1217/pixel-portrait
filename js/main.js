@@ -523,7 +523,7 @@ const stylePrompts = {
   'anime-figure': 'Turn this photo into an anime style figurine. The face, hair, body, and outfit follow the original subject. Glossy PVC anime figure texture. Keep the original background.',
   'lego-minifig': 'Turn the subject in this photo into a LEGO minifigure. Keep the original background.',
   'lego-style': 'Rebuild this scene entirely from LEGO bricks, blocky geometric construction, visible stud connections on every surface, realistic plastic brick texture, authentic brick-built look',
-  'action-figure': 'Turn this photo into a premium action figure. The face, hair, skin color, outfit, and pose follow the original subject. The body is detailed with articulated joints. Displayed in blister card packaging. Keep the original background and lighting.',
+  'action-figure': 'Turn this photo into a premium action figure with articulated joints. The face, hair, skin color, outfit, and pose follow the original subject. Keep the original background.',
   'chibi-3d': 'Turn this photo into a cute chibi-style 3D figure. Oversized round head, tiny body proportions. The face and features follow the original subject. Glossy smooth shading, vibrant playful colors.',
   '3d-polaroid': 'Create a magical 3D pop-out Polaroid effect, subject breaking out beyond the instant photo frame, floating dimensional elements, classic white Polaroid border, creative surreal composition',
   'plush-toy': 'Turn this photo into an adorable plush stuffed toy. Soft fuzzy fabric texture, stitched seam details. The face and features follow the original subject. Warm toy store photography.',
