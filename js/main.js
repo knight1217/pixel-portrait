@@ -438,9 +438,9 @@ const modalSearch = $('#modalSearch');
 function initStrip() {
   const track = $('#stripTrack');
   if (!track) return;
-  console.log('initStrip: loading', typeof promptExamples, window.promptExamples?.length);
-  if (!window.promptExamples || !window.promptExamples.length) return;
-  const selected = [...promptExamples].sort(() => Math.random() - 0.5).slice(0, 10);
+  console.log('initStrip: loading', typeof window.promptExamples, window.promptExamples?.length);
+  if (typeof window.promptExamples === 'undefined' || !window.promptExamples.length) return;
+  const selected = [...window.promptExamples].sort(() => Math.random() - 0.5).slice(0, 10);
   const build = (ex) => {
     return '<div class="pi-item"><img loading="lazy" src="'+ex.src+'" alt="'+ex.title+'"><span class="pi-label">'+ex.title+'</span></div>';
   };
