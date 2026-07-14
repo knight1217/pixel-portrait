@@ -508,7 +508,7 @@ if (inspirationModal) {
 const stylePrompts = {
   // ===== 3D / Toys =====
   'cyberpunk': 'Turn this photo into a cyberpunk style transformation. Neon city night background, glowing holographic lights, tech noir aesthetic. The face, outfit, and pose follow the original subject. Dramatic cinematic lighting.',
-  'anime': 'Convert this photo into high-quality anime art, vibrant cel shading colors, clean line work, large expressive eyes, soft beautiful lighting, hand-drawn animation look',
+  'anime': 'Convert this photo into high-quality anime art. Vibrant cel shading colors, clean line work. The face, features, hair color, and eye color follow the original subject. Soft beautiful lighting, hand-drawn animation look.',
   'oil-painting': 'Reimagine this photo as a classical oil painting with thick impasto technique, heavy visible brushstrokes, palette knife texture, layered paint, thick pigment buildup, rich oil colors, renaissance fine art quality, dramatic chiaroscuro lighting, museum-worthy masterpiece with tangible paint texture and bold brush marks',
   'movie-poster': 'Turn this photo into a cinematic movie poster, dramatic Hollywood composition, warm golden lighting, epic film atmosphere, professional film grain texture',
   'cartoon': 'Turn this photo into a Pixar-style 3D cartoon. The face, features, and body follow the original subject. Smooth glossy shading, animated movie quality. Keep the original background.',
@@ -528,7 +528,7 @@ const stylePrompts = {
   '3d-polaroid': 'Create a magical 3D pop-out Polaroid effect, subject breaking out beyond the instant photo frame, floating dimensional elements, classic white Polaroid border, creative surreal composition',
   'plush-toy': 'Turn this photo into an adorable plush stuffed toy. Soft fuzzy fabric texture, stitched seam details. The face and features follow the original subject. Warm toy store photography.',
   'crochet-doll': 'Turn this photo into a handmade crochet yarn doll. Visible knitted stitch texture, soft wool appearance. The face and features follow the original subject. Cozy handmade quality.',
-  'acrylic-keychain': 'Turn this subject into a cute acrylic keychain charm, transparent printed plastic with metal keyring attached, glossy flat surface, trendy accessory mockup style',
+  'acrylic-keychain': 'Turn this photo into a cute acrylic keychain charm. Transparent printed plastic with metal keyring attached. The face and features follow the original subject. Glossy flat surface, trendy accessory mockup style.',
   'enamel-pin': 'Transform this subject into a collectible enamel pin badge, polished metal edges with vibrant colored enamel fill, shiny metallic finish, flat-lay product photography',
   'cosplay': 'Turn this photo into a realistic cosplay transformation. The face, body, and pose follow the original subject (same person wearing an intricately detailed costume). Professional convention photography quality.',
   // ===== Anime / Cartoon =====
@@ -552,11 +552,11 @@ const stylePrompts = {
   'line-art': 'Convert this photo into precise professional line art, clean black ink outlines on white, detailed illustration work, crisp vector-quality precision, elegant minimal style',
   'vector-illustration': 'Transform this photo into a flat vector illustration, clean geometric shapes with smooth color gradients, minimalist modern graphic design, professional digital art aesthetic',
   // ===== Photo / Realistic =====
-  'realistic': 'Enhance this photo to hyper-realistic quality, photorealistic skin texture and fine detail, true-to-life natural rendering, professional portrait photography quality, 8K ultra-sharp',
+  'realistic': 'Enhance this photo to hyper-realistic quality. Refine all texture and surface details. True-to-life natural rendering, professional photography quality, 8K ultra-sharp.',
   'hd-enhance': 'Apply super-resolution enhancement to this photo, refine all texture details to 4K clarity, professional photo retouch quality, pristine polished finish, ultra-crisp sharpness',
-  'pose-reference': 'Create a professional pose reference sheet from this subject, showing multiple angle views, clean neutral studio background, anatomical figure drawing reference quality',
+  'pose-reference': 'Create a professional reference sheet from this subject. Multiple angle views, clean neutral studio background. Professional reference quality.',
   'subject-extract': 'Cleanly isolate the subject from this photo with a perfect transparent background cutout, sharp precise edges, professional studio product photography quality, ready for compositing',
-  'makeup-analysis': 'Create a professional makeup breakdown visualization from this photo, side-by-side before and after comparison, cosmetic product technique mapping, beauty editorial reference quality',
+  'makeup-analysis': 'Create a professional before-and-after comparison visualization from this photo. Side-by-side comparison layout showing transformation stages. Professional editorial reference quality.',
   // ===== Design / Product =====
   'architecture-model': 'Transform this into a detailed architectural scale model, realistic miniature building materials like foam board and balsa wood, professional presentation model quality',
   'product-render': 'Turn this subject into premium product photography, clean white studio background, perfect commercial lighting, professional e-commerce catalog quality, 8K sharp focus',
@@ -564,8 +564,8 @@ const stylePrompts = {
   'industrial-design': 'Recreate this as a professional industrial design concept rendering, clean studio backdrop, sophisticated matte and glossy material finishes, premium product visualization quality',
   '3d-screen': 'Create a futuristic 3D screen effect, subject popping out beyond the digital display boundary, holographic glass overlay, augmented reality UI elements, sci-fi interface style',
   // ===== Other =====
-  'ice-queen': 'Transform this subject into an ethereal ice queen, crystalline frost details and shimmering ice textures, elegant cool blue tones, sharp refined beauty, magical frozen atmosphere',
-  'bg-replace': 'Seamlessly replace the background of this photo, clean subject separation with a completely new environment, perfectly matched lighting and shadows, professional compositing quality',
+  'ice-queen': 'Turn this photo into an ethereal ice-themed transformation. Crystalline frost details and shimmering ice textures, elegant cool blue tones. The face, features, and pose follow the original subject. Magical frozen atmosphere.',
+  'bg-replace': 'Seamlessly replace the background of this photo with a natural complementary environment that matches the subject. Clean subject separation, perfectly matched lighting and shadows. Professional compositing quality.',
   'overlay': 'Add artistic decorative illustration overlays around the subject, creative mixed-media embellishments, hand-drawn artistic accents blending with the photo, editorial art style'
 };
 
