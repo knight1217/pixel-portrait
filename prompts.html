@@ -481,5 +481,9 @@ document.getElementById('plbUse').onclick=function(){window.location.href='/#gen
 document.getElementById('plbCopy').onclick=function(){navigator.clipboard.writeText(cur).then(function(){var x=document.getElementById('plbCopy');x.textContent='Copied!';setTimeout(function(){x.textContent='Copy prompt'},1500)}).catch(function(){var x=document.getElementById('plbCopy');x.textContent='Copy failed';setTimeout(function(){x.textContent='Copy prompt'},1500)})};
 f('all')})();
 </script>
+<script>
+  // Renumber cards 1, 2, 3, ... continuously
+  document.querySelectorAll('.card .num').forEach((el, i) => { el.textContent = '#' + (i + 1); });
+</script>
 </body>
 </html>
