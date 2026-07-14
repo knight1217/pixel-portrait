@@ -434,41 +434,42 @@ const modalBody = $('#modalBody');
 const modalSearch = $('#modalSearch');
 
 
-// ===== Prompt Inspiration Strip (400 random → 10 + infinite scroll) =====
+// ===== Prompt Inspiration Strip (400 random → 10 + clickable lightbox) =====
 function initStrip() {
   const track = $('#stripTrack');
   if (!track) return;
-  console.log('initStrip: loading', typeof window.promptExamples, window.promptExamples?.length);
   if (typeof window.promptExamples === 'undefined' || !window.promptExamples.length) return;
   const selected = [...window.promptExamples].sort(() => Math.random() - 0.5).slice(0, 10);
+  const esc = (s) => String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
   const build = (ex) => {
-    return '<div class="pi-item"><img loading="lazy" src="'+ex.src+'" alt="'+ex.title+'"><span class="pi-label">'+ex.title+'</span></div>';
+    return '<div class="pi-item" data-title="'+esc(ex.title)+'" data-tags="'+(ex.tags||[]).join(',')+'" data-prompt="'+esc(ex.prompt||'')+'"><img loading="lazy" src="'+ex.src+'" alt="'+esc(ex.title)+'"><span class="pi-label">'+esc(ex.title)+'</span></div>';
   };
-  // Duplicate the selected list for seamless infinite scroll
   track.innerHTML = selected.map(build).join('') + selected.map(build).join('');
   track.addEventListener('click', e => {
     const item = e.target.closest('.pi-item');
     if (!item) return;
-    const img = item.querySelector('img'), title = item.dataset.title;
-    const tags = item.dataset.tags, prompt = item.dataset.prompt;
-    $('#plbImg').src = img.src; $('#plbTitle').textContent = title;
-    $('#plbTags').innerHTML = tags.split(',').map(t => '<span class="plb-tag">'+t.trim()+'</span>').join('');
-    $('#plbPrompt').textContent = prompt;
-    $('#plbUse').onclick = () => {
-      const cp = $('#customPrompt'); cp.value = prompt;
-      cp.scrollIntoView({behavior:'smooth'});
-      if ($('#advancedPanel') && $('#advancedPanel').style.display === 'none') $('#advancedToggle').click();
-      if (promptLightbox) { promptLightbox.style.display = 'none'; document.body.style.overflow = ''; }
-      updateGenBtn();
+    const img = item.querySelector('img');
+    const title = item.dataset.title || '';
+    const tags = item.dataset.tags || '';
+    const prompt = item.dataset.prompt || '';
+    const plb = $('#promptLightbox');
+    if (!plb) return;
+    if ($('#plbImg')) $('#plbImg').src = img.src;
+    if ($('#plbTitle')) $('#plbTitle').textContent = title;
+    if ($('#plbTags')) $('#plbTags').innerHTML = tags.split(',').map(t => '<span class="plb-tag">'+t.trim()+'</span>').join('');
+    if ($('#plbPrompt')) $('#plbPrompt').textContent = prompt;
+    if ($('#plbUse')) $('#plbUse').onclick = () => {
+      plb.style.display = 'none'; document.body.style.overflow = '';
+      window.location.href = 'create.html#generator?prompt=' + encodeURIComponent(prompt);
     };
-    $('#plbCopy').onclick = async () => {
+    if ($('#plbCopy')) $('#plbCopy').onclick = async () => {
       try { await navigator.clipboard.writeText(prompt); $('#plbCopy').textContent = 'Copied!'; setTimeout(() => $('#plbCopy').textContent = 'Copy prompt', 1500); }
       catch (err) { $('#plbCopy').textContent = 'Copy failed'; setTimeout(() => $('#plbCopy').textContent = 'Copy prompt', 1500); }
     };
-    if (promptLightbox) { promptLightbox.style.display = 'flex'; document.body.style.overflow = 'hidden'; }
+    plb.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
   });
 }
-// Call after prompt_data.js loaded
 setTimeout(initStrip, 100);
 
 function renderPromptCards() {
