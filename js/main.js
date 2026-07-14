@@ -525,7 +525,7 @@ const stylePrompts = {
   'lego-style': 'Rebuild this scene entirely from LEGO bricks, blocky geometric construction, visible stud connections on every surface, realistic plastic brick texture, authentic brick-built look',
   'action-figure': 'Turn this photo into a premium action figure with articulated joints. The face, hair, skin color, outfit, and pose follow the original subject. Keep the original background.',
   'chibi-3d': 'Turn this photo into a cute chibi-style 3D figure. Oversized round head, tiny body proportions. The face and features follow the original subject. Glossy smooth shading, vibrant playful colors.',
-  '3d-polaroid': 'Create a magical 3D pop-out Polaroid effect, subject breaking out beyond the instant photo frame, floating dimensional elements, classic white Polaroid border, creative surreal composition',
+  '3d-polaroid': 'Turn this photo into a 3D pop-out Polaroid effect, with the subject breaking out beyond the white Polaroid frame.',
   'plush-toy': 'Turn this photo into an adorable plush stuffed toy. Soft fuzzy fabric texture, stitched seam details. The face and features follow the original subject. Warm toy store photography.',
   'crochet-doll': 'Turn this photo into a handmade crochet yarn doll. Visible knitted stitch texture, soft wool appearance. The face and features follow the original subject. Cozy handmade quality.',
   'acrylic-keychain': 'Turn this photo into a cute acrylic keychain charm. Transparent printed plastic with metal keyring attached. The face and features follow the original subject. Glossy flat surface, trendy accessory mockup style.',
