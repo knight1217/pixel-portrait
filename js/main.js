@@ -513,7 +513,7 @@ const stylePrompts = {
   'movie-poster': 'Turn this photo into a cinematic movie poster, dramatic Hollywood composition, warm golden lighting, epic film atmosphere, professional film grain texture',
   'cartoon': 'Transform this photo into a Pixar-style 3D cartoon character, smooth glossy shading, oversized expressive eyes, playful colorful design, animated movie quality',
   'watercolor': 'Convert this photo into a flowing watercolor painting, soft pigment washes blending naturally, delicate paper texture, dreamy artistic atmosphere, hand-painted feel',
-  'funko-pop': 'Recreate this subject as a Funko Pop vinyl collectible figure, oversized square head, tiny body, glossy toy finish, black circular eyes, displayed in packaging box',
+  'funko-pop': 'Recreate this subject as a Funko Pop vinyl collectible figure, oversized square head, tiny body, glossy toy finish, black circular eyes. Product photography layout: the boxed figure on one side, the unboxed figure standing on display base on the other side, clean studio lighting, white or gradient background, professional collectible showcase composition',
   'ghibli': 'Transform this photo into Studio Ghibli animation style, soft watercolor backgrounds, warm magical lighting, whimsical hand-drawn quality, gentle nostalgic atmosphere',
   'vintage': 'Convert this photo into a vintage retro photograph, warm sepia tones, heavy film grain, faded analog colors, 1970s aesthetic, nostalgic soft-focus look',
   'magazine': 'Turn this photo into a high-fashion magazine cover, Vogue editorial style, bold elegant composition, clean studio lighting, professional model photography quality',
