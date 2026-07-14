@@ -468,11 +468,8 @@ function initStrip() {
     if (promptLightbox) { promptLightbox.style.display = 'flex'; document.body.style.overflow = 'hidden'; }
   });
 }
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initStrip);
-} else {
-  initStrip();
-}
+// Call after prompt_data.js loaded
+setTimeout(initStrip, 100);
 
 function renderPromptCards() {
   modalBody.innerHTML = '';
