@@ -104,14 +104,10 @@ if (compareSlider) {
 const templateCards = $$('.template-card');
 templateCards.forEach(card => {
   card.addEventListener('click', () => {
-    const templateName = card.querySelector('h3')?.textContent;
-    document.querySelector('#generator').scrollIntoView({ behavior: 'smooth' });
-    const targetThumb = Array.from($$('.gen-thumb')).find(t => t.textContent.trim() === templateName?.trim());
-    if (targetThumb) {
-      $$('.gen-thumb').forEach(t => t.classList.remove('active'));
-      targetThumb.classList.add('active');
-      selectedStyle = targetThumb.dataset.genStyle;
-      updateGenBtn();
+    const key = card.dataset.styleKey;
+    if (key) {
+      document.querySelector('#generator').scrollIntoView({ behavior: 'smooth' });
+      selectTemplateStyle(key);
     }
   });
 });
@@ -136,41 +132,41 @@ if (promptLightbox) {
     }
   });
 
-  $$('.pi-item').forEach(item => {
-    item.addEventListener('click', () => {
-      const img = item.querySelector('img');
-      const title = item.dataset.title;
-      const tags = item.dataset.tags;
-      const prompt = item.dataset.prompt;
-      $('#plbImg').src = img.src;
-      $('#plbTitle').textContent = title;
-      $('#plbTags').innerHTML = tags.split(',').map(t => `<span class="plb-tag">${t.trim()}</span>`).join('');
+  // ===== Randomize Prompt Inspiration Strip =====
+  (function initStrip() {
+    const track = $('#stripTrack');
+    if (!track) return;
+    const validPool = promptExamples.filter(ex => !ex.src.includes('prompt-11') && !ex.src.includes('prompt-13') && !ex.src.includes('prompt-16'));
+    const selected = [...validPool].sort(() => Math.random() - 0.5).slice(0, 10);
+    let html = '';
+    const build = (ex) => {
+      const d = ex.prompt.replace(/"/g,'&quot;');
+      return '<div class="pi-item" data-title="'+ex.title+'" data-tags="'+ex.tags.join(',')+'" data-prompt="'+d+'"><img loading="lazy" src="'+ex.src+'" alt="'+ex.title+'"><span class="pi-label">'+ex.title+'</span></div>';
+    };
+    selected.forEach(ex => html += build(ex));
+    html += build(selected[0]); html += build(selected[1]); // duplicates for loop
+    track.innerHTML = html;
+    track.addEventListener('click', e => {
+      const item = e.target.closest('.pi-item');
+      if (!item) return;
+      const img = item.querySelector('img'), title = item.dataset.title;
+      const tags = item.dataset.tags, prompt = item.dataset.prompt;
+      $('#plbImg').src = img.src; $('#plbTitle').textContent = title;
+      $('#plbTags').innerHTML = tags.split(',').map(t => '<span class="plb-tag">'+t.trim()+'</span>').join('');
       $('#plbPrompt').textContent = prompt;
       $('#plbUse').onclick = () => {
-        const cp = $('#customPrompt');
-        cp.value = prompt;
-        cp.scrollIntoView({ behavior: 'smooth' });
-        if ($('#advancedPanel').style.display === 'none') {
-          $('#advancedToggle').click();
-        }
-        promptLightbox.style.display = 'none';
-        document.body.style.overflow = '';
-        updateGenBtn();
+        const cp = $('#customPrompt'); cp.value = prompt;
+        cp.scrollIntoView({behavior:'smooth'});
+        if ($('#advancedPanel').style.display === 'none') $('#advancedToggle').click();
+        promptLightbox.style.display = 'none'; document.body.style.overflow = ''; updateGenBtn();
       };
       $('#plbCopy').onclick = async () => {
-        try {
-          await navigator.clipboard.writeText(prompt);
-          $('#plbCopy').textContent = 'Copied!';
-          setTimeout(() => $('#plbCopy').textContent = 'Copy prompt', 1500);
-        } catch (err) {
-          $('#plbCopy').textContent = 'Copy failed';
-          setTimeout(() => $('#plbCopy').textContent = 'Copy prompt', 1500);
-        }
+        try { await navigator.clipboard.writeText(prompt); $('#plbCopy').textContent = 'Copied!'; setTimeout(() => $('#plbCopy').textContent = 'Copy prompt', 1500); }
+        catch (err) { $('#plbCopy').textContent = 'Copy failed'; setTimeout(() => $('#plbCopy').textContent = 'Copy prompt', 1500); }
       };
-      promptLightbox.style.display = 'flex';
-      document.body.style.overflow = 'hidden';
+      promptLightbox.style.display = 'flex'; document.body.style.overflow = 'hidden';
     });
-  });
+  })();
 }
 
 // ===== Generator: Multi-image Upload =====
@@ -296,12 +292,19 @@ $$('.res-btn').forEach(b => {
 });
 
 // ===== Generator: Style selection =====
+function selectTemplateStyle(styleKey) {
+  selectedStyle = styleKey || 'free-mode';
+  const displayText = $('#templateDisplayText');
+  if (displayText) displayText.textContent = styleKey === 'free-mode' ? 'Free Mode' : (STYLE_NAMES[styleKey] || styleKey);
+  // Update hot buttons
+  $$('.gen-thumb').forEach(b => b.classList.toggle('active', b.dataset.genStyle === styleKey));
+  updateGenBtn();
+}
+
 $$('.gen-thumb').forEach(b => {
   b.addEventListener('click', () => {
-    $$('.gen-thumb').forEach(x => x.classList.remove('active'));
-    b.classList.add('active');
-    selectedStyle = b.dataset.genStyle;
-    updateGenBtn();
+    if (b.id === 'templateMoreBtn') return; // handled separately
+    selectTemplateStyle(b.dataset.genStyle);
   });
 });
 
@@ -563,6 +566,65 @@ const stylePrompts = {
   'bg-replace': 'background replacement, cleanly separated subject placed in new environment, seamless blending, matching lighting and shadows, professional compositing',
   'overlay': 'artistic element overlay, decorative illustrations added around subject, creative mixed media, hand drawn accents over photo, editorial art style'
 };
+
+// ===== Style display names =====
+const STYLE_NAMES = {'free-mode':'Free Mode','cyberpunk':'Cyberpunk','anime':'Anime','oil-painting':'Oil Painting','movie-poster':'Movie Poster','cartoon':'3D Cartoon','watercolor':'Watercolor','funko-pop':'Funko Pop','ghibli':'Ghibli','vintage':'Vintage','magazine':'Magazine Cover','figurine':'Figurine','pixel':'Pixel Art','anime-figure':'Anime Figure','lego-minifig':'LEGO Minifig','lego-style':'LEGO Style','action-figure':'Action Figure','chibi-3d':'Chibi 3D','3d-polaroid':'3D Polaroid','plush-toy':'Plush Toy','crochet-doll':'Crochet Doll','acrylic-keychain':'Acrylic Keychain','enamel-pin':'Enamel Pin','cosplay':'Cosplay','pixar':'Pixar','disney':'Disney','snoopy':'Peanuts / Snoopy','chibi':'Chibi','powerpuff':'Powerpuff Girls','japanese-illust':'Japanese Illustration','animal-crossing':'Animal Crossing','gouache':'Gouache','van-gogh':'Van Gogh','marker-sketch':'Marker Sketch','palette-swap':'Palette Swap','painting-process':'Painting Process','comic-outfit':'Manga Fashion','comic-white':'Manga Line Art','yonkoma':'4-Panel Comic','line-art':'Line Art','vector-illustration':'Vector Illustration','realistic':'Hyper-Realistic','hd-enhance':'HD Enhance','pose-reference':'Pose Reference','subject-extract':'Subject Extraction','makeup-analysis':'Makeup Analysis','ice-queen':'Ice Queen','architecture-model':'Architecture Model','product-render':'Product Render','can-design':'Can Design','industrial-design':'Industrial Design','3d-screen':'3D Screen Effect','bg-replace':'Background Replace','overlay':'Art Overlay'};
+
+// ===== Template Selection Modal =====
+const TEMPLATE_CATS = [
+  {name:'3D & Toys', styles:['anime-figure','lego-minifig','lego-style','action-figure','chibi-3d','3d-polaroid','plush-toy','crochet-doll','acrylic-keychain','enamel-pin','cosplay']},
+  {name:'Anime & Cartoon', styles:['pixar','disney','snoopy','chibi','powerpuff','japanese-illust','animal-crossing']},
+  {name:'Art & Painting', styles:['gouache','van-gogh','marker-sketch','palette-swap','painting-process']},
+  {name:'Comic & Line Art', styles:['comic-outfit','comic-white','yonkoma','line-art','vector-illustration']},
+  {name:'Photo & Realistic', styles:['realistic','hd-enhance','pose-reference','subject-extract','makeup-analysis']},
+  {name:'Design & Product', styles:['architecture-model','product-render','can-design','industrial-design','3d-screen']},
+  {name:'Other', styles:['ice-queen','bg-replace','overlay']}
+];
+
+function buildTemplateModal() {
+  const body = $('#templateModalBody');
+  if (!body) return;
+  let html = '';
+  html += '<div class="tm-cat-title">Mode</div><div class="tm-cat-grid"><button class="tm-style-btn tm-free" data-gen-style="free-mode">Free Mode</button></div>';
+  html += '<div class="tm-cat-title">Popular</div><div class="tm-cat-grid">';
+  ['cyberpunk','anime','oil-painting','movie-poster','cartoon','watercolor','funko-pop','ghibli','vintage','magazine','figurine','pixel'].forEach(k => {
+    html += '<button class="tm-style-btn" data-gen-style="'+k+'">'+STYLE_NAMES[k]+'</button>';
+  });
+  html += '</div>';
+  TEMPLATE_CATS.forEach(cat => {
+    html += '<div class="tm-cat-title">'+cat.name+'</div><div class="tm-cat-grid">';
+    cat.styles.forEach(k => html += '<button class="tm-style-btn" data-gen-style="'+k+'">'+STYLE_NAMES[k]+'</button>');
+    html += '</div>';
+  });
+  body.innerHTML = html;
+  body.querySelectorAll('.tm-style-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      body.querySelectorAll('.tm-style-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      selectTemplateStyle(btn.dataset.genStyle);
+      $('#templateModal').style.display = 'none';
+      document.body.style.overflow = '';
+    });
+  });
+}
+
+function openTemplateModal(e) {
+  if (e) { e.preventDefault(); e.stopPropagation(); }
+  buildTemplateModal();
+  const currentKey = selectedStyle || 'free-mode';
+  const modal = $('#templateModal');
+  modal.querySelectorAll('.tm-style-btn').forEach(b => b.classList.toggle('active', b.dataset.genStyle === currentKey));
+  modal.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+
+(function initTemplateModal() {
+  const td = $('#templateDisplay'), more = $('#templateMoreBtn'), close = $('#templateModalClose'), modal = $('#templateModal');
+  if (td) td.addEventListener('click', openTemplateModal);
+  if (more) more.addEventListener('click', openTemplateModal);
+  if (close) close.addEventListener('click', () => { modal.style.display = 'none'; document.body.style.overflow = ''; });
+  if (modal) modal.addEventListener('click', e => { if (e.target === modal) { modal.style.display = 'none'; document.body.style.overflow = ''; } });
+})();
 
 async function callAPI(formData, retries = 15) {
   for (let i = 0; i < retries; i++) {
