@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Create — SnapShift</title>
+<meta name="description" content="Transform any photo with AI templates. Cyberpunk, anime, oil painting, movie posters, and more. Free beta, no signup.">
+<meta property="og:title" content="Create — SnapShift AI Photo Transformer">
+<meta property="og:description" content="Transform any photo with AI templates.">
+<meta property="og:image" content="https://snapshift.fun/samples-v4/transformed/street-cyberpunk.png">
+<meta property="og:url" content="https://snapshift.fun/create.html">
+<meta property="og:type" content="website">
+<link rel="stylesheet" href="css/style.css">
+      <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+      <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+      <link rel="icon" type="image/png" sizes="48x48" href="favicon-48.png">
+      <link rel="icon" type="image/png" sizes="96x96" href="favicon-96.png">
+      <link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png?v=5">
+      <link rel="apple-touch-icon" sizes="180x180" href="aiss-icon.png">
+      <link rel="manifest" href="manifest.json">
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXXXXX');
+</script>
+<style>
+.create-page{padding:40px 0 80px;background:var(--bg-soft);min-height:calc(100vh - 80px)}
+.create-page .gen-section-label{font-size:1.1rem;font-weight:800;color:var(--text);margin-bottom:16px}
+.create-page .generator-layout{min-height:600px}
+@media(max-width:900px){.create-page .generator-layout{flex-direction:column}}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="container">
+    <a href="index.html" class="logo"><img src="logo-v2.png" alt="AiSS" class="logo-img"> SnapShift</a>
+    <button class="hamburger" id="hamburger" aria-label="Menu">☰</button>
+    <nav class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="templates.html">Templates</a>
+      <a href="create.html" class="active">Create</a>
+      <a href="index.html#how">How It Works</a>
+      <a href="index.html#faq">FAQ</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="create-page">
+    <div class="container">
+      <div class="section-header" style="margin-bottom:28px">
+        <h1 class="section-title" style="font-size:2rem;margin:0 0 8px">Create your transformation</h1>
+        <p class="section-sub" style="margin:0;font-size:1rem">Upload a photo, pick a template, get the result in seconds.</p>
+      </div>
+      <div class="generator-layout">
+        <div class="gen-sidebar">
+          <div class="upload-zone" id="uploadZone">
+            <input type="file" id="fileInput" accept="image/*" multiple hidden>
+            <div class="preview-stack" id="previewStack"></div>
+            <div class="upload-add" id="uploadAdd">
+              <h3>Drop or click to upload</h3>
+              <p>JPG / PNG, up to 5 photos</p>
+              <div class="upload-icon-wrap small">+</div>
+            </div>
+          </div>
+          <div class="upload-skip">
+            <button id="skipUploadBtn" class="skip-btn">Generate without photo</button>
+          </div>
+          <div class="gen-options">
+            <label class="gen-label">Aspect Ratio</label>
+            <div class="ratio-select">
+              <button class="ratio-btn active" data-ratio="1:1">1:1</button>
+              <button class="ratio-btn" data-ratio="9:16">9:16</button>
+              <button class="ratio-btn" data-ratio="16:9">16:9</button>
+              <button class="ratio-btn" data-ratio="4:5">4:5</button>
+              <button class="ratio-btn" data-ratio="3:2">3:2</button>
+              <button class="ratio-btn" data-ratio="2:3">2:3</button>
+              <button class="ratio-btn" data-ratio="3:4">3:4</button>
+              <button class="ratio-btn" data-ratio="4:3">4:3</button>
+            </div>
+            <label class="gen-label">Resolution</label>
+            <div class="res-select">
+              <button class="res-btn active" data-res="1K">1K</button>
+              <button class="res-btn" data-res="2K">2K Pro</button>
+            </div>
+            <label class="gen-label">Template</label>
+            <div class="gen-template-list" id="genThumbGrid">
+              <button class="gen-thumb" data-gen-style="cyberpunk"><span>Cyberpunk</span></button>
+              <button class="gen-thumb" data-gen-style="anime"><span>Anime</span></button>
+              <button class="gen-thumb" data-gen-style="oil-painting"><span>Oil</span></button>
+              <button class="gen-thumb" data-gen-style="ghibli"><span>Ghibli</span></button>
+              <button class="gen-thumb" data-gen-style="watercolor"><span>Water</span></button>
+              <button class="gen-thumb" data-gen-style="pixel"><span>Pixel</span></button>
+              <button class="gen-thumb gen-thumb-more" id="templateMoreBtn"><span>More +</span></button>
+            </div>
+            <div class="gen-template-display" id="templateDisplay">
+              <span class="template-display-text" id="templateDisplayText">Free Mode</span>
+            </div>
+            <div class="advanced-toggle" id="advancedToggle">
+              <span>Advanced Options</span>
+            </div>
+            <div class="advanced-panel" id="advancedPanel" style="display:none">
+              <div class="prompt-header">
+                <label class="gen-label">Custom Prompt</label>
+                <a class="prompt-inspiration" id="promptInspiration">Need inspiration? Try example prompts</a>
+              </div>
+              <textarea id="customPrompt" class="prompt-input" placeholder="Add details to refine the template..." autocomplete="off"></textarea>
+            </div>
+          </div>
+          <button class="btn-generate" id="btnGenerate" disabled>Enter a prompt or select a template</button>
+        </div>
+        <div class="gen-result-area" id="genResultArea">
+          <div class="showcase-area" id="showcaseArea">
+            <p class="gen-section-label">Featured transformations</p>
+            <div class="showcase-grid showcase-grid-large" id="showcaseGrid"></div>
+          </div>
+          <div class="loading-section" id="loadingSection" style="display:none">
+            <div class="spinner"></div>
+            <p id="loadingText">Transforming your image...</p>
+          </div>
+          <div class="result-section" id="resultSection" style="display:none">
+            <div class="result-card">
+              <img loading="lazy" id="resultImage" alt="Your transformed image">
+              <div class="result-actions">
+                <button class="btn-primary" id="btnDownload">Download</button>
+                <button class="btn-secondary" id="btnShare">Share</button>
+                <button class="btn-secondary" id="btnTryAgain">Try Another</button>
+              </div>
+            </div>
+          </div>
+          <div class="error-section" id="errorSection" style="display:none">
+            <p id="errorText"></p>
+            <button class="btn-secondary" id="btnErrorRetry">Try Again</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <p><img src="logo-v2.png" alt="AiSS" class="footer-logo"> <strong>SnapShift</strong></p>
+    <p class="footer-links">
+      <a href="privacy.html">Privacy Policy</a> ·
+      <a href="terms.html">Terms of Use</a> ·
+      <a href="mailto:hello@snapshift.fun">Contact</a>
+    </p>
+    <p class="copyright">© 2026 SnapShift. All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- Modals (same as index.html) -->
+<div class="modal-overlay" id="inspirationModal" style="display:none">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>Example Prompts</h3>
+      <button class="modal-close" id="modalClose">x</button>
+    </div>
+    <div class="modal-body" id="modalBody">
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="templateModal" style="display:none">
+  <div class="modal modal-wide">
+    <div class="modal-header">
+      <h3>All Templates (53 styles)</h3>
+      <button class="modal-close" id="templateModalClose">x</button>
+    </div>
+    <div class="modal-body template-modal-body" id="templateModalBody"></div>
+  </div>
+</div>
+
+<div class="share-overlay" id="shareOverlay" style="display:none">
+  <div class="share-panel">
+    <button class="share-close" id="shareClose">✕</button>
+    <h3>Share your creation</h3>
+    <div class="share-modal-bar">
+      <button class="share-modal-btn x" data-platform="twitter" aria-label="Share on X">X</button>
+      <button class="share-modal-btn fb" data-platform="facebook" aria-label="Share on Facebook">f</button>
+      <button class="share-modal-btn li" data-platform="linkedin" aria-label="Share on LinkedIn">in</button>
+      <button class="share-modal-btn pin" data-platform="pinterest" aria-label="Share on Pinterest">P</button>
+      <button class="share-modal-btn reddit" data-platform="reddit" aria-label="Share on Reddit">R</button>
+      <button class="share-modal-btn copy" data-platform="copy" aria-label="Copy link">🔗</button>
+    </div>
+    <p class="share-tip" id="shareTip"></p>
+  </div>
+</div>
+
+<div class="rlb-overlay" id="resultLightbox" style="display:none">
+  <button class="rlb-close" id="rlbClose">✕</button>
+  <img id="rlbImg" src="" alt="Full size result">
+</div>
+
+<div class="plb-overlay" id="promptLightbox" style="display:none">
+  <button class="plb-close" id="plbClose">✕</button>
+  <div class="plb-layout">
+    <div class="plb-image"><img loading="lazy" id="plbImg" src="" alt=""></div>
+    <div class="plb-sidebar">
+      <h3 id="plbTitle"></h3>
+      <div class="plb-tags" id="plbTags"></div>
+      <p class="plb-prompt" id="plbPrompt"></p>
+      <div class="plb-actions">
+        <button class="btn-primary" id="plbUse">Use this prompt</button>
+        <button class="btn-secondary" id="plbCopy">Copy prompt</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="js/main.js"></script>
+<button class="back-top" id="backTop" aria-label="Back to top">↑</button>
+</body>
+</html>

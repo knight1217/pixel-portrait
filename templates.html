@@ -431,7 +431,7 @@ searchInput.addEventListener('input', () => {
 cards.forEach(card => {
   card.addEventListener('click', () => {
     const name = card.querySelector('h3')?.textContent;
-    window.location.href = 'index.html#generator';
+    window.location.href = 'create.html';
     localStorage.setItem('snapshift-template', name);
   });
 });
@@ -446,7 +446,7 @@ featuredCards.forEach(card => {
       localStorage.setItem('snapshift-template-style', key);
       localStorage.setItem('snapshift-template', tag);
     }
-    window.location.href = 'index.html#generator';
+    window.location.href = 'create.html';
   });
 });
 </script>

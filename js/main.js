@@ -381,8 +381,8 @@ const showcasePool = [
   { src: 'samples-v4/transformed/action-hero-gamecard.png', tag: 'Trading Card' },
   { src: 'samples-v4/transformed/beach-fantasy.png', tag: 'Fantasy' }
 ];
-// Shuffle and take 9 random each page load
-const showcaseItems = [...showcasePool].sort(() => Math.random() - 0.5).slice(0, 9);
+// Shuffle and take 4 random each page load (for create.html): 1 row of 4 large cards
+const showcaseItems = [...showcasePool].sort(() => Math.random() - 0.5).slice(0, 4);
 
 const showcaseGrid = $('#showcaseGrid');
 if (showcaseGrid) {
@@ -516,7 +516,7 @@ const stylePrompts = {
   'funko-pop': 'Recreate this subject as a Funko Pop vinyl collectible figure, oversized square head, tiny body, glossy toy finish, black circular eyes. Product photography layout: the boxed figure on one side, the unboxed figure standing on display base on the other side, clean studio lighting, white or gradient background, professional collectible showcase composition',
   'ghibli': 'Transform this photo into Studio Ghibli animation style, soft watercolor backgrounds, warm magical lighting, whimsical hand-drawn quality, gentle nostalgic atmosphere',
   'vintage': 'Convert this photo into a vintage retro photograph, warm sepia tones, heavy film grain, faded analog colors, 1970s aesthetic, nostalgic soft-focus look',
-  'magazine': 'Turn this photo into a high-fashion magazine cover, Vogue editorial style, bold elegant composition, clean studio lighting, professional model photography quality',
+  'magazine': 'Turn this photo into a high-fashion magazine cover with Vogue-style masthead typography and editorial composition, bold elegant layout, magazine cover typography overlay, professional editorial cover quality, clean studio lighting',
   'figurine': 'Recreate this subject as a detailed 3D figurine collectible toy, glossy plastic texture, standing on a small display base, professional toy product photography',
   'pixel': 'Transform this photo into retro pixel art, 8-bit game sprite aesthetic, limited color palette, crisp square pixels, dithered shading, nostalgic arcade game look',
   // ===== 3D / Toys (continued) =====
