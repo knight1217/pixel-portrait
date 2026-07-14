@@ -138,7 +138,7 @@ async function handleGenerate(request, env) {
       const dataUrl = `data:${mime};base64,${base64}`;
       agnesBody.extra_body.tags = ['img2img'];
       agnesBody.extra_body.image = [dataUrl];
-      agnesBody.extra_body.strength = 0.85;
+      agnesBody.extra_body.strength = parseFloat(formData.get('strength') || '0.85');
     }
 
     const agnesResp = await fetch('https://apihub.agnes-ai.com/v1/images/generations', {

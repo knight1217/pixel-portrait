@@ -568,6 +568,11 @@ const stylePrompts = {
   'overlay': 'Add artistic decorative illustration overlays around the subject, creative mixed-media embellishments, hand-drawn artistic accents blending with the photo, editorial art style'
 };
 
+// Per-template img2img strength (default: 0.85)
+const styleStrengths = {
+  '3d-polaroid': 0.65
+};
+
 // ===== Style display names =====
 const STYLE_NAMES = {'free-mode':'Free Mode','cyberpunk':'Cyberpunk','anime':'Anime','oil-painting':'Oil Painting','movie-poster':'Movie Poster','cartoon':'3D Cartoon','watercolor':'Watercolor','funko-pop':'Funko Pop','ghibli':'Ghibli','vintage':'Vintage','magazine':'Magazine Cover','figurine':'Figurine','pixel':'Pixel Art','anime-figure':'Anime Figure','lego-minifig':'LEGO Minifig','lego-style':'LEGO Style','action-figure':'Action Figure','chibi-3d':'Chibi 3D','3d-polaroid':'3D Polaroid','plush-toy':'Plush Toy','crochet-doll':'Crochet Doll','acrylic-keychain':'Acrylic Keychain','enamel-pin':'Enamel Pin','pixar':'Pixar','disney':'Disney','snoopy':'Peanuts / Snoopy','chibi':'Chibi','powerpuff':'Powerpuff Girls','japanese-illust':'Japanese Illustration','animal-crossing':'Animal Crossing','gouache':'Gouache','van-gogh':'Van Gogh','marker-sketch':'Marker Sketch','palette-swap':'Palette Swap','painting-process':'Painting Process','comic-outfit':'Manga Fashion','comic-white':'Manga Line Art','yonkoma':'4-Panel Comic','line-art':'Line Art','vector-illustration':'Vector Illustration','realistic':'Hyper-Realistic','hd-enhance':'HD Enhance','pose-reference':'Pose Reference','subject-extract':'Subject Extraction','makeup-analysis':'Makeup Analysis','ice-queen':'Ice Queen','architecture-model':'Architecture Model','product-render':'Product Render','can-design':'Can Design','industrial-design':'Industrial Design','3d-screen':'3D Screen Effect','bg-replace':'Background Replace','overlay':'Art Overlay'};
 
@@ -698,6 +703,7 @@ async function generate() {
     formData.append('prompt', finalPrompt);
     formData.append('ratio', selectedRatio);
     formData.append('res', selectedRes);
+    formData.append('strength', styleStrengths[selectedStyle] || 0.85);
     if (uploadedFiles.length > 0) {
       uploadedFiles.forEach(f => formData.append('image', f));
     }
