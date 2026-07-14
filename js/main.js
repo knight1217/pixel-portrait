@@ -449,19 +449,16 @@ const promptExamples = [
   { title: 'Documentary Portrait', src: 'prompts-final/prompts-previews/Portrait/003-documentary.png', tags: ['portrait', 'documentary'], prompt: 'Close-up portrait of weathered fisherman in his 60s, grey beard, deep blue eyes, yellow rain jacket, ocean in background, overcast lighting, documentary style, photorealistic, highly detailed, 8k' }
 ];
 
-// ===== Randomize Prompt Inspiration Strip (after promptExamples defined) =====
+// ===== Prompt Inspiration Strip (static 8 random) =====
 (function initStrip() {
   const track = $('#stripTrack');
   if (!track) return;
-  const validPool = promptExamples.filter(ex => !ex.src.includes('prompt-11') && !ex.src.includes('prompt-13') && !ex.src.includes('prompt-16'));
-  const selected = [...validPool].sort(() => Math.random() - 0.5).slice(0, 10);
+  const selected = [...promptExamples].sort(() => Math.random() - 0.5).slice(0, 8);
   let html = '';
-  const build = (ex) => {
+  selected.forEach(ex => {
     const d = ex.prompt.replace(/"/g,'&quot;');
-    return '<div class="pi-item" data-title="'+ex.title+'" data-tags="'+ex.tags.join(',')+'" data-prompt="'+d+'"><img loading="lazy" src="'+ex.src+'" alt="'+ex.title+'"><span class="pi-label">'+ex.title+'</span></div>';
-  };
-  selected.forEach(ex => html += build(ex));
-  html += build(selected[0]); html += build(selected[1]);
+    html += '<div class="pi-item" data-title="'+ex.title+'" data-tags="'+ex.tags.join(',')+'" data-prompt="'+d+'"><img loading="lazy" src="'+ex.src+'" alt="'+ex.title+'"><span class="pi-label">'+ex.title+'</span></div>';
+  });
   track.innerHTML = html;
   track.addEventListener('click', e => {
     const item = e.target.closest('.pi-item');
