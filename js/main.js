@@ -132,41 +132,7 @@ if (promptLightbox) {
     }
   });
 
-  // ===== Randomize Prompt Inspiration Strip =====
-  (function initStrip() {
-    const track = $('#stripTrack');
-    if (!track) return;
-    const validPool = promptExamples.filter(ex => !ex.src.includes('prompt-11') && !ex.src.includes('prompt-13') && !ex.src.includes('prompt-16'));
-    const selected = [...validPool].sort(() => Math.random() - 0.5).slice(0, 10);
-    let html = '';
-    const build = (ex) => {
-      const d = ex.prompt.replace(/"/g,'&quot;');
-      return '<div class="pi-item" data-title="'+ex.title+'" data-tags="'+ex.tags.join(',')+'" data-prompt="'+d+'"><img loading="lazy" src="'+ex.src+'" alt="'+ex.title+'"><span class="pi-label">'+ex.title+'</span></div>';
-    };
-    selected.forEach(ex => html += build(ex));
-    html += build(selected[0]); html += build(selected[1]); // duplicates for loop
-    track.innerHTML = html;
-    track.addEventListener('click', e => {
-      const item = e.target.closest('.pi-item');
-      if (!item) return;
-      const img = item.querySelector('img'), title = item.dataset.title;
-      const tags = item.dataset.tags, prompt = item.dataset.prompt;
-      $('#plbImg').src = img.src; $('#plbTitle').textContent = title;
-      $('#plbTags').innerHTML = tags.split(',').map(t => '<span class="plb-tag">'+t.trim()+'</span>').join('');
-      $('#plbPrompt').textContent = prompt;
-      $('#plbUse').onclick = () => {
-        const cp = $('#customPrompt'); cp.value = prompt;
-        cp.scrollIntoView({behavior:'smooth'});
-        if ($('#advancedPanel').style.display === 'none') $('#advancedToggle').click();
-        promptLightbox.style.display = 'none'; document.body.style.overflow = ''; updateGenBtn();
-      };
-      $('#plbCopy').onclick = async () => {
-        try { await navigator.clipboard.writeText(prompt); $('#plbCopy').textContent = 'Copied!'; setTimeout(() => $('#plbCopy').textContent = 'Copy prompt', 1500); }
-        catch (err) { $('#plbCopy').textContent = 'Copy failed'; setTimeout(() => $('#plbCopy').textContent = 'Copy prompt', 1500); }
-      };
-      promptLightbox.style.display = 'flex'; document.body.style.overflow = 'hidden';
-    });
-  })();
+  // (initStrip moved to after promptExamples definition)
 }
 
 // ===== Generator: Multi-image Upload =====
@@ -461,6 +427,43 @@ const promptExamples = [
   { title: 'Documentary Portrait', src: 'prompts-previews/Portrait/003-documentary.png', tags: ['portrait', 'documentary'], prompt: 'Close-up portrait of weathered fisherman in his 60s, grey beard, deep blue eyes, yellow rain jacket, ocean in background, overcast lighting, documentary style, photorealistic, highly detailed, 8k' },
   { title: 'Alien Moon', src: 'prompts-previews/prompt-16-alien.png', tags: ['scifi', 'space'], prompt: 'Sci-fi concept art of an alien moon surface with two suns setting on horizon casting double shadows, bioluminescent purple plant life in foreground, silhouette of astronaut in EVA suit at center frame, cinematic ultra-wide, James Cameron-quality VFX concept art' }
 ];
+
+// ===== Randomize Prompt Inspiration Strip (after promptExamples defined) =====
+(function initStrip() {
+  const track = $('#stripTrack');
+  if (!track) return;
+  const validPool = promptExamples.filter(ex => !ex.src.includes('prompt-11') && !ex.src.includes('prompt-13') && !ex.src.includes('prompt-16'));
+  const selected = [...validPool].sort(() => Math.random() - 0.5).slice(0, 10);
+  let html = '';
+  const build = (ex) => {
+    const d = ex.prompt.replace(/"/g,'&quot;');
+    return '<div class="pi-item" data-title="'+ex.title+'" data-tags="'+ex.tags.join(',')+'" data-prompt="'+d+'"><img loading="lazy" src="'+ex.src+'" alt="'+ex.title+'"><span class="pi-label">'+ex.title+'</span></div>';
+  };
+  selected.forEach(ex => html += build(ex));
+  html += build(selected[0]); html += build(selected[1]);
+  track.innerHTML = html;
+  track.addEventListener('click', e => {
+    const item = e.target.closest('.pi-item');
+    if (!item) return;
+    const img = item.querySelector('img'), title = item.dataset.title;
+    const tags = item.dataset.tags, prompt = item.dataset.prompt;
+    $('#plbImg').src = img.src; $('#plbTitle').textContent = title;
+    $('#plbTags').innerHTML = tags.split(',').map(t => '<span class="plb-tag">'+t.trim()+'</span>').join('');
+    $('#plbPrompt').textContent = prompt;
+    $('#plbUse').onclick = () => {
+      const cp = $('#customPrompt'); cp.value = prompt;
+      cp.scrollIntoView({behavior:'smooth'});
+      if ($('#advancedPanel') && $('#advancedPanel').style.display === 'none') $('#advancedToggle').click();
+      if (promptLightbox) { promptLightbox.style.display = 'none'; document.body.style.overflow = ''; }
+      updateGenBtn();
+    };
+    $('#plbCopy').onclick = async () => {
+      try { await navigator.clipboard.writeText(prompt); $('#plbCopy').textContent = 'Copied!'; setTimeout(() => $('#plbCopy').textContent = 'Copy prompt', 1500); }
+      catch (err) { $('#plbCopy').textContent = 'Copy failed'; setTimeout(() => $('#plbCopy').textContent = 'Copy prompt', 1500); }
+    };
+    if (promptLightbox) { promptLightbox.style.display = 'flex'; document.body.style.overflow = 'hidden'; }
+  });
+})();
 
 function renderPromptCards() {
   modalBody.innerHTML = '';
