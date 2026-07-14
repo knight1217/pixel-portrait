@@ -509,7 +509,7 @@ const stylePrompts = {
   // ===== 3D / Toys =====
   'cyberpunk': 'Transform this photo into a cyberpunk style character, neon city night background, glowing holographic lights, tech noir aesthetic, same person, dramatic cinematic lighting, futuristic vibe',
   'anime': 'Convert this photo into high-quality anime art, vibrant cel shading colors, clean line work, large expressive eyes, soft beautiful lighting, hand-drawn animation look',
-  'oil-painting': 'Reimagine this photo as a classical oil painting, visible brushstrokes, rich oil colors, renaissance fine art quality, dramatic chiaroscuro lighting, museum-worthy masterpiece',
+  'oil-painting': 'Reimagine this photo as a classical oil painting with thick impasto technique, heavy visible brushstrokes, palette knife texture, layered paint, thick pigment buildup, rich oil colors, renaissance fine art quality, dramatic chiaroscuro lighting, museum-worthy masterpiece with tangible paint texture and bold brush marks',
   'movie-poster': 'Turn this photo into a cinematic movie poster, dramatic Hollywood composition, warm golden lighting, epic film atmosphere, professional film grain texture',
   'cartoon': 'Transform this photo into a Pixar-style 3D cartoon character, smooth glossy shading, oversized expressive eyes, playful colorful design, animated movie quality',
   'watercolor': 'Convert this photo into a flowing watercolor painting, soft pigment washes blending naturally, delicate paper texture, dreamy artistic atmosphere, hand-painted feel',
