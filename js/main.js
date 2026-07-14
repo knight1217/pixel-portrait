@@ -530,7 +530,7 @@ const stylePrompts = {
   'crochet-doll': 'Turn this photo into a handmade crochet yarn doll. Visible knitted stitch texture, soft wool appearance. The face and features follow the original subject. Cozy handmade quality.',
   'acrylic-keychain': 'Turn this photo into a cute acrylic keychain charm. Transparent printed plastic with metal keyring attached. The face and features follow the original subject. Glossy flat surface, trendy accessory mockup style.',
   'enamel-pin': 'Transform this subject into a collectible enamel pin badge, polished metal edges with vibrant colored enamel fill, shiny metallic finish, flat-lay product photography',
-  'cosplay': 'Turn this photo into a realistic cosplay transformation. The face, body, and pose follow the original subject (same person wearing an intricately detailed costume). Professional convention photography quality.',
+  'cosplay': 'Turn this photo into a cosplay-style photo. The face, features, outfit, and pose follow the original subject. Dramatic cosplay photography atmosphere.',
   // ===== Anime / Cartoon =====
   'pixar': 'Transform this photo into Pixar animation style, smooth 3D cartoon rendering with subsurface scattering, expressive character design, warm cinematic lighting, Disney-quality animated film look',
   'disney': 'Reimagine this photo as classic Disney hand-drawn animation, soft watercolor backgrounds, expressive character features, magical fairy-tale atmosphere, timeless animated movie quality',
