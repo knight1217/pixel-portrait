@@ -185,11 +185,12 @@ async function handleDownload(req, env) {
 
     const buffer = await imageResp.arrayBuffer();
     const contentType = imageResp.headers.get('content-type') || 'image/png';
+    const fileName = 'snapshift-' + new Date().toISOString().replace(/:/g, '-').slice(0, 19) + '.png';
     return new Response(buffer, {
       headers: {
         ...corsHeaders,
         'Content-Type': contentType,
-        'Content-Disposition': 'attachment; filename="snapshift.png"',
+        'Content-Disposition': `attachment; filename="${fileName}"`
       }
     });
   } catch (err) {

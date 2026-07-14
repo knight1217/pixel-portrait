@@ -774,7 +774,6 @@ if (resolvedKey) {
     $$('.gen-thumb').forEach(t => t.classList.remove('active'));
     targetThumb.classList.add('active');
     selectedStyle = targetThumb.dataset.genStyle;
-    document.querySelector('#generator').scrollIntoView({ behavior: 'smooth' });
     updateGenBtn();
   }
 }
