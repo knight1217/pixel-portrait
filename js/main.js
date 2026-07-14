@@ -520,7 +520,7 @@ const stylePrompts = {
   'figurine': 'Recreate this subject as a detailed 3D figurine collectible toy, glossy plastic texture, standing on a small display base, professional toy product photography',
   'pixel': 'Transform this photo into retro pixel art, 8-bit game sprite aesthetic, limited color palette, crisp square pixels, dithered shading, nostalgic arcade game look',
   // ===== 3D / Toys (continued) =====
-  'anime-figure': 'Turn this subject into an authentic Japanese anime character figurine, vivid colorful hair, sparkling kawaii eyes, cute dynamic pose, glossy PVC toy texture, displayed in collector box',
+  'anime-figure': 'Transform this subject into an authentic Japanese anime character collectible figure (NOT a Funko Pop, NOT a vinyl bobblehead, NOT in a Funko-style window box), detailed anime sculpt with painted face, large expressive anime eyes, vivid colorful hair, dynamic anime pose, glossy PVC figure texture, displayed on a simple transparent circular stand with optional themed diorama background, preserve the original subject species and key features',
   'lego-minifig': 'Recreate this subject as a classic LEGO minifigure, blocky square head and body, cylindrical claw hands, simple printed facial features, bright yellow skin, plastic toy texture',
   'lego-style': 'Rebuild this scene entirely from LEGO bricks, blocky geometric construction, visible stud connections on every surface, realistic plastic brick texture, authentic brick-built look',
   'action-figure': 'Transform this subject into a premium action figure, highly detailed sculpt with articulated joints, displayed in blister card packaging, professional collectible toy photography',
