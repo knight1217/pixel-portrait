@@ -381,8 +381,8 @@ const showcasePool = [
   { src: 'samples-v4/transformed/action-hero-gamecard.png', tag: 'Trading Card' },
   { src: 'samples-v4/transformed/beach-fantasy.png', tag: 'Fantasy' }
 ];
-// Shuffle and take 4 random each page load (for create.html): 1 row of 4 large cards
-const showcaseItems = [...showcasePool].sort(() => Math.random() - 0.5).slice(0, 4);
+// Shuffle and take 9 random each page load
+const showcaseItems = [...showcasePool].sort(() => Math.random() - 0.5).slice(0, 9);
 
 const showcaseGrid = $('#showcaseGrid');
 if (showcaseGrid) {
@@ -513,7 +513,7 @@ const stylePrompts = {
   'movie-poster': 'Turn this photo into a cinematic movie poster, dramatic Hollywood composition, warm golden lighting, epic film atmosphere, professional film grain texture',
   'cartoon': 'Transform this photo into a Pixar-style 3D cartoon character, smooth glossy shading, oversized expressive eyes, playful colorful design, animated movie quality',
   'watercolor': 'Convert this photo into a flowing watercolor painting, soft pigment washes blending naturally, delicate paper texture, dreamy artistic atmosphere, hand-painted feel',
-  'funko-pop': 'Turn this subject into a Funko Pop style vinyl collectible figure while preserving the subject species and key features (animal stays animal, person stays person, object stays object), oversized square head, tiny body, glossy vinyl finish, black circular eyes. Product photography layout: the boxed figure on one side, the unboxed figure standing on display base on the other side, clean studio lighting, white or gradient background',
+  'funko-pop': 'Transform this subject into a Funko Pop style collectible figure, preserving the subject species, body shape, and key features (dog stays dog, cat stays cat, person stays person, object stays object), glossy vinyl Funko Pop finish, large black circular eyes. Product photography layout: the boxed Funko figure on one side, the unboxed figure on display base on the other side, preserve the original background and lighting from the source photo',
   'ghibli': 'Transform this photo into Studio Ghibli animation style, soft watercolor backgrounds, warm magical lighting, whimsical hand-drawn quality, gentle nostalgic atmosphere',
   'vintage': 'Convert this photo into a vintage retro photograph, warm sepia tones, heavy film grain, faded analog colors, 1970s aesthetic, nostalgic soft-focus look',
   'magazine': 'Turn this photo into a magazine cover layout with bold masthead typography overlay and cover-style composition, magazine title text overlay, professional print quality, clean composition',
