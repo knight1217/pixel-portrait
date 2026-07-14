@@ -433,31 +433,15 @@ const modalClose = $('#modalClose');
 const modalBody = $('#modalBody');
 const modalSearch = $('#modalSearch');
 
-const promptExamples = [
-  { title: 'Corporate Portrait', src: 'prompts-final/prompts-previews/Portrait/001-corporate.png', tags: ['portrait', 'business'], prompt: 'Professional headshot of confident businesswoman in her 30s, navy blazer, genuine smile, white background, studio lighting, shot on Canon 85mm f/1.4, sharp focus, 8k' },
-  { title: 'Cyberpunk Night', src: 'prompts-final/prompts-previews/Urban/001-cyberpunk.png', tags: ['cyberpunk', 'city'], prompt: 'Futuristic cyberpunk city at night, neon signs in Japanese, rain-soaked streets reflecting lights, flying cars, people with umbrellas, Blade Runner style, cinematic, 8k' },
-  { title: 'Luxury Product', src: 'prompts-final/prompts-previews/Still Life/001-luxury.png', tags: ['product', 'luxury'], prompt: 'Swiss luxury watch close-up, polished steel, blue dial, black leather strap, dramatic studio lighting with reflections, product photography, commercial quality, premium, 8k' },
-  { title: 'Ghibli Countryside', src: 'prompts-final/prompts-previews/Fantasy/001-ghibli.png', tags: ['ghibli', 'anime'], prompt: 'Pastoral countryside in Studio Ghibli animation style, rolling green hills dotted with wildflowers, a small stone cottage with smoke rising, a massive ancient oak tree, clear summer sky with fluffy clouds, hand-painted quality, warm afternoon light' },
-  { title: 'Epic Landscape', src: 'prompts-final/prompts-previews/Nature/001-landscape.png', tags: ['landscape', 'nature'], prompt: 'Snow-capped mountain range at sunrise, orange and pink clouds, alpine meadow with wildflowers, lake reflection, wide-angle landscape, National Geographic quality, 8k' },
-  { title: 'Food Photography', src: 'prompts-final/prompts-previews/Food/001-pancake-stack-syrup-waterfall-kayakers.png', tags: ['food', 'photography'], prompt: 'Gourmet burger with stacked ingredients, sesame bun, lettuce, tomato, melted cheddar, juicy beef, professional food photography, appetizing, dramatic lighting, menu quality, 8k' },
-  { title: 'Epic Fantasy Dragon', src: 'prompts-final/prompts-previews/Fantasy/002-dragon.png', tags: ['fantasy', 'dragon'], prompt: 'Majestic dragon on mountain peak, iridescent scales, wings spread wide, medieval castle in valley, storm clouds, epic fantasy art, highly detailed, concept art, dramatic lighting, 8k' },
-  { title: 'Magical Forest', src: 'prompts-final/prompts-previews/Nature/002-forest.png', tags: ['nature', 'magical'], prompt: 'Ancient forest with morning mist, sun rays through trees creating god rays, moss-covered ground, ferns, magical atmosphere, fantasy landscape, cinematic, detailed, 8k' },
-  { title: 'Cyberpunk Anime', src: 'prompts-final/prompts-previews/Fantasy/009-cyberanime.png', tags: ['anime', 'cyberpunk'], prompt: 'Anime portrait of a young woman with neon pink twin-tail hair, visor reflecting neon cityscape, cyberpunk jacket with LED strip accents, dramatic neon lighting, manga-style portrait composition, MAPPA studio production quality' },
-  { title: '1970s Film Portrait', src: 'prompts-final/prompts-previews/Portrait/002-1970s.png', tags: ['retro', 'film'], prompt: '1970s film photography portrait of a woman in her late 20s, feathered layered Farrah Fawcett-era hair, patterned wrap dress, soft warm backlight, very heavy film grain, faded analog color palette, Kodak Ektar film simulation' },
-  { title: 'VHS Glitch Art', src: 'prompts-final/prompts-previews/Abstract/001-vhs.png', tags: ['retro', 'glitch'], prompt: 'VHS glitch aesthetic portrait, subject with voluminous 80s hair and bold makeup, horizontal scan line distortion across image, color channel bleeding on right edge, white timestamp overlay in bottom-left, heavy digital noise and static texture, retro aesthetic' },
-  { title: 'Abstract Fluid Art', src: 'prompts-final/prompts-previews/Abstract/002-abstract.png', tags: ['abstract', 'art'], prompt: 'Abstract fluid art, swirling marble texture, navy blue, gold and white, organic flowing patterns, luxury aesthetic, digital art, high resolution, mesmerizing, elegant, 8k' },
-  { title: 'Documentary Portrait', src: 'prompts-final/prompts-previews/Portrait/003-documentary.png', tags: ['portrait', 'documentary'], prompt: 'Close-up portrait of weathered fisherman in his 60s, grey beard, deep blue eyes, yellow rain jacket, ocean in background, overcast lighting, documentary style, photorealistic, highly detailed, 8k' }
-];
 
-// ===== Prompt Inspiration Strip (random 10 + infinite scroll) =====
+// ===== Prompt Inspiration Strip (400 random → 10 + infinite scroll) =====
 function initStrip() {
   const track = $('#stripTrack');
   if (!track) { console.warn('initStrip: #stripTrack not found'); return; }
   if (!window.promptExamples || promptExamples.length === 0) { console.warn('initStrip: promptExamples empty'); return; }
   const selected = [...promptExamples].sort(() => Math.random() - 0.5).slice(0, 10);
   const build = (ex) => {
-    const d = ex.prompt.replace(/"/g,'&quot;');
-    return '<div class="pi-item" data-title="'+ex.title+'" data-tags="'+ex.tags.join(',')+'" data-prompt="'+d+'"><img loading="lazy" src="'+ex.src+'" alt="'+ex.title+'"><span class="pi-label">'+ex.title+'</span></div>';
+    return '<div class="pi-item"><img loading="lazy" src="'+ex.src+'" alt="'+ex.title+'"><span class="pi-label">'+ex.title+'</span></div>';
   };
   // Duplicate the selected list for seamless infinite scroll
   track.innerHTML = selected.map(build).join('') + selected.map(build).join('');
