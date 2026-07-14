@@ -450,7 +450,7 @@ const promptExamples = [
 ];
 
 // ===== Prompt Inspiration Strip (static 8 random) =====
-(function initStrip() {
+document.addEventListener('DOMContentLoaded', function() {
   const track = $('#stripTrack');
   if (!track) return;
   const selected = [...promptExamples].sort(() => Math.random() - 0.5).slice(0, 8);
@@ -481,7 +481,7 @@ const promptExamples = [
     };
     if (promptLightbox) { promptLightbox.style.display = 'flex'; document.body.style.overflow = 'hidden'; }
   });
-})();
+});
 
 function renderPromptCards() {
   modalBody.innerHTML = '';
