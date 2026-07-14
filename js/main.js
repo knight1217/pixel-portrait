@@ -191,8 +191,8 @@ function addFiles(files) {
   if (!files.length) return;
   const remaining = 5 - uploadedFiles.length;
   if (remaining <= 0) return;
-  const toAdd = files.slice(0, remaining);
-  uploadedFiles = uploadedFiles.concat(toAdd);
+  const toAdd = Array.from(files).slice(0, remaining);
+  uploadedFiles = [...toAdd, ...uploadedFiles];
   renderPreviews();
   refreshUploadAdd();
   updateGenBtn();
