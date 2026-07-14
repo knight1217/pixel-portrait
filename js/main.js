@@ -434,16 +434,41 @@ const modalBody = $('#modalBody');
 const modalSearch = $('#modalSearch');
 
 
-// ===== Prompt Inspiration Strip (400 random → 10 + link to Prompts) =====
+// ===== Prompt Inspiration Strip (400 random → 10 + click lightbox) =====
 function initStrip() {
   const track = $('#stripTrack');
   if (!track) return;
   if (typeof window.promptExamples === 'undefined' || !window.promptExamples.length) return;
   const selected = [...window.promptExamples].sort(() => Math.random() - 0.5).slice(0, 10);
+  const esc = (s) => String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
   const build = (ex) => {
-    return '<a class="pi-item" href="prompts.html#' + encodeURIComponent(ex.src) + '"><img loading="lazy" src="'+ex.src+'" alt="'+ex.title+'"><span class="pi-label">'+ex.title+'</span></a>';
+    return '<div class="pi-item" data-title="'+esc(ex.title)+'" data-tags="'+esc((ex.tags||[]).join(','))+'" data-prompt="'+esc(ex.prompt||'')+'"><img loading="lazy" src="'+ex.src+'" alt="'+esc(ex.title)+'"><span class="pi-label">'+esc(ex.title)+'</span></div>';
   };
   track.innerHTML = selected.map(build).join('') + selected.map(build).join('');
+  track.addEventListener('click', e => {
+    const item = e.target.closest('.pi-item');
+    if (!item) return;
+    const img = item.querySelector('img');
+    const title = item.dataset.title || '';
+    const tags = item.dataset.tags || '';
+    const prompt = item.dataset.prompt || '';
+    const plb = $('#promptLightbox');
+    if (!plb) return;
+    if ($('#plbImg')) $('#plbImg').src = img.src;
+    if ($('#plbTitle')) $('#plbTitle').textContent = title;
+    if ($('#plbTags')) $('#plbTags').innerHTML = tags.split(',').map(t => '<span class="plb-tag">'+t.trim()+'</span>').join('');
+    if ($('#plbPrompt')) $('#plbPrompt').textContent = prompt;
+    if ($('#plbUse')) $('#plbUse').onclick = () => {
+      plb.style.display = 'none'; document.body.style.overflow = '';
+      window.location.href = 'create.html#generator?prompt=' + encodeURIComponent(prompt);
+    };
+    if ($('#plbCopy')) $('#plbCopy').onclick = async () => {
+      try { await navigator.clipboard.writeText(prompt); $('#plbCopy').textContent = 'Copied!'; setTimeout(() => $('#plbCopy').textContent = 'Copy prompt', 1500); }
+      catch (err) { $('#plbCopy').textContent = 'Copy failed'; setTimeout(() => $('#plbCopy').textContent = 'Copy prompt', 1500); }
+    };
+    plb.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  });
 }
 setTimeout(initStrip, 100);
 
