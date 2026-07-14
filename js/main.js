@@ -167,6 +167,14 @@ function renderPreviews() {
         <img src="${reader.result}" alt="${file.name}">
         <button class="preview-remove" data-idx="${idx}" title="Remove">x</button>
       `;
+      wrap.querySelector('.preview-remove').addEventListener('click', e => {
+        e.stopPropagation();
+        const i = parseInt(e.currentTarget.dataset.idx);
+        uploadedFiles.splice(i, 1);
+        renderPreviews();
+        refreshUploadAdd();
+        updateGenBtn();
+      });
       previewStack.appendChild(wrap);
     };
     reader.readAsDataURL(file);
