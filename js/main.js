@@ -333,7 +333,6 @@ if (customPromptEl) {
 }
 
 // ===== Showcase area: static tips (moved to templates.html gallery) =====
-const showcaseArea = $('#showcaseArea');
 if (showcaseArea) {
   showcaseArea.innerHTML = `
     <p class="gen-section-label">How it works</p>
