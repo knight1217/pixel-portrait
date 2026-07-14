@@ -449,18 +449,18 @@ const promptExamples = [
   { title: 'Documentary Portrait', src: 'prompts-final/prompts-previews/Portrait/003-documentary.png', tags: ['portrait', 'documentary'], prompt: 'Close-up portrait of weathered fisherman in his 60s, grey beard, deep blue eyes, yellow rain jacket, ocean in background, overcast lighting, documentary style, photorealistic, highly detailed, 8k' }
 ];
 
-// ===== Prompt Inspiration Strip (static 8 random) =====
+// ===== Prompt Inspiration Strip (random 10 + infinite scroll) =====
 function initStrip() {
   const track = $('#stripTrack');
   if (!track) { console.warn('initStrip: #stripTrack not found'); return; }
   if (!window.promptExamples || promptExamples.length === 0) { console.warn('initStrip: promptExamples empty'); return; }
-  const selected = [...promptExamples].sort(() => Math.random() - 0.5).slice(0, 8);
-  let html = '';
-  selected.forEach(ex => {
+  const selected = [...promptExamples].sort(() => Math.random() - 0.5).slice(0, 10);
+  const build = (ex) => {
     const d = ex.prompt.replace(/"/g,'&quot;');
-    html += '<div class="pi-item" data-title="'+ex.title+'" data-tags="'+ex.tags.join(',')+'" data-prompt="'+d+'"><img loading="lazy" src="'+ex.src+'" alt="'+ex.title+'"><span class="pi-label">'+ex.title+'</span></div>';
-  });
-  track.innerHTML = html;
+    return '<div class="pi-item" data-title="'+ex.title+'" data-tags="'+ex.tags.join(',')+'" data-prompt="'+d+'"><img loading="lazy" src="'+ex.src+'" alt="'+ex.title+'"><span class="pi-label">'+ex.title+'</span></div>';
+  };
+  // Duplicate the selected list for seamless infinite scroll
+  track.innerHTML = selected.map(build).join('') + selected.map(build).join('');
   track.addEventListener('click', e => {
     const item = e.target.closest('.pi-item');
     if (!item) return;
