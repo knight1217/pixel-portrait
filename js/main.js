@@ -450,9 +450,10 @@ const promptExamples = [
 ];
 
 // ===== Prompt Inspiration Strip (static 8 random) =====
-document.addEventListener('DOMContentLoaded', function() {
+function initStrip() {
   const track = $('#stripTrack');
-  if (!track) return;
+  if (!track) { console.warn('initStrip: #stripTrack not found'); return; }
+  if (!window.promptExamples || promptExamples.length === 0) { console.warn('initStrip: promptExamples empty'); return; }
   const selected = [...promptExamples].sort(() => Math.random() - 0.5).slice(0, 8);
   let html = '';
   selected.forEach(ex => {
@@ -481,7 +482,12 @@ document.addEventListener('DOMContentLoaded', function() {
     };
     if (promptLightbox) { promptLightbox.style.display = 'flex'; document.body.style.overflow = 'hidden'; }
   });
-});
+}
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initStrip);
+} else {
+  initStrip();
+}
 
 function renderPromptCards() {
   modalBody.innerHTML = '';
