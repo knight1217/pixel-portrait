@@ -61,7 +61,11 @@
     <nav class="nav-links" id="navLinks">
       <a href="index.html" data-l10n="home">Home</a>
       <a href="index.html#templates" data-l10n="templates">Templates</a>
-      <a href="index.html#generator">Generator</a>
+      <a href="create.html" data-l10n="create">Create</a>
+      <a href="prompts.html" data-l10n="prompts">Prompts</a>
+      <a href="index.html#how" data-l10n="howItWorks">How It Works</a>
+      <div class="lang-toggle" id="langToggle"></div>
+      <a href="index.html#faq" data-l10n="faq">FAQ</a>
     </nav>
   </div>
 </header>
@@ -69,26 +73,26 @@
 <main>
   <section class="templates-page">
     <div class="container">
-      <a href="index.html" class="back-link">← Back to SnapShift</a>
+      <a href="index.html" class="back-link" data-l10n="backToGenerator">← Back to SnapShift</a>
       <div class="section-header">
-        <h1 class="section-title">All Templates</h1>
-        <p class="section-sub">Every AI template we have. Click any to try it in the generator.</p>
+        <h1 class="section-title" data-l10n="allTemplates">All Templates</h1>
+        <p class="section-sub" data-l10n="allTemplatesSub">Every AI template we have. Click any to try it in the generator.</p>
       </div>
 
       <div class="filter-bar">
         <div class="filter-search">
-          <input type="text" id="filterSearch" placeholder="Search templates..." autocomplete="off">
+          <input type="text" id="filterSearch" data-l10n="searchPlaceholder" placeholder="Search templates..." autocomplete="off">
         </div>
         <div class="filter-cats">
-          <button class="fcat-btn active" data-fcat="all">All</button>
-          <button class="fcat-btn" data-fcat="toy">Toy</button>
-          <button class="fcat-btn" data-fcat="anime">Anime</button>
-          <button class="fcat-btn" data-fcat="art">Art</button>
-          <button class="fcat-btn" data-fcat="comic">Comic</button>
-          <button class="fcat-btn" data-fcat="photo">Photo</button>
-          <button class="fcat-btn" data-fcat="scifi">Sci-Fi</button>
-          <button class="fcat-btn" data-fcat="design">Design</button>
-          <button class="fcat-btn" data-fcat="utility">Utility</button>
+          <button class="fcat-btn active" data-fcat="all" data-l10n="filterAll">All</button>
+          <button class="fcat-btn" data-fcat="toy" data-l10n="catToy">Toy</button>
+          <button class="fcat-btn" data-fcat="anime" data-l10n="catAnime">Anime</button>
+          <button class="fcat-btn" data-fcat="art" data-l10n="catArt">Art</button>
+          <button class="fcat-btn" data-fcat="comic" data-l10n="catComic">Comic</button>
+          <button class="fcat-btn" data-fcat="photo" data-l10n="catPhoto">Photo</button>
+          <button class="fcat-btn" data-fcat="scifi" data-l10n="catSciFi">Sci-Fi</button>
+          <button class="fcat-btn" data-fcat="design" data-l10n="catDesign">Design</button>
+          <button class="fcat-btn" data-fcat="utility" data-l10n="catUtility">Utility</button>
         </div>
       </div>
       <div class="templates-grid" id="templatesGrid">
@@ -310,11 +314,11 @@
   <div class="container">
     <p><img src="logo-v2.png" alt="AiSS" class="footer-logo"> <strong>SnapShift</strong></p>
     <p class="footer-links">
-      <a href="privacy.html">Privacy Policy</a> ·
-      <a href="terms.html">Terms of Use</a> ·
-      <a href="mailto:hello@snapshift.fun">Contact</a>
+      <a href="privacy.html" data-l10n="footerPrivacy">Privacy Policy</a> ·
+      <a href="terms.html" data-l10n="footerTerms">Terms of Use</a> ·
+      <a href="mailto:hello@snapshift.fun" data-l10n="footerContact">Contact</a>
     </p>
-    <p class="copyright">© 2026 SnapShift. All rights reserved.</p>
+    <p class="copyright" data-l10n="footerCopyright">© 2026 SnapShift. All rights reserved.</p>
   </div>
 </footer>
 

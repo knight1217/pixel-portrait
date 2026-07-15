@@ -96,10 +96,10 @@
               <button class="gen-thumb" data-gen-style="ghibli"><span>Ghibli</span></button>
               <button class="gen-thumb" data-gen-style="watercolor"><span>Water</span></button>
               <button class="gen-thumb" data-gen-style="pixel"><span>Pixel</span></button>
-              <button class="gen-thumb gen-thumb-more" id="templateMoreBtn"><span>More +</span></button>
+              <button class="gen-thumb gen-thumb-more" id="templateMoreBtn"><span data-l10n="more">More +</span></button>
             </div>
             <div class="gen-template-display" id="templateDisplay">
-              <span class="template-display-text" id="templateDisplayText">Free Mode</span>
+              <span class="template-display-text" id="templateDisplayText" data-l10n="freeMode">Free Mode</span>
             </div>
             <div class="advanced-toggle" id="advancedToggle">
               <span data-l10n="advancedOptions">Advanced Options</span>
@@ -109,7 +109,7 @@
                 <label class="gen-label" data-l10n="customPrompt">Custom Prompt</label>
                 <a class="prompt-inspiration" id="promptInspiration" data-l10n="promptInspireLink">Need inspiration? Try example prompts</a>
               </div>
-              <textarea id="customPrompt" class="prompt-input" placeholder="Add details to refine the template..." autocomplete="off"></textarea>
+              <textarea id="customPrompt" class="prompt-input" data-l10n="customPromptPlaceholder" placeholder="Add details to refine the template..." autocomplete="off"></textarea>
             </div>
           </div>
           <button class="btn-generate" id="btnGenerate" disabled data-l10n="genBtn">Enter a prompt or select a template</button>
@@ -135,7 +135,7 @@
           </div>
           <div class="error-section" id="errorSection" style="display:none">
             <p id="errorText"></p>
-            <button class="btn-secondary" id="btnErrorRetry">Try Again</button>
+            <button class="btn-secondary" id="btnErrorRetry" data-l10n="tryAgain">Try Again</button>
           </div>
         </div>
       </div>
@@ -147,11 +147,11 @@
   <div class="container">
     <p><img src="logo-v2.png" alt="AiSS" class="footer-logo"> <strong>SnapShift</strong></p>
     <p class="footer-links">
-      <a href="privacy.html">Privacy Policy</a> ·
-      <a href="terms.html">Terms of Use</a> ·
-      <a href="mailto:hello@snapshift.fun">Contact</a>
+      <a href="privacy.html" data-l10n="footerPrivacy">Privacy Policy</a> ·
+      <a href="terms.html" data-l10n="footerTerms">Terms of Use</a> ·
+      <a href="mailto:hello@snapshift.fun" data-l10n="footerContact">Contact</a>
     </p>
-    <p class="copyright">© 2026 SnapShift. All rights reserved.</p>
+    <p class="copyright" data-l10n="footerCopyright">© 2026 SnapShift. All rights reserved.</p>
   </div>
 </footer>
 
