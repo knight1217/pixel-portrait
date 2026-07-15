@@ -903,6 +903,21 @@ if (shareOverlay) {
   });
 }
 
+// Home page share copy button
+const shareCopyLink = $('#shareCopyLink');
+if (shareCopyLink) {
+  shareCopyLink.addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText('https://snapshit.fun');
+      const original = shareCopyLink.textContent;
+      shareCopyLink.textContent = '✓';
+      setTimeout(() => { shareCopyLink.textContent = original; }, 1500);
+    } catch (e) {
+      // ignore
+    }
+  });
+}
+
 $$('#shareOverlay .share-modal-btn').forEach(btn => {
   btn.addEventListener('click', async () => {
     const platform = btn.dataset.platform;
