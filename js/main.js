@@ -439,8 +439,8 @@ const modalSearch = $('#modalSearch');
 // Derive short Chinese title from src path category
 const CAT_ZH = {'Portrait':'人像','Urban':'都市','Still Life':'静物','Fantasy':'奇幻','Nature':'自然','Food':'美食','Abstract':'抽象','Animal':'动物'};
 function shortTitleEn(title) {
-  // Shorten: take first 24 chars
-  return title.length > 24 ? title.slice(0, 24) + '…' : title;
+  // Shorten: take first 16 chars
+  return title.length > 16 ? title.slice(0, 16) + '…' : title;
 }
 function shortTitleZh(ex) {
   // Chinese: use category + first descriptor from src filename
@@ -469,14 +469,12 @@ function initStrip() {
     const item = e.target.closest('.pi-item');
     if (!item) return;
     const img = item.querySelector('img');
-    const title = item.dataset.title || '';
-    const tags = item.dataset.tags || '';
     const prompt = item.dataset.prompt || '';
     const plb = $('#promptLightbox');
     if (!plb) return;
     if ($('#plbImg')) $('#plbImg').src = img.src;
-    if ($('#plbTitle')) $('#plbTitle').textContent = title;
-    if ($('#plbTags')) $('#plbTags').innerHTML = tags.split(',').map(t => '<span class="plb-tag">'+t.trim()+'</span>').join('');
+    if ($('#plbTitle')) $('#plbTitle').textContent = item.querySelector('.pi-label')?.textContent || '#';
+    if ($('#plbTags')) $('#plbTags').innerHTML = '';
     if ($('#plbPrompt')) $('#plbPrompt').textContent = prompt;
     if ($('#plbUse')) $('#plbUse').onclick = () => {
       plb.style.display = 'none'; document.body.style.overflow = '';
