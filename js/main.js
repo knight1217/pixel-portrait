@@ -392,7 +392,7 @@ const TEMPLATE_TAGS = {
   'yonkoma':['4-Panel Comic','tpl4PanelComic']
 };
 const showcasePool = TEMPLATE_FILES.map(f => ({
-  src: 'samples/templates/' + f + '.png',
+  src: 'samples/templates/' + f + '.webp',
   tag: TEMPLATE_TAGS[f][0],
   tagKey: TEMPLATE_TAGS[f][1],
   styleKey: f
