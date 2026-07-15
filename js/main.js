@@ -439,9 +439,17 @@ const modalSearch = $('#modalSearch');
 // Derive short Chinese title from src path category
 const CAT_ZH = {'Portrait':'人像','Urban':'都市','Still Life':'静物','Fantasy':'奇幻','Nature':'自然','Food':'美食','Abstract':'抽象','Animal':'动物'};
 function shortTitleEn(ex) {
-  // Use the first tag as short title (e.g. "Food", "Portrait", "Urban")
-  const tag = (ex.tags && ex.tags[0]) || 'Prompt';
-  return tag;
+  // Derive short name from prompt title: take first meaningful phrase before comma
+  const title = ex.title || '';
+  if (!title) return 'Untitled';
+  // Take first phrase before comma
+  let phrase = title.split(',')[0].trim();
+  // Remove trailing "of/at/in/on/with/for/by/and" phrases
+  phrase = phrase.replace(/\s+(of|at|in|on|to|for|with|by|and|or)\s+.*$/i, '');
+  // Take first 3 words
+  let words = phrase.split(/\s+/).slice(0, 3);
+  let name = words.map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+  return name;
 }
 function shortTitleZh(ex) {
   // Chinese: use category + first descriptor from src filename
@@ -460,18 +468,17 @@ function initStrip() {
   if (typeof window.promptExamples === 'undefined' || !window.promptExamples.length) return;
   const selected = [...window.promptExamples].sort(() => Math.random() - 0.5).slice(0, 10);
   const esc = (s) => String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-  const useZh = window.getLang && window.getLang() === 'zh';
-  const build = (ex) => {
+  const build = (ex, i) => {
     try {
-      const label = useZh ? shortTitleZh(ex) : shortTitleEn(ex);
+      const label = '#' + (i + 1);
       const src = ex.src || '';
       const title = ex.title || '';
       const tags = (ex.tags || []).join(',');
       const prompt = ex.prompt || '';
-      return '<div class="pi-item" data-title="'+esc(title)+'" data-tags="'+esc(tags)+'" data-prompt="'+esc(prompt)+'"><img loading="lazy" src="'+esc(src)+'" alt="'+esc(title)+'"><span class="pi-label">'+esc(label)+'</span></div>';
+      return '<div class="pi-item" data-title="'+esc(title)+'" data-tags="'+esc(tags)+'" data-prompt="'+esc(prompt)+'"><img loading="lazy" src="'+esc(src)+'" alt="'+esc(title)+'"><span class="pi-label">'+label+'</span></div>';
     } catch (e) {
       console.error('build error:', e, ex);
-      return '<div class="pi-item"><img src="'+ex.src+'"><span class="pi-label">Error</span></div>';
+      return '<div class="pi-item"><img src="'+ex.src+'"><span class="pi-label">#'+(i+1)+'</span></div>';
     }
   };
   let items = '';
@@ -483,8 +490,7 @@ function initStrip() {
   if (items) {
     track.innerHTML = items;
   } else {
-    // Hard fallback - no label
-    const fb = selected.map(ex => '<div class="pi-item"><img loading="lazy" src="'+(ex.src||'')+'"></div>').join('');
+    const fb = selected.map((ex,i) => '<div class="pi-item"><img loading="lazy" src="'+(ex.src||'')+'"><span class="pi-label">#'+(i+1)+'</span></div>').join('');
     track.innerHTML = fb + fb;
   }
   track.addEventListener('click', e => {

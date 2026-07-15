@@ -537,11 +537,9 @@
     document.querySelectorAll('.card').forEach(c => {
       const en = c.querySelector('.en');
       if (!en) return;
-      if (lang === 'zh') {
-        en.textContent = getCardZh(c) || c.dataset.cat;
-      } else {
-        en.textContent = c.dataset.originalEn || '';
-      }
+      // Show only number, never the long prompt text
+      const num = c.querySelector('.num');
+      if (num) en.textContent = num.textContent;
     });
   };
   // Initial apply
