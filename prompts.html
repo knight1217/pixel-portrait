@@ -47,10 +47,10 @@
 </style>
 </head>
 <body>
-<header class="header"><div class="container"><a href="/" class="logo"><img src="logo-v2.png" alt="AiSS" class="logo-img"> SnapShift</a></div></header>
+<header class="header"><div class="container"><a href="/" class="logo"><img src="logo-v2.png" alt="AiSS" class="logo-img"> SnapShift</a><div class="lang-toggle" id="langToggle"></div></div></header>
 <div class="prompt-lib">
 <div class="back-link"><a href="/">&larr; Back to Generator</a></div>
-<div class="lib-header"><h1>Prompt Library</h1><div class="count" id="count">400 prompts</div></div>
+<div class="lib-header"><h1 data-l10n="promptLibrary">Prompt Library</h1><div class="count" id="count">400 prompts</div></div>
 <div class="filters" id="filters"><button class="f-btn active" data-cat="all">All</button>
 <button class="f-btn" data-cat="人像">Portrait</button>
 <button class="f-btn" data-cat="动物">Animals</button>
@@ -485,5 +485,6 @@ f('all')})();
   // Renumber cards 1, 2, 3, ... continuously
   document.querySelectorAll('.card .num').forEach((el, i) => { el.textContent = '#' + (i + 1); });
 </script>
+<script src="js/lang.js"></script>
 </body>
 </html>

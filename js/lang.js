@@ -74,6 +74,7 @@
       backTop: '\u2191',
       before: 'Before',
       after: 'After',
+      promptLibrary: 'Prompt Library',
     },
     zh: {
       home: '首页',
@@ -148,6 +149,7 @@
       backTop: '\u2191',
       before: '转换前',
       after: '转换后',
+      promptLibrary: '提示词库',
     }
   };
 
