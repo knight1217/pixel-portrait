@@ -462,10 +462,31 @@ function initStrip() {
   const esc = (s) => String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
   const useZh = window.getLang && window.getLang() === 'zh';
   const build = (ex) => {
-    const label = useZh ? shortTitleZh(ex) : shortTitleEn(ex);
-    return '<div class="pi-item" data-title="'+esc(ex.title)+'" data-tags="'+esc((ex.tags||[]).join(','))+'" data-prompt="'+esc(ex.prompt||'')+'"><img loading="lazy" src="'+ex.src+'" alt="'+esc(ex.title)+'"><span class="pi-label">'+esc(label)+'</span></div>';
+    try {
+      const label = useZh ? shortTitleZh(ex) : shortTitleEn(ex);
+      const src = ex.src || '';
+      const title = ex.title || '';
+      const tags = (ex.tags || []).join(',');
+      const prompt = ex.prompt || '';
+      return '<div class="pi-item" data-title="'+esc(title)+'" data-tags="'+esc(tags)+'" data-prompt="'+esc(prompt)+'"><img loading="lazy" src="'+esc(src)+'" alt="'+esc(title)+'"><span class="pi-label">'+esc(label)+'</span></div>';
+    } catch (e) {
+      console.error('build error:', e, ex);
+      return '<div class="pi-item"><img src="'+ex.src+'"><span class="pi-label">Error</span></div>';
+    }
   };
-  track.innerHTML = selected.map(build).join('') + selected.map(build).join('');
+  let items = '';
+  try {
+    items = selected.map(build).join('') + selected.map(build).join('');
+  } catch (e) {
+    console.error('strip map error:', e);
+  }
+  if (items) {
+    track.innerHTML = items;
+  } else {
+    // Hard fallback - no label
+    const fb = selected.map(ex => '<div class="pi-item"><img loading="lazy" src="'+(ex.src||'')+'"></div>').join('');
+    track.innerHTML = fb + fb;
+  }
   track.addEventListener('click', e => {
     const item = e.target.closest('.pi-item');
     if (!item) return;
