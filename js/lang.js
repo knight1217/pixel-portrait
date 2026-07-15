@@ -178,22 +178,48 @@
     document.documentElement.lang = lang;
   }
 
-  // Expose globally
-  window.setLang = setLang;
-  window.getLang = () => currentLang;
-  window.initLang = () => {
-    // Render language toggle buttons
-    document.querySelectorAll('.lang-toggle').forEach(toggle => {
-      toggle.innerHTML = `
-        <button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
-        <button class="lang-btn" data-lang="zh" onclick="setLang('zh')">中</button>
-      `;
-    });
-    applyLang(currentLang);
-  };
-
   // Auto-init after DOM loads
   document.addEventListener('DOMContentLoaded', () => {
     window.initLang();
   });
-})();
+
+  // Build globe button + dropdown
+  function buildLangToggle() {
+    const html = `
+      <button class="lang-globe" aria-label="Language" id="langGlobe">🌐</button>
+      <div class="lang-dropdown" id="langDropdown">
+        <button class="lang-option" data-lang="en">English</button>
+        <button class="lang-option" data-lang="zh">中文</button>
+      </div>
+    `;
+    document.querySelectorAll('.lang-toggle').forEach(t => {
+      t.innerHTML = html;
+    });
+    // Toggle dropdown
+    document.querySelectorAll('.lang-globe').forEach(btn => {
+      btn.addEventListener('click', e => {
+        e.stopPropagation();
+        btn.parentElement.classList.toggle('open');
+      });
+    });
+    // Click option
+    document.querySelectorAll('.lang-option').forEach(opt => {
+      opt.addEventListener('click', e => {
+        e.stopPropagation();
+        setLang(opt.dataset.lang);
+        document.querySelectorAll('.lang-toggle').forEach(t => t.classList.remove('open'));
+      });
+    });
+    // Close on outside click
+    document.addEventListener('click', () => {
+      document.querySelectorAll('.lang-toggle').forEach(t => t.classList.remove('open'));
+    });
+  }
+
+  // Expose globally
+  window.setLang = setLang;
+  window.getLang = () => currentLang;
+  window.initLang = () => {
+    buildLangToggle();
+    applyLang(currentLang);
+  };
