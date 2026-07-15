@@ -906,12 +906,12 @@ if (shareOverlay) {
 $$('#shareOverlay .share-modal-btn').forEach(btn => {
   btn.addEventListener('click', async () => {
     const platform = btn.dataset.platform;
-    const url = encodeURIComponent(currentShareUrl);
-    const text = encodeURIComponent('Check out this image I created with SnapShift');
+    const pageUrl = encodeURIComponent('https://snapshit.fun');
+    const text = encodeURIComponent('Check out SnapShift — Free AI Photo Transformer');
 
     if (platform === 'copy') {
       try {
-        await navigator.clipboard.writeText(currentShareUrl);
+        await navigator.clipboard.writeText('https://snapshit.fun');
         shareTip.textContent = 'Link copied to clipboard!';
         shareTip.classList.add('success');
       } catch (err) {
@@ -924,19 +924,19 @@ $$('#shareOverlay .share-modal-btn').forEach(btn => {
     let shareUrl = '';
     switch (platform) {
       case 'twitter':
-        shareUrl = `https://twitter.com/intent/tweet?url=${url}&text=${text}`;
+        shareUrl = `https://twitter.com/intent/tweet?url=${pageUrl}&text=${text}`;
         break;
       case 'facebook':
-        shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+        shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`;
         break;
       case 'linkedin':
-        shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${url}`;
+        shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${pageUrl}`;
         break;
       case 'pinterest':
-        shareUrl = `https://pinterest.com/pin/create/button/?url=${encodeURIComponent(window.location.href)}&media=${url}&description=${text}`;
+        shareUrl = `https://pinterest.com/pin/create/button/?url=${pageUrl}&media=${encodeURIComponent(currentShareUrl)}&description=${text}`;
         break;
       case 'reddit':
-        shareUrl = `https://www.reddit.com/submit?url=${url}&title=${text}`;
+        shareUrl = `https://www.reddit.com/submit?url=${pageUrl}&title=${text}`;
         break;
     }
 
