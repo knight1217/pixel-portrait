@@ -903,17 +903,25 @@ if (shareOverlay) {
   });
 }
 
-// Home page share copy button
+// Home page share: system share panel
 const shareCopyLink = $('#shareCopyLink');
 if (shareCopyLink) {
   shareCopyLink.addEventListener('click', async () => {
     try {
-      await navigator.clipboard.writeText('https://snapshit.fun');
-      const original = shareCopyLink.textContent;
-      shareCopyLink.textContent = '✓';
-      setTimeout(() => { shareCopyLink.textContent = original; }, 1500);
+      if (navigator.share) {
+        await navigator.share({
+          title: 'SnapShift — Free AI Photo Transformer',
+          text: 'Turn any photo into art with AI templates!',
+          url: 'https://snapshit.fun'
+        });
+      } else {
+        await navigator.clipboard.writeText('https://snapshit.fun');
+        const original = shareCopyLink.textContent;
+        shareCopyLink.textContent = '已复制';
+        setTimeout(() => { shareCopyLink.textContent = original; }, 1500);
+      }
     } catch (e) {
-      // ignore
+      // User cancelled — ignore
     }
   });
 }
@@ -931,14 +939,28 @@ $$('#shareOverlay .share-modal-btn').forEach(btn => {
 
     if (platform === 'copy') {
       try {
-        // On create page: copy the generated image URL. Home: copy site URL
-        await navigator.clipboard.writeText(currentShareUrl || linkUrl);
-        shareTip.textContent = 'Link copied to clipboard!';
-        shareTip.classList.add('success');
+        // Use system share panel (works on mobile + desktop)
+        const shareData = {
+          title: 'SnapShift — Free AI Photo Transformer',
+          text: isCreatePage ? 'Check out this image I made with SnapShift!' : 'SnapShift — Free AI Photo Transformer. Turn any photo into art!',
+          url: linkUrl
+        };
+        if (currentShareUrl && isCreatePage) {
+          shareData.image = currentShareUrl;
+        }
+        if (navigator.share) {
+          await navigator.share(shareData);
+        } else {
+          // Fallback: copy link
+          await navigator.clipboard.writeText(linkUrl);
+          shareTip.textContent = '已复制到剪贴板';
+        }
       } catch (err) {
-        shareTip.textContent = 'Copy failed. Please copy the URL manually.';
-        shareTip.classList.remove('success');
+        if (err.name !== 'AbortError') {
+          // User cancelled share — do nothing
+        }
       }
+      closeShare();
       return;
     }
 
