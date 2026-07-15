@@ -929,36 +929,19 @@ if (shareCopyLink) {
 $$('#shareOverlay .share-modal-btn').forEach(btn => {
   btn.addEventListener('click', async () => {
     const platform = btn.dataset.platform;
-    // On create page (after generation): share the generated image + page
-    // On home page: share the site URL
-    const isCreatePage = !!$('#btnShare');
-    const linkUrl = 'https://snapshit.fun'; // Always share the site URL
+    const linkUrl = 'https://snapshit.fun';
     const pageUrl = encodeURIComponent(linkUrl);
-    const imgUrl = encodeURIComponent(currentShareUrl); // Image for Pinterest + copy on create page
-    const text = encodeURIComponent(isCreatePage ? 'Check out this image I made with SnapShift — Free AI Photo Transformer' : 'SnapShift — Free AI Photo Transformer. Turn any photo into art!');
 
     if (platform === 'copy') {
       try {
-        // Use system share panel (works on mobile + desktop)
-        const shareData = {
-          title: 'SnapShift — Free AI Photo Transformer',
-          text: isCreatePage ? 'Check out this image I made with SnapShift!' : 'SnapShift — Free AI Photo Transformer. Turn any photo into art!',
-          url: linkUrl
-        };
-        if (currentShareUrl && isCreatePage) {
-          shareData.image = currentShareUrl;
-        }
         if (navigator.share) {
-          await navigator.share(shareData);
+          await navigator.share({ title: 'SnapShift', url: linkUrl });
         } else {
-          // Fallback: copy link
           await navigator.clipboard.writeText(linkUrl);
           shareTip.textContent = '已复制到剪贴板';
         }
       } catch (err) {
-        if (err.name !== 'AbortError') {
-          // User cancelled share — do nothing
-        }
+        // ignored
       }
       closeShare();
       return;
@@ -967,7 +950,7 @@ $$('#shareOverlay .share-modal-btn').forEach(btn => {
     let shareUrl = '';
     switch (platform) {
       case 'twitter':
-        shareUrl = `https://twitter.com/intent/tweet?url=${pageUrl}&text=${text}`;
+        shareUrl = `https://twitter.com/intent/tweet?url=${pageUrl}`;
         break;
       case 'facebook':
         shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`;
@@ -976,10 +959,10 @@ $$('#shareOverlay .share-modal-btn').forEach(btn => {
         shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${pageUrl}`;
         break;
       case 'pinterest':
-        shareUrl = `https://pinterest.com/pin/create/button/?url=${pageUrl}&media=${imgUrl}&description=${text}`;
+        shareUrl = `https://pinterest.com/pin/create/button/?url=${pageUrl}`;
         break;
       case 'reddit':
-        shareUrl = `https://www.reddit.com/submit?url=${pageUrl}&title=${text}`;
+        shareUrl = `https://www.reddit.com/submit?url=${pageUrl}`;
         break;
     }
 
