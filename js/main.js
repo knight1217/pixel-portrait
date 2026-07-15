@@ -924,13 +924,15 @@ $$('#shareOverlay .share-modal-btn').forEach(btn => {
     // On create page (after generation): share the generated image + page
     // On home page: share the site URL
     const isCreatePage = !!$('#btnShare');
-    const linkUrl = isCreatePage ? currentShareUrl : 'https://snapshit.fun';
-    const url = encodeURIComponent(linkUrl);
+    const linkUrl = 'https://snapshit.fun'; // Always share the site URL
+    const pageUrl = encodeURIComponent(linkUrl);
+    const imgUrl = encodeURIComponent(currentShareUrl); // Image for Pinterest + copy on create page
     const text = encodeURIComponent(isCreatePage ? 'Check out this image I made with SnapShift — Free AI Photo Transformer' : 'SnapShift — Free AI Photo Transformer. Turn any photo into art!');
 
     if (platform === 'copy') {
       try {
-        await navigator.clipboard.writeText(linkUrl);
+        // On create page: copy the generated image URL. Home: copy site URL
+        await navigator.clipboard.writeText(currentShareUrl || linkUrl);
         shareTip.textContent = 'Link copied to clipboard!';
         shareTip.classList.add('success');
       } catch (err) {
@@ -941,22 +943,21 @@ $$('#shareOverlay .share-modal-btn').forEach(btn => {
     }
 
     let shareUrl = '';
-    const imgUrl = encodeURIComponent(currentShareUrl);
     switch (platform) {
       case 'twitter':
-        shareUrl = `https://twitter.com/intent/tweet?url=${url}&text=${text}`;
+        shareUrl = `https://twitter.com/intent/tweet?url=${pageUrl}&text=${text}`;
         break;
       case 'facebook':
-        shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+        shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`;
         break;
       case 'linkedin':
-        shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${url}`;
+        shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${pageUrl}`;
         break;
       case 'pinterest':
-        shareUrl = `https://pinterest.com/pin/create/button/?url=${url}&media=${imgUrl}&description=${text}`;
+        shareUrl = `https://pinterest.com/pin/create/button/?url=${pageUrl}&media=${imgUrl}&description=${text}`;
         break;
       case 'reddit':
-        shareUrl = `https://www.reddit.com/submit?url=${url}&title=${text}`;
+        shareUrl = `https://www.reddit.com/submit?url=${pageUrl}&title=${text}`;
         break;
     }
 
