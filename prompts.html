@@ -66,14 +66,14 @@
 <div class="back-link"><a href="/" data-l10n="backToGenerator">&larr; Back to Generator</a></div>
 <div class="lib-header"><h1 data-l10n="promptLibrary">Prompt Library</h1><div class="count" id="count" data-l10n="promptsCount">400 prompts</div></div>
 <div class="filters" id="filters"><button class="f-btn active" data-cat="all" data-l10n="filterAll">All</button>
-<button class="f-btn" data-cat="人像">Portrait</button>
-<button class="f-btn" data-cat="动物">Animals</button>
-<button class="f-btn" data-cat="奇幻">Fantasy</button>
-<button class="f-btn" data-cat="抽象">Abstract</button>
-<button class="f-btn" data-cat="美食">Food</button>
-<button class="f-btn" data-cat="自然">Nature</button>
-<button class="f-btn" data-cat="都市">Urban</button>
-<button class="f-btn" data-cat="静物">Still Life</button>
+<button class="f-btn" data-cat="人像" data-l10n="catPortrait">Portrait</button>
+<button class="f-btn" data-cat="动物" data-l10n="catAnimals">Animals</button>
+<button class="f-btn" data-cat="奇幻" data-l10n="catFantasy">Fantasy</button>
+<button class="f-btn" data-cat="抽象" data-l10n="catAbstract">Abstract</button>
+<button class="f-btn" data-cat="美食" data-l10n="catFood">Food</button>
+<button class="f-btn" data-cat="自然" data-l10n="catNature">Nature</button>
+<button class="f-btn" data-cat="都市" data-l10n="catUrban">Urban</button>
+<button class="f-btn" data-cat="静物" data-l10n="catStillLife">Still Life</button>
 </div>
 <div class="grid" id="grid"><div class="card" data-cat="人像" onclick="openCard(this)" data-img="prompts-final/prompts-previews/Portrait/001-corporate.png" data-en="Professional headshot of confident businesswoman in her 30s, navy blazer, genuine smile, white background, studio lighting, shot on Canon 85mm f/1.4, sharp focus, 8k,30"><img src="prompts-final/prompts-previews/Portrait/001-corporate.png" loading="lazy" alt=""><div class="meta"><span class="num">#1</span><div class="en">Professional headshot of confident businesswoman in her 30s, navy blazer, genuine smile, white background, studio lighting, shot on Canon 85mm f/1.4, sharp focus, 8k,30</div></div></div>
 <div class="card" data-cat="都市" onclick="openCard(this)" data-img="prompts-final/prompts-previews/Urban/001-cyberpunk.png" data-en="Futuristic cyberpunk city at night, neon signs in Japanese, rain-soaked streets reflecting lights, flying cars, people with umbrellas, Blade Runner style, cinematic, 8k"><img src="prompts-final/prompts-previews/Urban/001-cyberpunk.png" loading="lazy" alt=""><div class="meta"><span class="num">#2</span><div class="en">Futuristic cyberpunk city at night, neon signs in Japanese, rain-soaked streets reflecting lights, flying cars, people with umbrellas, Blade Runner style, cinematic, 8k</div></div></div>
@@ -480,8 +480,8 @@
 <div class="plb-overlay" id="lightbox"><button class="plb-close" id="plbClose">&times;</button>
 <div class="plb-layout"><div class="plb-image"><img id="plbImg" src="" alt=""></div>
 <div class="plb-sidebar"><h3 id="plbTitle"></h3><div class="plb-prompt" id="plbPrompt"></div>
-<div class="plb-actions"><button class="btn-primary" id="plbUse">Use this prompt</button>
-<button class="btn-secondary" id="plbCopy">Copy prompt</button></div></div></div></div>
+<div class="plb-actions"><button class="btn-primary" id="plbUse" data-l10n="usePrompt">Use this prompt</button>
+<button class="btn-secondary" id="plbCopy" data-l10n="copyPrompt">Copy prompt</button></div></div></div></div>
 <footer class="footer"><div class="container"><p><img src="logo-v2.png" alt="AiSS" class="footer-logo"> <strong>SnapShift</strong></p></div></footer>
 <script>
 (function(){var cur='';var z=document.querySelectorAll('.card'),b=document.querySelectorAll('.f-btn'),t=document.getElementById('count');

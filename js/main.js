@@ -279,7 +279,7 @@ $$('.res-btn').forEach(b => {
 function selectTemplateStyle(styleKey) {
   selectedStyle = styleKey || 'free-mode';
   const displayText = $('#templateDisplayText');
-  if (displayText) displayText.textContent = styleKey === 'free-mode' ? 'Free Mode' : (STYLE_NAMES[styleKey] || styleKey);
+  if (displayText) displayText.textContent = styleName(styleKey);
   // Update hot buttons
   $$('.gen-thumb').forEach(b => b.classList.toggle('active', b.dataset.genStyle === styleKey));
   updateGenBtn();
@@ -582,33 +582,34 @@ const styleStrengths = {
   '3d-polaroid': 0.65
 };
 
-// ===== Style display names =====
-const STYLE_NAMES = {'free-mode':'Free Mode','cyberpunk':'Cyberpunk','anime':'Anime','oil-painting':'Oil Painting','movie-poster':'Movie Poster','cartoon':'3D Cartoon','watercolor':'Watercolor','funko-pop':'Funko Pop','ghibli':'Ghibli','vintage':'Vintage','magazine':'Magazine Cover','figurine':'Figurine','pixel':'Pixel Art','anime-figure':'Anime Figure','lego-minifig':'LEGO Minifig','lego-style':'LEGO Style','action-figure':'Action Figure','chibi-3d':'Chibi 3D','3d-polaroid':'3D Polaroid','plush-toy':'Plush Toy','crochet-doll':'Crochet Doll','acrylic-keychain':'Acrylic Keychain','enamel-pin':'Enamel Pin','cosplay':'Cosplay','pixar':'Pixar','disney':'Disney','snoopy':'Peanuts / Snoopy','chibi':'Chibi','powerpuff':'Powerpuff Girls','japanese-illust':'Japanese Illustration','animal-crossing':'Animal Crossing','gouache':'Gouache','van-gogh':'Van Gogh','marker-sketch':'Marker Sketch','palette-swap':'Palette Swap','painting-process':'Painting Process','comic-outfit':'Manga Fashion','comic-white':'Manga Line Art','yonkoma':'4-Panel Comic','line-art':'Line Art','vector-illustration':'Vector Illustration','realistic':'Hyper-Realistic','hd-enhance':'HD Enhance','pose-reference':'Pose Reference','subject-extract':'Subject Extraction','ice-queen':'Ice Queen','architecture-model':'Architecture Model','product-render':'Product Render','can-design':'Can Design','industrial-design':'Industrial Design','3d-screen':'3D Screen Effect','bg-replace':'Background Replace','overlay':'Art Overlay'};
+// ===== Style display names (lang keys) =====
+const STYLE_LANG = {'free-mode':'freeMode','cyberpunk':'tplCyberpunk','anime':'tplAnime','oil-painting':'tplOilPainting','movie-poster':'tplMoviePoster','cartoon':'tpl3DCartoon','watercolor':'tplWatercolor','funko-pop':'tplFunkoPop','ghibli':'tplGhibli','vintage':'tplVintage','magazine':'tplMagazineCover','figurine':'tplFigurine','pixel':'tplPixelArt','anime-figure':'tplAnimeFigure','lego-minifig':'tplLegoMinifig','lego-style':'tplLegoStyle','action-figure':'tplActionFigure','chibi-3d':'tplChibi3D','3d-polaroid':'tpl3DPolaroid','plush-toy':'tplPlushToy','crochet-doll':'tplCrochetDoll','acrylic-keychain':'tplAcrylicKeychain','enamel-pin':'tplEnamelPin','cosplay':'tplCosplay','pixar':'tplPixar','disney':'tplDisney','snoopy':'tplSnoopy','chibi':'tplChibi','powerpuff':'tplPowerpuffGirls','japanese-illust':'tplJapaneseIllust','animal-crossing':'tplAnimalCrossing','gouache':'tplGouache','van-gogh':'tplVanGogh','marker-sketch':'tplMarkerSketch','palette-swap':'tplPaletteSwap','painting-process':'tplPaintingProcess','comic-outfit':'tplMangaFashion','comic-white':'tplMangaLineArt','yonkoma':'tplYonkoma','line-art':'tplLineArt','vector-illustration':'tplVectorIllustration','realistic':'tplHyperRealistic','hd-enhance':'tplHDEnhance','pose-reference':'tplPoseReference','subject-extract':'tplSubjectExtraction','ice-queen':'tplIceQueen','architecture-model':'tplArchitectureModel','product-render':'tplProductRender','can-design':'tplCanDesign','industrial-design':'tplIndustrialDesign','3d-screen':'tpl3DScreenEffect','bg-replace':'tplBgReplace','overlay':'tplArtOverlay'};
+const styleName = (k) => window.t ? window.t(STYLE_LANG[k] || k) : (STYLE_LANG[k] || k);
 
 // ===== Template Selection Modal =====
 const TEMPLATE_CATS = [
-  {name:'3D & Toys', styles:['anime-figure','lego-minifig','lego-style','action-figure','chibi-3d','3d-polaroid','plush-toy','crochet-doll','acrylic-keychain','enamel-pin','cosplay']},
-  {name:'Anime & Cartoon', styles:['pixar','disney','snoopy','chibi','powerpuff','japanese-illust','animal-crossing']},
-  {name:'Art & Painting', styles:['gouache','van-gogh','marker-sketch','palette-swap','painting-process']},
-  {name:'Comic & Line Art', styles:['comic-outfit','comic-white','yonkoma','line-art','vector-illustration']},
-  {name:'Photo & Realistic', styles:['realistic','hd-enhance','pose-reference','subject-extract']},
-  {name:'Design & Product', styles:['architecture-model','product-render','can-design','industrial-design','3d-screen']},
-  {name:'Other', styles:['ice-queen','bg-replace','overlay']}
+  {langKey:'cat3dToys', styles:['anime-figure','lego-minifig','lego-style','action-figure','chibi-3d','3d-polaroid','plush-toy','crochet-doll','acrylic-keychain','enamel-pin','cosplay']},
+  {langKey:'catAnime', styles:['pixar','disney','snoopy','chibi','powerpuff','japanese-illust','animal-crossing']},
+  {langKey:'catArt', styles:['gouache','van-gogh','marker-sketch','palette-swap','painting-process']},
+  {langKey:'catComic', styles:['comic-outfit','comic-white','yonkoma','line-art','vector-illustration']},
+  {langKey:'catPhoto', styles:['realistic','hd-enhance','pose-reference','subject-extract']},
+  {langKey:'catDesign', styles:['architecture-model','product-render','can-design','industrial-design','3d-screen']},
+  {langKey:'catOther', styles:['ice-queen','bg-replace','overlay']}
 ];
 
 function buildTemplateModal() {
   const body = $('#templateModalBody');
   if (!body) return;
   let html = '';
-  html += '<div class="tm-cat-title">Mode</div><div class="tm-cat-grid"><button class="tm-style-btn tm-free" data-gen-style="free-mode">Free Mode</button></div>';
-  html += '<div class="tm-cat-title">Popular</div><div class="tm-cat-grid">';
+  html += '<div class="tm-cat-title">' + window.t('mode') + '</div><div class="tm-cat-grid"><button class="tm-style-btn tm-free" data-gen-style="free-mode">' + window.t('freeMode') + '</button></div>';
+  html += '<div class="tm-cat-title">' + window.t('popular') + '</div><div class="tm-cat-grid">';
   ['cyberpunk','anime','oil-painting','movie-poster','cartoon','watercolor','funko-pop','ghibli','vintage','magazine','figurine','pixel'].forEach(k => {
-    html += '<button class="tm-style-btn" data-gen-style="'+k+'">'+STYLE_NAMES[k]+'</button>';
+    html += '<button class="tm-style-btn" data-gen-style="'+k+'">'+styleName(k)+'</button>';
   });
   html += '</div>';
   TEMPLATE_CATS.forEach(cat => {
-    html += '<div class="tm-cat-title">'+cat.name+'</div><div class="tm-cat-grid">';
-    cat.styles.forEach(k => html += '<button class="tm-style-btn" data-gen-style="'+k+'">'+STYLE_NAMES[k]+'</button>');
+    html += '<div class="tm-cat-title">' + window.t(cat.langKey) + '</div><div class="tm-cat-grid">';
+    cat.styles.forEach(k => html += '<button class="tm-style-btn" data-gen-style="'+k+'">'+styleName(k)+'</button>');
     html += '</div>';
   });
   body.innerHTML = html;

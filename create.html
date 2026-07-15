@@ -91,12 +91,12 @@
             </div>
             <label class="gen-label" data-l10n="template">Template</label>
             <div class="gen-template-list" id="genThumbGrid">
-              <button class="gen-thumb" data-gen-style="cyberpunk"><span>Cyberpunk</span></button>
-              <button class="gen-thumb" data-gen-style="anime"><span>Anime</span></button>
-              <button class="gen-thumb" data-gen-style="oil-painting"><span>Oil</span></button>
-              <button class="gen-thumb" data-gen-style="ghibli"><span>Ghibli</span></button>
-              <button class="gen-thumb" data-gen-style="watercolor"><span>Water</span></button>
-              <button class="gen-thumb" data-gen-style="pixel"><span>Pixel</span></button>
+              <button class="gen-thumb" data-gen-style="cyberpunk"><span data-l10n="tplCyberpunk">Cyberpunk</span></button>
+              <button class="gen-thumb" data-gen-style="anime"><span data-l10n="tplAnime">Anime</span></button>
+              <button class="gen-thumb" data-gen-style="oil-painting"><span data-l10n="tplOil">Oil</span></button>
+              <button class="gen-thumb" data-gen-style="ghibli"><span data-l10n="tplGhibli">Ghibli</span></button>
+              <button class="gen-thumb" data-gen-style="watercolor"><span data-l10n="tplWater">Water</span></button>
+              <button class="gen-thumb" data-gen-style="pixel"><span data-l10n="tplPixel">Pixel</span></button>
               <button class="gen-thumb gen-thumb-more" id="templateMoreBtn"><span data-l10n="more">More +</span></button>
             </div>
             <div class="gen-template-display" id="templateDisplay">
@@ -160,7 +160,7 @@
 <div class="modal-overlay" id="inspirationModal" style="display:none">
   <div class="modal">
     <div class="modal-header">
-      <h3>Example Prompts</h3>
+      <h3 data-l10n="examplePrompts">Example Prompts</h3>
       <button class="modal-close" id="modalClose">x</button>
     </div>
     <div class="modal-body" id="modalBody">
@@ -171,7 +171,7 @@
 <div class="modal-overlay" id="templateModal" style="display:none">
   <div class="modal modal-wide">
     <div class="modal-header">
-      <h3>All Templates (53 styles)</h3>
+      <h3 data-l10n="allTemplatesCount">All Templates (53 styles)</h3>
       <button class="modal-close" id="templateModalClose">x</button>
     </div>
     <div class="modal-body template-modal-body" id="templateModalBody"></div>
@@ -181,7 +181,7 @@
 <div class="share-overlay" id="shareOverlay" style="display:none">
   <div class="share-panel">
     <button class="share-close" id="shareClose">✕</button>
-    <h3>Share your creation</h3>
+    <h3 data-l10n="shareCreation">Share your creation</h3>
     <div class="share-modal-bar">
       <button class="share-modal-btn x" data-platform="twitter" aria-label="Share on X">X</button>
       <button class="share-modal-btn fb" data-platform="facebook" aria-label="Share on Facebook">f</button>
@@ -208,8 +208,8 @@
       <div class="plb-tags" id="plbTags"></div>
       <p class="plb-prompt" id="plbPrompt"></p>
       <div class="plb-actions">
-        <button class="btn-primary" id="plbUse">Use this prompt</button>
-        <button class="btn-secondary" id="plbCopy">Copy prompt</button>
+        <button class="btn-primary" id="plbUse" data-l10n="usePrompt">Use this prompt</button>
+        <button class="btn-secondary" id="plbCopy" data-l10n="copyPrompt">Copy prompt</button>
       </div>
     </div>
   </div>
