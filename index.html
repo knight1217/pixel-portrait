@@ -36,13 +36,14 @@
 <header class="header">
   <div class="container">
     <a href="/" class="logo"><img src="logo-v2.png" alt="AiSS" class="logo-img"> SnapShift</a>
+    <div class="lang-toggle" id="langToggle"></div>
     <button class="hamburger" id="hamburger" aria-label="Menu">☰</button>
     <nav class="nav-links" id="navLinks">
-      <a href="templates.html">Templates</a>
-      <a href="create.html">Create</a>
-      <a href="prompts.html">Prompts</a>
-      <a href="#how">How It Works</a>
-      <a href="#faq">FAQ</a>
+      <a href="templates.html" data-l10n="templates">Templates</a>
+      <a href="create.html" data-l10n="create">Create</a>
+      <a href="prompts.html" data-l10n="prompts">Prompts</a>
+      <a href="#how" data-l10n="howItWorks">How It Works</a>
+      <a href="#faq" data-l10n="faq">FAQ</a>
     </nav>
   </div>
 </header>
@@ -378,6 +379,7 @@
 </footer>
 
 <script src="js/prompt_data.js"></script>
+<script src="js/lang.js"></script>
 <script src="js/main.js"></script>
 <script>window.addEventListener('load',function(){if(typeof initStrip==='function')initStrip();});</script>
 <button class="back-top" id="backTop" aria-label="Back to top">↑</button>

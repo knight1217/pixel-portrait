@@ -1,0 +1,199 @@
+// SnapShift i18n — bilingual EN/ZH
+(function () {
+  const LANG = {
+    en: {
+      home: 'Home',
+      templates: 'Templates',
+      create: 'Create',
+      prompts: 'Prompts',
+      howItWorks: 'How It Works',
+      faq: 'FAQ',
+      heroTitle: 'Transform any photo.',
+      heroTitle2: 'AI templates.',
+      heroDesc: 'Use AI to transform your photos into stunning artwork, 3D toys, movie posters, and more. No signup, free to try.',
+      tryFree: 'Try SnapShift Free',
+      browseTemplates: 'Browse Templates',
+      promptInspire: 'Prompt inspiration',
+      morePrompts: 'More prompts →',
+      aiTemplates: 'AI Templates',
+      aiTemplatesDesc: 'Pick a template, upload your photo, and transform it instantly.',
+      moreTemplates: 'More Templates →',
+      seeDifference: 'See the difference.',
+      dragSlider: 'Drag the slider to compare.',
+      readyCreate: 'Ready to create?',
+      readyCreateDesc: 'Upload a photo, pick from AI templates, and transform it instantly — all on one page.',
+      startCreating: 'Start Creating →',
+      readyTransform: 'Ready to transform your photos?',
+      readyTransformDesc: 'All templates, 1K & 2K quality, completely free in Beta.',
+      howSection: 'How SnapShift Works',
+      how1Title: 'Upload your photo',
+      how1Desc: 'Drag & drop or click to upload. JPG and PNG supported, up to 5 photos.',
+      how2Title: 'Pick a template',
+      how2Desc: 'Choose from 50+ AI styles — cyberpunk, anime, oil painting, 3D toys, and more.',
+      how3Title: 'Generate & download',
+      how3Desc: 'One click transforms your photo. Download in 1K or 2K quality.',
+      faq1: 'Is SnapShift free?',
+      faq1a: 'Yes — completely free during Beta. All templates, 1K & 2K included.',
+      faq2: 'Do I need an account?',
+      faq2a: 'No account required. Just upload a photo and start transforming.',
+      faq3: 'How long does it take?',
+      faq3a: 'Most generations take 10–30 seconds depending on resolution.',
+      faq4: 'Can I use the images commercially?',
+      faq4a: 'Yes. All images you generate belong to you.',
+      footerCopyright: '© 2026 SnapShift. All rights reserved.',
+      createTitle: 'Create your transformation',
+      createDesc: 'Upload a photo, pick a template, get the result in seconds.',
+      uploadHere: 'Drop or click to upload',
+      uploadHint: 'JPG / PNG, up to 5 photos',
+      addMore: 'Click to add more photos',
+      genNoPhoto: 'Generate without photo',
+      aspectRatio: 'Aspect Ratio',
+      resolution: 'Resolution',
+      template: 'Template',
+      freeMode: 'Free Mode',
+      more: 'More +',
+      advancedOptions: 'Advanced Options',
+      customPrompt: 'Custom Prompt',
+      promptInspireLink: 'Need inspiration? Try example prompts',
+      customPromptPlaceholder: 'Add details to refine the template...',
+      genBtn: 'Enter a prompt or select a template',
+      featuredTransformations: 'Featured transformations',
+      transforming: 'Transforming your image...',
+      download: 'Download',
+      share: 'Share',
+      tryAnother: 'Try Another',
+      need2Photos: 'Upload subject + background photos',
+      uploadSubjectBg: 'Upload subject (1st) + background (2nd)',
+      needBgPhoto: 'Need background photo (2nd)',
+      uploadSubjectOutfit: 'Upload subject + outfit reference',
+      needOutfitPhoto: 'Need outfit photo (2nd)',
+      backTop: '↑',
+    },
+    zh: {
+      home: '首页',
+      templates: '模板',
+      create: '创作',
+      prompts: '提示词',
+      howItWorks: '使用教程',
+      faq: '常见问题',
+      heroTitle: '照片变艺术。',
+      heroTitle2: 'AI 模板一键。',
+      heroDesc: '用 AI 帮你把照片变成惊艳的艺术作品、3D 公仔、电影海报等。不用注册，免费试用。',
+      tryFree: '免费试用 SnapShift',
+      browseTemplates: '浏览模板',
+      promptInspire: '提示词灵感',
+      morePrompts: '更多提示词 →',
+      aiTemplates: 'AI 模板',
+      aiTemplatesDesc: '选一个模板，上传你的照片，立刻转换。',
+      moreTemplates: '更多模板 →',
+      seeDifference: '看看效果。',
+      dragSlider: '拖滑块对比。',
+      readyCreate: '准备好了吗？',
+      readyCreateDesc: '上传照片，选 AI 模板，一键转换——全在一页搞定。',
+      startCreating: '开始创作 →',
+      readyTransform: '准备转换你的照片吗？',
+      readyTransformDesc: '所有模板、1K 和 2K 画质，Beta 期间完全免费。',
+      howSection: '如何使用 SnapShift',
+      how1Title: '上传照片',
+      how1Desc: '拖拽或点击上传。支持 JPG 和 PNG，最多 5 张。',
+      how2Title: '选个模板',
+      how2Desc: '从 50+ 种 AI 风格中选择——赛博朋克、动漫、油画、3D 公仔等。',
+      how3Title: '生成并下载',
+      how3Desc: '一键转换。下载 1K 或 2K 画质结果。',
+      faq1: 'SnapShift 免费吗？',
+      faq1a: '是的——Beta 期间完全免费。所有模板、1K 和 2K 都包含。',
+      faq2: '需要注册吗？',
+      faq2a: '不需要。直接上传照片开始转换。',
+      faq3: '需要多久？',
+      faq3a: '大多数生成需要 10–30 秒，取决于分辨率。',
+      faq4: '能用生成的图片商用吗？',
+      faq4a: '可以。你生成的所有图片都属于你。',
+      footerCopyright: '© 2026 SnapShift. 保留所有权利。',
+      createTitle: '开始创作',
+      createDesc: '上传照片，选模板，几秒出结果。',
+      uploadHere: '拖拽或点击上传',
+      uploadHint: 'JPG / PNG，最多 5 张',
+      addMore: '点击添加更多照片',
+      genNoPhoto: '无需照片生成',
+      aspectRatio: '画面比例',
+      resolution: '分辨率',
+      template: '模板',
+      freeMode: '自由模式',
+      more: '更多 +',
+      advancedOptions: '高级选项',
+      customPrompt: '自定义提示词',
+      promptInspireLink: '需要灵感？试试示例提示词',
+      customPromptPlaceholder: '添加细节优化模板效果...',
+      genBtn: '输入提示词或选择一个模板',
+      featuredTransformations: '精选效果展示',
+      transforming: '正在转换你的图像...',
+      download: '下载',
+      share: '分享',
+      tryAnother: '再来一张',
+      need2Photos: '请上传主体和背景两张照片',
+      uploadSubjectBg: '上传主体（第1张）+ 背景（第2张）',
+      needBgPhoto: '还需要背景照片（第2张）',
+      uploadSubjectOutfit: '上传主体 + 服装参考',
+      needOutfitPhoto: '还需要服装照片（第2张）',
+      backTop: '↑',
+    }
+  };
+
+  // Auto-detect language
+  const saved = localStorage.getItem('snapshift-lang');
+  const browserLang = (navigator.language || '').startsWith('zh') ? 'zh' : 'en';
+  let currentLang = saved || browserLang;
+
+  function setLang(lang) {
+    currentLang = lang;
+    localStorage.setItem('snapshift-lang', lang);
+    applyLang(lang);
+    // Update toggle buttons
+    document.querySelectorAll('.lang-btn').forEach(b => {
+      b.classList.toggle('active', b.dataset.lang === lang);
+    });
+  }
+
+  function applyLang(lang) {
+    const strings = LANG[lang] || LANG.en;
+    // Apply to all elements with data-l10n
+    document.querySelectorAll('[data-l10n]').forEach(el => {
+      const key = el.dataset.l10n;
+      if (strings[key] !== undefined) {
+        if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+          el.placeholder = strings[key];
+        } else {
+          el.textContent = strings[key];
+        }
+      }
+    });
+    // Update button text for generate button
+    document.querySelectorAll('[data-l10n-if]').forEach(el => {
+      const expr = el.dataset.l10nIf;
+      const [key, val] = expr.split('=');
+      if (val && el.dataset[key] !== val) return;
+      const k = el.dataset.l10n || '';
+      if (strings[k] !== undefined) el.textContent = strings[k];
+    });
+    document.documentElement.lang = lang;
+  }
+
+  // Expose globally
+  window.setLang = setLang;
+  window.getLang = () => currentLang;
+  window.initLang = () => {
+    // Render language toggle buttons
+    document.querySelectorAll('.lang-toggle').forEach(toggle => {
+      toggle.innerHTML = `
+        <button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
+        <button class="lang-btn" data-lang="zh" onclick="setLang('zh')">中</button>
+      `;
+    });
+    applyLang(currentLang);
+  };
+
+  // Auto-init after DOM loads
+  document.addEventListener('DOMContentLoaded', () => {
+    window.initLang();
+  });
+})();
