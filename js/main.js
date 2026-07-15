@@ -729,7 +729,7 @@ function openTemplateModal(e) {
 
 async function callAPI(formData, retries = 15) {
   for (let i = 0; i < retries; i++) {
-    const resp = await fetch('/api/generate', { method: 'POST', body: formData });
+    const resp = await fetch('https://snapshift-api.butzyjj.workers.dev', { method: 'POST', body: formData });
     const data = await resp.json();
     if (resp.ok) return data;
     const msg = data.error || '';
