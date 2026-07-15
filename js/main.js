@@ -359,50 +359,50 @@ if (customPromptEl) {
 // ===== Showcase before generation =====
 // 46 unique items, tag auto-derived from filename
 const showcasePool = [
-  { src: 'samples-v4/transformed/street-cyberpunk.png', tag: 'Cyberpunk' },
-  { src: 'samples-v4/transformed/cat-anime.png', tag: 'Anime' },
-  { src: 'samples-v4/transformed/runner-tradingcard.png', tag: 'Sports Card' },
-  { src: 'samples-v4/transformed/dog-funko.png', tag: 'Funko Pop' },
-  { src: 'samples-v4/transformed/city-anime.png', tag: 'Anime City' },
-  { src: 'samples-v4/transformed/flowers-ghibli.png', tag: 'Ghibli' },
-  { src: 'samples-v4/transformed/beach-album.png', tag: 'Album Cover' },
-  { src: 'samples-v4/transformed/mountain-oil.png', tag: 'Oil Painting' },
-  { src: 'samples-v4/transformed/watch-luxury.png', tag: 'Luxury Watch' },
-  { src: 'samples-v4/transformed/cat-cute-chibisticker.png', tag: 'Chibi' },
-  { src: 'samples-v4/transformed/cat-felt.png', tag: 'Felt' },
-  { src: 'samples-v4/transformed/cat-oil.png', tag: 'Oil Painting' },
-  { src: 'samples-v4/transformed/chibi-character-animalcrossing.png', tag: 'Animal Crossing' },
-  { src: 'samples-v4/transformed/city-street-anime.png', tag: 'Anime Street' },
-  { src: 'samples-v4/transformed/city-street-vintage.png', tag: 'Vintage' },
-  { src: 'samples-v4/transformed/city-vintage.png', tag: 'Vintage' },
-  { src: 'samples-v4/transformed/coffee-watercolor.png', tag: 'Watercolor' },
-  { src: 'samples-v4/transformed/comic-scene-yonkoma.png', tag: '4-Panel Comic' },
-  { src: 'samples-v4/transformed/corgi-enamelpin.png', tag: 'Enamel Pin' },
-  { src: 'samples-v4/transformed/dog-cartoon.png', tag: 'Cartoon' },
-  { src: 'samples-v4/transformed/dog-pixel.png', tag: 'Pixel' },
-  { src: 'samples-v4/transformed/fantasy-landscape-pixelrpg.png', tag: 'Pixel RPG' },
-  { src: 'samples-v4/transformed/flowers-oil.png', tag: 'Oil' },
-  { src: 'samples-v4/transformed/fruit-bowl-gouache.png', tag: 'Gouache' },
-  { src: 'samples-v4/transformed/girl-asian-1-powerpuff.png', tag: 'Powerpuff' },
-  { src: 'samples-v4/transformed/girl-asian-2-peko.png', tag: 'Peko' },
-  { src: 'samples-v4/transformed/landscape-lake-vangogh.png', tag: 'Van Gogh' },
-  { src: 'samples-v4/transformed/mountain-ghibli.png', tag: 'Ghibli' },
-  { src: 'samples-v4/transformed/parrot-anime.png', tag: 'Anime' },
-  { src: 'samples-v4/transformed/parrot-watercolor.png', tag: 'Watercolor' },
-  { src: 'samples-v4/transformed/portrait-drama-bnwphoto.png', tag: 'B&W Portrait' },
-  { src: 'samples-v4/transformed/portrait-male-blindbox.png', tag: 'Blind Box' },
-  { src: 'samples-v4/transformed/potted-plant-mangaline.png', tag: 'Manga' },
-  { src: 'samples-v4/transformed/retro-car-retroposter.png', tag: 'Retro Poster' },
-  { src: 'samples-v4/transformed/runner-comic.png', tag: 'Comic' },
-  { src: 'samples-v4/transformed/runner-figurine.png', tag: 'Figurine' },
-  { src: 'samples-v4/transformed/sneakers-cyberpunk.png', tag: 'Cyberpunk' },
-  { src: 'samples-v4/transformed/sneakers-product.png', tag: 'Product' },
-  { src: 'samples-v4/transformed/street-magazine.png', tag: 'Magazine' },
-  { src: 'samples-v4/transformed/street-movieposter.png', tag: 'Movie Poster' },
-  { src: 'samples-v4/transformed/street-portrait-magazine.png', tag: 'Magazine' },
-  { src: 'samples-v4/transformed/street-portrait-movieposter.png', tag: 'Movie Poster' },
-  { src: 'samples-v4/transformed/action-hero-gamecard.png', tag: 'Trading Card' },
-  { src: 'samples-v4/transformed/beach-fantasy.png', tag: 'Fantasy' }
+  { src: 'samples-v4/transformed/street-cyberpunk.png', tag: 'Cyberpunk', tagKey: 'tplCyberpunk' },
+  { src: 'samples-v4/transformed/cat-anime.png', tag: 'Anime', tagKey: 'tplAnime' },
+  { src: 'samples-v4/transformed/runner-tradingcard.png', tag: 'Sports Card', tagKey: 'tplSportsCard' },
+  { src: 'samples-v4/transformed/dog-funko.png', tag: 'Funko Pop', tagKey: 'tplFunkoPop' },
+  { src: 'samples-v4/transformed/city-anime.png', tag: 'Anime City', tagKey: 'tplAnimeCity' },
+  { src: 'samples-v4/transformed/flowers-ghibli.png', tag: 'Ghibli', tagKey: 'tplGhibli' },
+  { src: 'samples-v4/transformed/beach-album.png', tag: 'Album Cover', tagKey: 'tplAlbumCover' },
+  { src: 'samples-v4/transformed/mountain-oil.png', tag: 'Oil Painting', tagKey: 'tplOilPainting' },
+  { src: 'samples-v4/transformed/watch-luxury.png', tag: 'Luxury Watch', tagKey: 'tplLuxuryWatch' },
+  { src: 'samples-v4/transformed/cat-cute-chibisticker.png', tag: 'Chibi', tagKey: 'tplChibi' },
+  { src: 'samples-v4/transformed/cat-felt.png', tag: 'Felt', tagKey: 'tplFelt' },
+  { src: 'samples-v4/transformed/cat-oil.png', tag: 'Oil Painting', tagKey: 'tplOilPainting' },
+  { src: 'samples-v4/transformed/chibi-character-animalcrossing.png', tag: 'Animal Crossing', tagKey: 'tplAnimalCrossing' },
+  { src: 'samples-v4/transformed/city-street-anime.png', tag: 'Anime Street', tagKey: 'tplAnimeStreet' },
+  { src: 'samples-v4/transformed/city-street-vintage.png', tag: 'Vintage', tagKey: 'tplVintage' },
+  { src: 'samples-v4/transformed/city-vintage.png', tag: 'Vintage', tagKey: 'tplVintage' },
+  { src: 'samples-v4/transformed/coffee-watercolor.png', tag: 'Watercolor', tagKey: 'tplWatercolor' },
+  { src: 'samples-v4/transformed/comic-scene-yonkoma.png', tag: '4-Panel Comic', tagKey: 'tpl4PanelComic' },
+  { src: 'samples-v4/transformed/corgi-enamelpin.png', tag: 'Enamel Pin', tagKey: 'tplEnamelPin' },
+  { src: 'samples-v4/transformed/dog-cartoon.png', tag: 'Cartoon', tagKey: 'tplCartoon' },
+  { src: 'samples-v4/transformed/dog-pixel.png', tag: 'Pixel', tagKey: 'tplPixel' },
+  { src: 'samples-v4/transformed/fantasy-landscape-pixelrpg.png', tag: 'Pixel RPG', tagKey: 'tplPixelRPG' },
+  { src: 'samples-v4/transformed/flowers-oil.png', tag: 'Oil', tagKey: 'tplOil' },
+  { src: 'samples-v4/transformed/fruit-bowl-gouache.png', tag: 'Gouache', tagKey: 'tplGouache' },
+  { src: 'samples-v4/transformed/girl-asian-1-powerpuff.png', tag: 'Powerpuff', tagKey: 'tplPowerpuffGirls' },
+  { src: 'samples-v4/transformed/girl-asian-2-peko.png', tag: 'Peko', tagKey: 'tplPeko' },
+  { src: 'samples-v4/transformed/landscape-lake-vangogh.png', tag: 'Van Gogh', tagKey: 'tplVanGogh' },
+  { src: 'samples-v4/transformed/mountain-ghibli.png', tag: 'Ghibli', tagKey: 'tplGhibli' },
+  { src: 'samples-v4/transformed/parrot-anime.png', tag: 'Anime', tagKey: 'tplAnime' },
+  { src: 'samples-v4/transformed/parrot-watercolor.png', tag: 'Watercolor', tagKey: 'tplWatercolor' },
+  { src: 'samples-v4/transformed/portrait-drama-bnwphoto.png', tag: 'B&W Portrait', tagKey: 'tplBWPortrait' },
+  { src: 'samples-v4/transformed/portrait-male-blindbox.png', tag: 'Blind Box', tagKey: 'tplBlindBox' },
+  { src: 'samples-v4/transformed/potted-plant-mangaline.png', tag: 'Manga', tagKey: 'tplManga' },
+  { src: 'samples-v4/transformed/retro-car-retroposter.png', tag: 'Retro Poster', tagKey: 'tplRetroPoster' },
+  { src: 'samples-v4/transformed/runner-comic.png', tag: 'Comic', tagKey: 'tplComic' },
+  { src: 'samples-v4/transformed/runner-figurine.png', tag: 'Figurine', tagKey: 'tplFigurine' },
+  { src: 'samples-v4/transformed/sneakers-cyberpunk.png', tag: 'Cyberpunk', tagKey: 'tplCyberpunk' },
+  { src: 'samples-v4/transformed/sneakers-product.png', tag: 'Product', tagKey: 'tplProduct' },
+  { src: 'samples-v4/transformed/street-magazine.png', tag: 'Magazine', tagKey: 'tplMagazine' },
+  { src: 'samples-v4/transformed/street-movieposter.png', tag: 'Movie Poster', tagKey: 'tplMoviePoster' },
+  { src: 'samples-v4/transformed/street-portrait-magazine.png', tag: 'Magazine', tagKey: 'tplMagazine' },
+  { src: 'samples-v4/transformed/street-portrait-movieposter.png', tag: 'Movie Poster', tagKey: 'tplMoviePoster' },
+  { src: 'samples-v4/transformed/action-hero-gamecard.png', tag: 'Trading Card', tagKey: 'tplTradingCard' },
+  { src: 'samples-v4/transformed/beach-fantasy.png', tag: 'Fantasy', tagKey: 'tplFantasy' }
 ];
 // Shuffle and take 9 random each page load
 const showcaseItems = [...showcasePool].sort(() => Math.random() - 0.5).slice(0, 9);
@@ -412,7 +412,8 @@ if (showcaseGrid) {
   showcaseItems.forEach(item => {
     const div = document.createElement('div');
     div.className = 'sc-item';
-    div.innerHTML = `<img src="${item.src}" alt="${item.tag}"><span class="sc-tag">${item.tag}</span>`;
+    const tagText = window.t ? window.t(item.tagKey) : item.tag;
+    div.innerHTML = `<img src="${item.src}" alt="${item.tag}"><span class="sc-tag">${tagText}</span>`;
     div.addEventListener('click', () => {
       const match = Array.from($$('.gen-thumb')).find(t => t.dataset.genStyle && item.tag.toLowerCase().includes(t.textContent.trim().toLowerCase()));
       if (match) {
@@ -435,14 +436,25 @@ const modalSearch = $('#modalSearch');
 
 
 // ===== Prompt Inspiration Strip (400 random → 10 + click lightbox) =====
+// Derive short Chinese title from src path category
+const CAT_ZH = {'Portrait':'人像','Urban':'都市','Still Life':'静物','Fantasy':'奇幻','Nature':'自然','Food':'美食','Abstract':'抽象','Animal':'动物'};
+function deriveTitleZh(ex) {
+  if (!ex.src) return ex.title || '';
+  const parts = ex.src.split('/');
+  const cat = parts[parts.length - 2];
+  return CAT_ZH[cat] || cat;
+}
+
 function initStrip() {
   const track = $('#stripTrack');
   if (!track) return;
   if (typeof window.promptExamples === 'undefined' || !window.promptExamples.length) return;
   const selected = [...window.promptExamples].sort(() => Math.random() - 0.5).slice(0, 10);
   const esc = (s) => String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  const useZh = window.getLang && window.getLang() === 'zh';
   const build = (ex) => {
-    return '<div class="pi-item" data-title="'+esc(ex.title)+'" data-tags="'+esc((ex.tags||[]).join(','))+'" data-prompt="'+esc(ex.prompt||'')+'"><img loading="lazy" src="'+ex.src+'" alt="'+esc(ex.title)+'"><span class="pi-label">'+esc(ex.title)+'</span></div>';
+    const label = useZh ? deriveTitleZh(ex) : (ex.title.length > 28 ? ex.title.slice(0, 28) + '…' : ex.title);
+    return '<div class="pi-item" data-title="'+esc(ex.title)+'" data-tags="'+esc((ex.tags||[]).join(','))+'" data-prompt="'+esc(ex.prompt||'')+'"><img loading="lazy" src="'+ex.src+'" alt="'+esc(ex.title)+'"><span class="pi-label">'+esc(label)+'</span></div>';
   };
   track.innerHTML = selected.map(build).join('') + selected.map(build).join('');
   track.addEventListener('click', e => {
@@ -471,6 +483,27 @@ function initStrip() {
   });
 }
 setTimeout(initStrip, 100);
+
+// Re-render strip + showcase on language change
+window.addEventListener('langchange', () => {
+  initStrip();
+  // Re-render showcase grid
+  const grid = $('#showcaseGrid');
+  if (grid) {
+    grid.innerHTML = '';
+    [...showcasePool].sort(() => Math.random() - 0.5).slice(0, 9).forEach(item => {
+      const div = document.createElement('div');
+      div.className = 'sc-item';
+      const tagText = window.t ? window.t(item.tagKey) : item.tag;
+      div.innerHTML = `<img src="${item.src}" alt="${item.tag}"><span class="sc-tag">${tagText}</span>`;
+      grid.appendChild(div);
+    });
+  }
+  // Re-render template modal if open
+  if ($('#templateModal') && $('#templateModal').style.display !== 'none') {
+    buildTemplateModal();
+  }
+});
 
 function renderPromptCards() {
   modalBody.innerHTML = '';

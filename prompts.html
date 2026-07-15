@@ -498,6 +498,29 @@ f('all')})();
 <script>
   // Renumber cards 1, 2, 3, ... continuously
   document.querySelectorAll('.card .num').forEach((el, i) => { el.textContent = '#' + (i + 1); });
+
+  // Save original English text, then swap on language change
+  document.querySelectorAll('.card').forEach(c => {
+    const en = c.querySelector('.en');
+    if (en) c.dataset.originalEn = en.textContent;
+  });
+  const applyCardLang = (lang) => {
+    document.querySelectorAll('.card').forEach(c => {
+      const en = c.querySelector('.en');
+      if (!en) return;
+      if (lang === 'zh') {
+        // Show category name (Chinese) as card title
+        const catMap = {'人像':'人像','都市':'都市','静物':'静物','奇幻':'奇幻','自然':'自然','美食':'美食','抽象':'抽象','动物':'动物'};
+        en.textContent = catMap[c.dataset.cat] || c.dataset.cat;
+      } else {
+        en.textContent = c.dataset.originalEn || '';
+      }
+    });
+  };
+  // Initial apply
+  applyCardLang((window.getLang && window.getLang()) || 'en');
+  // Listen for language change
+  window.addEventListener('langchange', e => applyCardLang(e.detail.lang));
 </script>
 <script src="js/lang.js"></script>
 </body>

@@ -169,6 +169,21 @@
       tplBgReplace: 'Background Replace',
       tplOil: 'Oil',
       tplWater: 'Water',
+      tplTradingCard: 'Trading Card',
+      tplAlbumCover: 'Album Cover',
+      tplAnimeCity: 'Anime City',
+      tplAnimeStreet: 'Anime Street',
+      tplBWPortrait: 'B&W Portrait',
+      tplBlindBox: 'Blind Box',
+      tplManga: 'Manga',
+      tplRetroPoster: 'Retro Poster',
+      tplComic: 'Comic',
+      tplSportsCard: 'Sports Card',
+      tplPixelRPG: 'Pixel RPG',
+      tplMagazine: 'Magazine',
+      tplProduct: 'Product',
+      tplPeko: 'Peko',
+      tplFantasy: 'Fantasy',
       tplPixel: 'Pixel',
       tplWatercolor: 'Watercolor',
       tplChibi: 'Chibi',
@@ -382,6 +397,21 @@
       tplBgReplace: '背景替换',
       tplOil: '油画',
       tplWater: '水彩',
+      tplTradingCard: '球星卡',
+      tplAlbumCover: '专辑封面',
+      tplAnimeCity: '动漫城市',
+      tplAnimeStreet: '动漫街景',
+      tplBWPortrait: '黑白人像',
+      tplBlindBox: '盲盒',
+      tplManga: '漫画',
+      tplRetroPoster: '复古海报',
+      tplComic: '漫画',
+      tplSportsCard: '运动卡',
+      tplPixelRPG: '像素 RPG',
+      tplMagazine: '杂志',
+      tplProduct: '产品',
+      tplPeko: 'Peko',
+      tplFantasy: '奇幻',
       tplPixel: '像素',
       tplWatercolor: '水彩画',
       tplChibi: 'Q版',
@@ -449,6 +479,8 @@
     document.querySelectorAll('.lang-btn').forEach(b => {
       b.classList.toggle('active', b.dataset.lang === lang);
     });
+    // Notify listeners (e.g., strip + showcase re-render)
+    window.dispatchEvent(new CustomEvent('langchange', { detail: { lang } }));
   }
 
   function applyLang(lang) {
