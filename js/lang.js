@@ -223,3 +223,5 @@
     buildLangToggle();
     applyLang(currentLang);
   };
+
+})();
