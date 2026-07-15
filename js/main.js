@@ -438,11 +438,19 @@ const modalSearch = $('#modalSearch');
 // ===== Prompt Inspiration Strip (400 random → 10 + click lightbox) =====
 // Derive short Chinese title from src path category
 const CAT_ZH = {'Portrait':'人像','Urban':'都市','Still Life':'静物','Fantasy':'奇幻','Nature':'自然','Food':'美食','Abstract':'抽象','Animal':'动物'};
-function deriveTitleZh(ex) {
-  if (!ex.src) return ex.title || '';
+function shortTitleEn(title) {
+  // Shorten: take first 24 chars
+  return title.length > 24 ? title.slice(0, 24) + '…' : title;
+}
+function shortTitleZh(ex) {
+  // Chinese: use category + first descriptor from src filename
+  if (!ex.src) return '提示词';
   const parts = ex.src.split('/');
   const cat = parts[parts.length - 2];
-  return CAT_ZH[cat] || cat;
+  const file = parts[parts.length - 1] || '';
+  const num = file.match(/^(\d+)/);
+  const numStr = num ? num[1] : '';
+  return (CAT_ZH[cat] || cat) + (numStr ? ' #' + numStr : '');
 }
 
 function initStrip() {
@@ -453,7 +461,7 @@ function initStrip() {
   const esc = (s) => String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
   const useZh = window.getLang && window.getLang() === 'zh';
   const build = (ex) => {
-    const label = useZh ? deriveTitleZh(ex) : (ex.title.length > 28 ? ex.title.slice(0, 28) + '…' : ex.title);
+    const label = useZh ? shortTitleZh(ex) : shortTitleEn(ex.title || '');
     return '<div class="pi-item" data-title="'+esc(ex.title)+'" data-tags="'+esc((ex.tags||[]).join(','))+'" data-prompt="'+esc(ex.prompt||'')+'"><img loading="lazy" src="'+ex.src+'" alt="'+esc(ex.title)+'"><span class="pi-label">'+esc(label)+'</span></div>';
   };
   track.innerHTML = selected.map(build).join('') + selected.map(build).join('');
