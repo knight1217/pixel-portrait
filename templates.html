@@ -380,6 +380,16 @@ cards.forEach(card => {
 });
 
 </script>
+<script>
+// Template card click → create page with style
+document.querySelectorAll('.template-card').forEach(card => {
+  card.style.cursor = 'pointer';
+  card.addEventListener('click', () => {
+    const style = card.dataset.styleKey;
+    if (style) location.href = 'create.html?style=' + style;
+  });
+});
+</script>
 <script src="js/lang.js"></script>
 </body>
 </html>

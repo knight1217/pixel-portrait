@@ -394,7 +394,8 @@ const TEMPLATE_TAGS = {
 const showcasePool = TEMPLATE_FILES.map(f => ({
   src: 'samples/templates/' + f + '.png',
   tag: TEMPLATE_TAGS[f][0],
-  tagKey: TEMPLATE_TAGS[f][1]
+  tagKey: TEMPLATE_TAGS[f][1],
+  styleKey: f
 }));
 // Shuffle and take 9 random each page load
 const showcaseItems = [...showcasePool].sort(() => Math.random() - 0.5).slice(0, 9);
@@ -407,13 +408,8 @@ if (showcaseGrid) {
     const tagText = window.t ? window.t(item.tagKey) : item.tag;
     div.innerHTML = `<img src="${item.src}" alt="${item.tag}"><span class="sc-tag">${tagText}</span>`;
     div.addEventListener('click', () => {
-      const match = Array.from($$('.gen-thumb')).find(t => t.dataset.genStyle && item.tag.toLowerCase().includes(t.textContent.trim().toLowerCase()));
-      if (match) {
-        $$('.gen-thumb').forEach(t => t.classList.remove('active'));
-        match.classList.add('active');
-        selectedStyle = match.dataset.genStyle;
-        updateGenBtn();
-      }
+      selectTemplateStyle(item.styleKey);
+      $$('.gen-thumb').forEach(t => t.classList.toggle('active', t.dataset.genStyle === item.styleKey));
     });
     showcaseGrid.appendChild(div);
   });
@@ -548,6 +544,10 @@ window.addEventListener('langchange', () => {
       div.className = 'sc-item';
       const tagText = window.t ? window.t(item.tagKey) : item.tag;
       div.innerHTML = `<img src="${item.src}" alt="${item.tag}"><span class="sc-tag">${tagText}</span>`;
+      div.addEventListener('click', () => {
+        selectTemplateStyle(item.styleKey);
+        $$('.gen-thumb').forEach(t => t.classList.toggle('active', t.dataset.genStyle === item.styleKey));
+      });
       grid.appendChild(div);
     });
   }
@@ -1023,3 +1023,21 @@ if (backTop) {
   // Clean URL
   history.replaceState(null, '', window.location.pathname + '#generator');
 })();
+
+// ===== Handle ?style=xxx URL parameter =====
+(function handleStyleParam() {
+  const params = new URLSearchParams(window.location.search);
+  const style = params.get('style');
+  if (!style) return;
+  setTimeout(() => {
+    selectTemplateStyle(style);
+  }, 200);
+})();
+
+// ===== Template card click → create page with style =====
+$$('.template-card').forEach(card => {
+  card.addEventListener('click', () => {
+    const style = card.dataset.styleKey;
+    if (style) location.href = 'create.html?style=' + style;
+  });
+});
