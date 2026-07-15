@@ -40,11 +40,12 @@
     <a href="index.html" class="logo"><img src="logo-v2.png" alt="AiSS" class="logo-img"> SnapShift</a>
     <button class="hamburger" id="hamburger" aria-label="Menu">☰</button>
     <nav class="nav-links" id="navLinks">
-      <a href="index.html">Home</a>
-      <a href="templates.html">Templates</a>
-      <a href="create.html" class="active">Create</a>
-      <a href="index.html#how">How It Works</a>
-      <a href="index.html#faq">FAQ</a>
+      <a href="index.html" data-l10n="home">Home</a>
+      <a href="templates.html" data-l10n="templates">Templates</a>
+      <a href="create.html" class="active" data-l10n="create">Create</a>
+      <a href="index.html#how" data-l10n="howItWorks">How It Works</a>
+      <div class="lang-toggle" id="langToggle"></div>
+      <a href="index.html#faq" data-l10n="faq">FAQ</a>
     </nav>
   </div>
 </header>
@@ -53,8 +54,8 @@
   <section class="create-page">
     <div class="container">
       <div class="section-header" style="margin-bottom:28px">
-        <h1 class="section-title" style="font-size:2rem;margin:0 0 8px">Create your transformation</h1>
-        <p class="section-sub" style="margin:0;font-size:1rem">Upload a photo, pick a template, get the result in seconds.</p>
+        <h1 class="section-title" style="font-size:2rem;margin:0 0 8px" data-l10n="createTitle">Create your transformation</h1>
+        <p class="section-sub" style="margin:0;font-size:1rem" data-l10n="createDesc">Upload a photo, pick a template, get the result in seconds.</p>
       </div>
       <div class="generator-layout">
         <div class="gen-sidebar">
@@ -62,16 +63,16 @@
             <input type="file" id="fileInput" accept="image/*" multiple hidden>
             <div class="preview-stack" id="previewStack"></div>
             <div class="upload-add" id="uploadAdd">
-              <h3>Drop or click to upload</h3>
-              <p>JPG / PNG, up to 5 photos</p>
+              <h3 data-l10n="uploadHere">Drop or click to upload</h3>
+              <p data-l10n="uploadHint">JPG / PNG, up to 5 photos</p>
               <div class="upload-icon-wrap small">+</div>
             </div>
           </div>
           <div class="upload-skip">
-            <button id="skipUploadBtn" class="skip-btn">Generate without photo</button>
+            <button id="skipUploadBtn" class="skip-btn" data-l10n="genNoPhoto">Generate without photo</button>
           </div>
           <div class="gen-options">
-            <label class="gen-label">Aspect Ratio</label>
+            <label class="gen-label" data-l10n="aspectRatio">Aspect Ratio</label>
             <div class="ratio-select">
               <button class="ratio-btn active" data-ratio="1:1">1:1</button>
               <button class="ratio-btn" data-ratio="9:16">9:16</button>
@@ -82,12 +83,12 @@
               <button class="ratio-btn" data-ratio="3:4">3:4</button>
               <button class="ratio-btn" data-ratio="4:3">4:3</button>
             </div>
-            <label class="gen-label">Resolution</label>
+            <label class="gen-label" data-l10n="resolution">Resolution</label>
             <div class="res-select">
               <button class="res-btn active" data-res="1K">1K</button>
               <button class="res-btn" data-res="2K">2K Pro</button>
             </div>
-            <label class="gen-label">Template</label>
+            <label class="gen-label" data-l10n="template">Template</label>
             <div class="gen-template-list" id="genThumbGrid">
               <button class="gen-thumb" data-gen-style="cyberpunk"><span>Cyberpunk</span></button>
               <button class="gen-thumb" data-gen-style="anime"><span>Anime</span></button>
@@ -101,34 +102,34 @@
               <span class="template-display-text" id="templateDisplayText">Free Mode</span>
             </div>
             <div class="advanced-toggle" id="advancedToggle">
-              <span>Advanced Options</span>
+              <span data-l10n="advancedOptions">Advanced Options</span>
             </div>
             <div class="advanced-panel" id="advancedPanel" style="display:none">
               <div class="prompt-header">
-                <label class="gen-label">Custom Prompt</label>
-                <a class="prompt-inspiration" id="promptInspiration">Need inspiration? Try example prompts</a>
+                <label class="gen-label" data-l10n="customPrompt">Custom Prompt</label>
+                <a class="prompt-inspiration" id="promptInspiration" data-l10n="promptInspireLink">Need inspiration? Try example prompts</a>
               </div>
               <textarea id="customPrompt" class="prompt-input" placeholder="Add details to refine the template..." autocomplete="off"></textarea>
             </div>
           </div>
-          <button class="btn-generate" id="btnGenerate" disabled>Enter a prompt or select a template</button>
+          <button class="btn-generate" id="btnGenerate" disabled data-l10n="genBtn">Enter a prompt or select a template</button>
         </div>
         <div class="gen-result-area" id="genResultArea">
           <div class="showcase-area" id="showcaseArea">
-            <p class="gen-section-label">Featured transformations</p>
+            <p class="gen-section-label" data-l10n="featuredTransformations">Featured transformations</p>
             <div class="showcase-grid" id="showcaseGrid"></div>
           </div>
           <div class="loading-section" id="loadingSection" style="display:none">
             <div class="spinner"></div>
-            <p id="loadingText">Transforming your image...</p>
+            <p id="loadingText" data-l10n="transforming">Transforming your image...</p>
           </div>
           <div class="result-section" id="resultSection" style="display:none">
             <div class="result-card">
               <img loading="lazy" id="resultImage" alt="Your transformed image">
               <div class="result-actions">
-                <button class="btn-primary" id="btnDownload">Download</button>
-                <button class="btn-secondary" id="btnShare">Share</button>
-                <button class="btn-secondary" id="btnTryAgain">Try Another</button>
+                <button class="btn-primary" id="btnDownload" data-l10n="download">Download</button>
+                <button class="btn-secondary" id="btnShare" data-l10n="share">Share</button>
+                <button class="btn-secondary" id="btnTryAgain" data-l10n="tryAnother">Try Another</button>
               </div>
             </div>
           </div>
@@ -215,5 +216,6 @@
 
 <script src="js/main.js"></script>
 <button class="back-top" id="backTop" aria-label="Back to top">↑</button>
+<script src="js/lang.js"></script>
 </body>
 </html>
