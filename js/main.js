@@ -357,53 +357,45 @@ if (customPromptEl) {
 }
 
 // ===== Showcase before generation =====
-// 46 unique items, tag auto-derived from filename
-const showcasePool = [
-  { src: 'samples-v4/transformed/street-cyberpunk.png', tag: 'Cyberpunk', tagKey: 'tplCyberpunk' },
-  { src: 'samples-v4/transformed/cat-anime.png', tag: 'Anime', tagKey: 'tplAnime' },
-  { src: 'samples-v4/transformed/runner-tradingcard.png', tag: 'Sports Card', tagKey: 'tplSportsCard' },
-  { src: 'samples-v4/transformed/dog-funko.png', tag: 'Funko Pop', tagKey: 'tplFunkoPop' },
-  { src: 'samples-v4/transformed/city-anime.png', tag: 'Anime City', tagKey: 'tplAnimeCity' },
-  { src: 'samples-v4/transformed/flowers-ghibli.png', tag: 'Ghibli', tagKey: 'tplGhibli' },
-  { src: 'samples-v4/transformed/beach-album.png', tag: 'Album Cover', tagKey: 'tplAlbumCover' },
-  { src: 'samples-v4/transformed/mountain-oil.png', tag: 'Oil Painting', tagKey: 'tplOilPainting' },
-  { src: 'samples-v4/transformed/watch-luxury.png', tag: 'Luxury Watch', tagKey: 'tplLuxuryWatch' },
-  { src: 'samples-v4/transformed/cat-cute-chibisticker.png', tag: 'Chibi', tagKey: 'tplChibi' },
-  { src: 'samples-v4/transformed/cat-felt.png', tag: 'Felt', tagKey: 'tplFelt' },
-  { src: 'samples-v4/transformed/cat-oil.png', tag: 'Oil Painting', tagKey: 'tplOilPainting' },
-  { src: 'samples-v4/transformed/chibi-character-animalcrossing.png', tag: 'Animal Crossing', tagKey: 'tplAnimalCrossing' },
-  { src: 'samples-v4/transformed/city-street-anime.png', tag: 'Anime Street', tagKey: 'tplAnimeStreet' },
-  { src: 'samples-v4/transformed/city-street-vintage.png', tag: 'Vintage', tagKey: 'tplVintage' },
-  { src: 'samples-v4/transformed/city-vintage.png', tag: 'Vintage', tagKey: 'tplVintage' },
-  { src: 'samples-v4/transformed/coffee-watercolor.png', tag: 'Watercolor', tagKey: 'tplWatercolor' },
-  { src: 'samples-v4/transformed/comic-scene-yonkoma.png', tag: '4-Panel Comic', tagKey: 'tpl4PanelComic' },
-  { src: 'samples-v4/transformed/corgi-enamelpin.png', tag: 'Enamel Pin', tagKey: 'tplEnamelPin' },
-  { src: 'samples-v4/transformed/dog-cartoon.png', tag: 'Cartoon', tagKey: 'tplCartoon' },
-  { src: 'samples-v4/transformed/dog-pixel.png', tag: 'Pixel', tagKey: 'tplPixel' },
-  { src: 'samples-v4/transformed/fantasy-landscape-pixelrpg.png', tag: 'Pixel RPG', tagKey: 'tplPixelRPG' },
-  { src: 'samples-v4/transformed/flowers-oil.png', tag: 'Oil', tagKey: 'tplOil' },
-  { src: 'samples-v4/transformed/fruit-bowl-gouache.png', tag: 'Gouache', tagKey: 'tplGouache' },
-  { src: 'samples-v4/transformed/girl-asian-1-powerpuff.png', tag: 'Powerpuff', tagKey: 'tplPowerpuffGirls' },
-  { src: 'samples-v4/transformed/girl-asian-2-peko.png', tag: 'Peko', tagKey: 'tplPeko' },
-  { src: 'samples-v4/transformed/landscape-lake-vangogh.png', tag: 'Van Gogh', tagKey: 'tplVanGogh' },
-  { src: 'samples-v4/transformed/mountain-ghibli.png', tag: 'Ghibli', tagKey: 'tplGhibli' },
-  { src: 'samples-v4/transformed/parrot-anime.png', tag: 'Anime', tagKey: 'tplAnime' },
-  { src: 'samples-v4/transformed/parrot-watercolor.png', tag: 'Watercolor', tagKey: 'tplWatercolor' },
-  { src: 'samples-v4/transformed/portrait-drama-bnwphoto.png', tag: 'B&W Portrait', tagKey: 'tplBWPortrait' },
-  { src: 'samples-v4/transformed/portrait-male-blindbox.png', tag: 'Blind Box', tagKey: 'tplBlindBox' },
-  { src: 'samples-v4/transformed/potted-plant-mangaline.png', tag: 'Manga', tagKey: 'tplManga' },
-  { src: 'samples-v4/transformed/retro-car-retroposter.png', tag: 'Retro Poster', tagKey: 'tplRetroPoster' },
-  { src: 'samples-v4/transformed/runner-comic.png', tag: 'Comic', tagKey: 'tplComic' },
-  { src: 'samples-v4/transformed/runner-figurine.png', tag: 'Figurine', tagKey: 'tplFigurine' },
-  { src: 'samples-v4/transformed/sneakers-cyberpunk.png', tag: 'Cyberpunk', tagKey: 'tplCyberpunk' },
-  { src: 'samples-v4/transformed/sneakers-product.png', tag: 'Product', tagKey: 'tplProduct' },
-  { src: 'samples-v4/transformed/street-magazine.png', tag: 'Magazine', tagKey: 'tplMagazine' },
-  { src: 'samples-v4/transformed/street-movieposter.png', tag: 'Movie Poster', tagKey: 'tplMoviePoster' },
-  { src: 'samples-v4/transformed/street-portrait-magazine.png', tag: 'Magazine', tagKey: 'tplMagazine' },
-  { src: 'samples-v4/transformed/street-portrait-movieposter.png', tag: 'Movie Poster', tagKey: 'tplMoviePoster' },
-  { src: 'samples-v4/transformed/action-hero-gamecard.png', tag: 'Trading Card', tagKey: 'tplTradingCard' },
-  { src: 'samples-v4/transformed/beach-fantasy.png', tag: 'Fantasy', tagKey: 'tplFantasy' }
-];
+// Uses NEW template images (samples/templates/) — same source as templates page
+const TEMPLATE_FILES = ['3d-polaroid','3d-screen','acrylic-keychain','action-figure','animal-crossing','anime','anime-figure','architecture-model','bg-replace','can-design','cartoon','chibi','chibi-3d','comic-outfit','comic-white','cosplay','crochet-doll','cyberpunk','disney','enamel-pin','figurine','funko-pop','ghibli','gouache','hd-enhance','ice-queen','industrial-design','japanese-illust','lego-minifig','lego-style','line-art','magazine','marker-sketch','movie-poster','oil-painting','overlay','painting-process','palette-swap','pixar','pixel','plush-toy','pose-reference','powerpuff','product-render','realistic','snoopy','subject-extract','van-gogh','vector-illustration','vintage','watercolor','yonkoma'];
+// Map filename → human label + lang key
+const TEMPLATE_TAGS = {
+  '3d-polaroid':['3D Polaroid','tpl3DPolaroid'],'3d-screen':['3D Screen Effect','tpl3DScreenEffect'],
+  'acrylic-keychain':['Acrylic Keychain','tplAcrylicKeychain'],'action-figure':['Action Figure','tplActionFigure'],
+  'animal-crossing':['Animal Crossing','tplAnimalCrossing'],'anime':['Anime','tplAnime'],
+  'anime-figure':['Anime Figure','tplAnimeFigure'],'architecture-model':['Architecture Model','tplArchitectureModel'],
+  'bg-replace':['Background Replace','tplBgReplace'],'can-design':['Can Design','tplCanDesign'],
+  'cartoon':['Cartoon','tplCartoon'],'chibi':['Chibi','tplChibi'],
+  'chibi-3d':['Chibi 3D','tplChibi3D'],'comic-outfit':['Manga Fashion','tplMangaFashion'],
+  'comic-white':['Manga Line Art','tplMangaLineArt'],'cosplay':['Cosplay','tplCosplay'],
+  'crochet-doll':['Crochet Doll','tplCrochetDoll'],'cyberpunk':['Cyberpunk','tplCyberpunk'],
+  'disney':['Disney','tplDisney'],'enamel-pin':['Enamel Pin','tplEnamelPin'],
+  'figurine':['Figurine','tplFigurine'],'funko-pop':['Funko Pop','tplFunkoPop'],
+  'ghibli':['Ghibli','tplGhibli'],'gouache':['Gouache','tplGouache'],
+  'hd-enhance':['HD Enhance','tplHDEnhance'],'ice-queen':['Ice Queen','tplIceQueen'],
+  'industrial-design':['Industrial Design','tplIndustrialDesign'],
+  'japanese-illust':['Japanese Illustration','tplJapaneseIllust'],
+  'lego-minifig':['LEGO Minifig','tplLegoMinifig'],'lego-style':['LEGO Style','tplLegoStyle'],
+  'line-art':['Line Art','tplLineArt'],'magazine':['Magazine','tplMagazine'],
+  'marker-sketch':['Marker Sketch','tplMarkerSketch'],'movie-poster':['Movie Poster','tplMoviePoster'],
+  'oil-painting':['Oil Painting','tplOilPainting'],'overlay':['Art Overlay','tplArtOverlay'],
+  'painting-process':['Painting Process','tplPaintingProcess'],
+  'palette-swap':['Palette Swap','tplPaletteSwap'],'pixar':['Pixar','tplPixar'],
+  'pixel':['Pixel','tplPixel'],'plush-toy':['Plush Toy','tplPlushToy'],
+  'pose-reference':['Pose Reference','tplPoseReference'],
+  'powerpuff':['Powerpuff','tplPowerpuffGirls'],'product-render':['Product Render','tplProductRender'],
+  'realistic':['Hyper-Realistic','tplHyperRealistic'],'snoopy':['Snoopy','tplSnoopy'],
+  'subject-extract':['Subject Extraction','tplSubjectExtraction'],
+  'van-gogh':['Van Gogh','tplVanGogh'],'vector-illustration':['Vector Illustration','tplVectorIllustration'],
+  'vintage':['Vintage','tplVintage'],'watercolor':['Watercolor','tplWatercolor'],
+  'yonkoma':['4-Panel Comic','tpl4PanelComic']
+};
+const showcasePool = TEMPLATE_FILES.map(f => ({
+  src: 'samples/templates/' + f + '.png',
+  tag: TEMPLATE_TAGS[f][0],
+  tagKey: TEMPLATE_TAGS[f][1]
+}));
 // Shuffle and take 9 random each page load
 const showcaseItems = [...showcasePool].sort(() => Math.random() - 0.5).slice(0, 9);
 
