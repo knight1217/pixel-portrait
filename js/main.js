@@ -482,7 +482,21 @@ function initStrip() {
     document.body.style.overflow = 'hidden';
   });
 }
-setTimeout(initStrip, 100);
+setTimeout(function() {
+  try {
+    initStrip();
+  } catch (e) {
+    console.error('initStrip error:', e);
+    const track = $('#stripTrack');
+    if (track) {
+      // Fallback: show raw data-en prompts
+      const fallback = (window.promptExamples || []).slice(0, 10).map(ex =>
+        `<div class="pi-item"><img loading="lazy" src="${ex.src}"><span class="pi-label">${ex.title.slice(0, 30)}</span></div>`
+      ).join('');
+      track.innerHTML = fallback + fallback;
+    }
+  }
+}, 100);
 
 // Re-render strip + showcase on language change
 window.addEventListener('langchange', () => {
