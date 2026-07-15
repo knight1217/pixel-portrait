@@ -466,19 +466,22 @@ function initStrip() {
   const track = $('#stripTrack');
   if (!track) return;
   if (typeof window.promptExamples === 'undefined' || !window.promptExamples.length) return;
-  const selected = [...window.promptExamples].sort(() => Math.random() - 0.5).slice(0, 10);
+  // Pick 10 random items with their real indices
+  const pool = window.promptExamples.map((ex, idx) => ({ ex, idx }));
+  const selected = pool.sort(() => Math.random() - 0.5).slice(0, 10);
   const esc = (s) => String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-  const build = (ex, i) => {
+  const build = (item) => {
     try {
-      const label = '#' + (i + 1);
+      const ex = item.ex;
+      const label = '#' + (item.idx + 1);
       const src = ex.src || '';
       const title = ex.title || '';
       const tags = (ex.tags || []).join(',');
       const prompt = ex.prompt || '';
-      return '<div class="pi-item" data-title="'+esc(title)+'" data-tags="'+esc(tags)+'" data-prompt="'+esc(prompt)+'"><img loading="lazy" src="'+esc(src)+'" alt="'+esc(title)+'"><span class="pi-label">'+label+'</span></div>';
+      return '<div class="pi-item" data-title="'+esc(title)+'" data-tags="'+esc(tags)+'" data-prompt="'+esc(prompt)+'" data-src="'+esc(src)+'" data-idx="'+item.idx+'"><img loading="lazy" src="'+esc(src)+'" alt="'+esc(title)+'"><span class="pi-label">'+label+'</span></div>';
     } catch (e) {
-      console.error('build error:', e, ex);
-      return '<div class="pi-item"><img src="'+ex.src+'"><span class="pi-label">#'+(i+1)+'</span></div>';
+      console.error('build error:', e, item);
+      return '<div class="pi-item"><img src="'+item.ex.src+'"><span class="pi-label">#'+(item.idx+1)+'</span></div>';
     }
   };
   let items = '';
@@ -490,26 +493,35 @@ function initStrip() {
   if (items) {
     track.innerHTML = items;
   } else {
-    const fb = selected.map((ex,i) => '<div class="pi-item"><img loading="lazy" src="'+(ex.src||'')+'"><span class="pi-label">#'+(i+1)+'</span></div>').join('');
+    const fb = selected.map(item => '<div class="pi-item"><img loading="lazy" src="'+(item.ex.src||'')+'"><span class="pi-label">#'+(item.idx+1)+'</span></div>').join('');
     track.innerHTML = fb + fb;
   }
   track.addEventListener('click', e => {
     const item = e.target.closest('.pi-item');
     if (!item) return;
     const img = item.querySelector('img');
-    const prompt = item.dataset.prompt || '';
+    const promptEn = item.dataset.prompt || '';
+    const src = item.dataset.src || '';
+    // Get Chinese translation from window.promptZh
+    let promptZh = '';
+    if (src && window.promptZh) {
+      const rel = src.replace('prompts-final/prompts-previews/', '');
+      promptZh = window.promptZh[rel] || '';
+    }
+    const useZh = window.getLang && window.getLang() === 'zh';
+    const displayPrompt = useZh && promptZh ? promptZh : promptEn;
     const plb = $('#promptLightbox');
     if (!plb) return;
     if ($('#plbImg')) $('#plbImg').src = img.src;
     if ($('#plbTitle')) $('#plbTitle').textContent = item.querySelector('.pi-label')?.textContent || '#';
     if ($('#plbTags')) $('#plbTags').innerHTML = '';
-    if ($('#plbPrompt')) $('#plbPrompt').textContent = prompt;
+    if ($('#plbPrompt')) $('#plbPrompt').textContent = displayPrompt;
     if ($('#plbUse')) $('#plbUse').onclick = () => {
       plb.style.display = 'none'; document.body.style.overflow = '';
-      window.location.href = 'create.html#generator?prompt=' + encodeURIComponent(prompt);
+      window.location.href = 'create.html#generator?prompt=' + encodeURIComponent(displayPrompt);
     };
     if ($('#plbCopy')) $('#plbCopy').onclick = async () => {
-      try { await navigator.clipboard.writeText(prompt); $('#plbCopy').textContent = 'Copied!'; setTimeout(() => $('#plbCopy').textContent = 'Copy prompt', 1500); }
+      try { await navigator.clipboard.writeText(displayPrompt); $('#plbCopy').textContent = 'Copied!'; setTimeout(() => $('#plbCopy').textContent = 'Copy prompt', 1500); }
       catch (err) { $('#plbCopy').textContent = 'Copy failed'; setTimeout(() => $('#plbCopy').textContent = 'Copy prompt', 1500); }
     };
     plb.style.display = 'flex';
