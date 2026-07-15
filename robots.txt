@@ -3,4 +3,4 @@ Allow: /
 Disallow: /api/
 Disallow: /functions/
 
-Sitemap: https://snapshift.fun/sitemap.xml
+Sitemap: https://snapshit.fun/sitemap.xml
